@@ -1,0 +1,43 @@
+[2022-01-27 14:54:35,226] {taskinstance.py:876} INFO - Dependencies all met for <TaskInstance: cgi_40.load_data_source 2022-01-27T14:54:34.581932+00:00 [queued]>
+[2022-01-27 14:54:35,234] {taskinstance.py:876} INFO - Dependencies all met for <TaskInstance: cgi_40.load_data_source 2022-01-27T14:54:34.581932+00:00 [queued]>
+[2022-01-27 14:54:35,235] {taskinstance.py:1067} INFO - 
+--------------------------------------------------------------------------------
+[2022-01-27 14:54:35,235] {taskinstance.py:1068} INFO - Starting attempt 1 of 1
+[2022-01-27 14:54:35,235] {taskinstance.py:1069} INFO - 
+--------------------------------------------------------------------------------
+[2022-01-27 14:54:35,244] {taskinstance.py:1087} INFO - Executing <Task(BashOperator): load_data_source> on 2022-01-27T14:54:34.581932+00:00
+[2022-01-27 14:54:35,252] {standard_task_runner.py:52} INFO - Started process 135 to run task
+[2022-01-27 14:54:35,255] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'cgi_40', 'load_data_source', '2022-01-27T14:54:34.581932+00:00', '--job-id', '24', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/cgi40_dag.py', '--cfg-path', '/tmp/tmp5klwa_lf', '--error-file', '/tmp/tmpf5sr6112']
+[2022-01-27 14:54:35,255] {standard_task_runner.py:77} INFO - Job 24: Subtask load_data_source
+[2022-01-27 14:54:35,291] {logging_mixin.py:104} INFO - Running <TaskInstance: cgi_40.load_data_source 2022-01-27T14:54:34.581932+00:00 [running]> on host bb053c5f0074
+[2022-01-27 14:54:35,332] {taskinstance.py:1282} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_EMAIL=oulespaul@gmail.com
+AIRFLOW_CTX_DAG_OWNER=ETDA
+AIRFLOW_CTX_DAG_ID=cgi_40
+AIRFLOW_CTX_TASK_ID=load_data_source
+AIRFLOW_CTX_EXECUTION_DATE=2022-01-27T14:54:34.581932+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-01-27T14:54:34.581932+00:00
+[2022-01-27 14:54:35,333] {subprocess.py:52} INFO - Tmp dir root location: 
+ /tmp
+[2022-01-27 14:54:35,333] {subprocess.py:63} INFO - Running command: ['bash', '-c', 'cd /opt/***/dags/data_source &&  curl -LfO "https://www.teknologisk.dk/_/media/76459_GCR%2017-19%20Dataset.xlsx"']
+[2022-01-27 14:54:35,342] {subprocess.py:75} INFO - Output:
+[2022-01-27 14:54:35,349] {subprocess.py:79} INFO -   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+[2022-01-27 14:54:35,349] {subprocess.py:79} INFO -                                  Dload  Upload   Total   Spent    Left  Speed
+[2022-01-27 14:54:36,818] {subprocess.py:79} INFO -   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0Warning: Failed to create the file 76459_GCR%2017-19%20Dataset.xlsx:
+[2022-01-27 14:54:36,818] {subprocess.py:79} INFO - Warning: Permission denied
+[2022-01-27 14:54:36,818] {subprocess.py:79} INFO -   0 1916k    0 15978    0     0  10876      0  0:03:00  0:00:01  0:02:59 10876
+[2022-01-27 14:54:36,818] {subprocess.py:79} INFO - curl: (23) Failed writing body (0 != 15978)
+[2022-01-27 14:54:36,819] {subprocess.py:83} INFO - Command exited with return code 23
+[2022-01-27 14:54:36,827] {taskinstance.py:1481} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1137, in _run_raw_task
+    self._prepare_and_execute_task_with_callbacks(context, task)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1311, in _prepare_and_execute_task_with_callbacks
+    result = self._execute_task(context, task_copy)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1341, in _execute_task
+    result = task_copy.execute(context=context)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/operators/bash.py", line 180, in execute
+    raise AirflowException('Bash command failed. The command returned a non-zero exit code.')
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code.
+[2022-01-27 14:54:36,828] {taskinstance.py:1531} INFO - Marking task as FAILED. dag_id=cgi_40, task_id=load_data_source, execution_date=20220127T145434, start_date=20220127T145435, end_date=20220127T145436
+[2022-01-27 14:54:36,869] {local_task_job.py:151} INFO - Task exited with return code 1

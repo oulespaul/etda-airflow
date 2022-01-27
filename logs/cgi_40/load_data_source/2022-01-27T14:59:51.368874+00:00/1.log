@@ -1,0 +1,30 @@
+[2022-01-27 14:59:52,320] {taskinstance.py:876} INFO - Dependencies all met for <TaskInstance: cgi_40.load_data_source 2022-01-27T14:59:51.368874+00:00 [queued]>
+[2022-01-27 14:59:52,328] {taskinstance.py:876} INFO - Dependencies all met for <TaskInstance: cgi_40.load_data_source 2022-01-27T14:59:51.368874+00:00 [queued]>
+[2022-01-27 14:59:52,328] {taskinstance.py:1067} INFO - 
+--------------------------------------------------------------------------------
+[2022-01-27 14:59:52,328] {taskinstance.py:1068} INFO - Starting attempt 1 of 1
+[2022-01-27 14:59:52,328] {taskinstance.py:1069} INFO - 
+--------------------------------------------------------------------------------
+[2022-01-27 14:59:52,336] {taskinstance.py:1087} INFO - Executing <Task(BashOperator): load_data_source> on 2022-01-27T14:59:51.368874+00:00
+[2022-01-27 14:59:52,343] {standard_task_runner.py:52} INFO - Started process 145 to run task
+[2022-01-27 14:59:52,346] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'cgi_40', 'load_data_source', '2022-01-27T14:59:51.368874+00:00', '--job-id', '27', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/cgi40_dag.py', '--cfg-path', '/tmp/tmpwemhbzo1', '--error-file', '/tmp/tmptllpk7ly']
+[2022-01-27 14:59:52,346] {standard_task_runner.py:77} INFO - Job 27: Subtask load_data_source
+[2022-01-27 14:59:52,374] {logging_mixin.py:104} INFO - Running <TaskInstance: cgi_40.load_data_source 2022-01-27T14:59:51.368874+00:00 [running]> on host bb053c5f0074
+[2022-01-27 14:59:52,417] {taskinstance.py:1282} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_EMAIL=oulespaul@gmail.com
+AIRFLOW_CTX_DAG_OWNER=ETDA
+AIRFLOW_CTX_DAG_ID=cgi_40
+AIRFLOW_CTX_TASK_ID=load_data_source
+AIRFLOW_CTX_EXECUTION_DATE=2022-01-27T14:59:51.368874+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-01-27T14:59:51.368874+00:00
+[2022-01-27 14:59:52,417] {subprocess.py:52} INFO - Tmp dir root location: 
+ /tmp
+[2022-01-27 14:59:52,418] {subprocess.py:63} INFO - Running command: ['bash', '-c', 'cd /opt/***/dags/data_source &&  curl -LfO "https://www.teknologisk.dk/_/media/76459_GCR%2017-19%20Dataset.xlsx"']
+[2022-01-27 14:59:52,427] {subprocess.py:75} INFO - Output:
+[2022-01-27 14:59:52,434] {subprocess.py:79} INFO -   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+[2022-01-27 14:59:52,435] {subprocess.py:79} INFO -                                  Dload  Upload   Total   Spent    Left  Speed
+[2022-01-27 15:00:25,213] {subprocess.py:79} INFO -   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0 1916k    0 15978    0     0   5959      0  0:05:29  0:00:02  0:05:27  5957  2 1916k    2 48746    0     0  11001      0  0:02:58  0:00:04  0:02:54 11001  2 1916k    2 48746    0     0  10523      0  0:03:06  0:00:04  0:03:02 10521  2 1916k    2 48746    0     0   8653      0  0:03:46  0:00:05  0:03:41 10125  2 1916k    2 48746    0     0   7347      0  0:04:27  0:00:06  0:04:21 11771  2 1916k    2 48746    0     0   6384      0  0:05:07  0:00:07  0:05:00  6613  2 1916k    2 48746    0     0   5644      0  0:05:47  0:00:08  0:05:39     0  2 1916k    2 48746    0     0   5057      0  0:06:28  0:00:09  0:06:19     0  2 1916k    2 48746    0     0   4581      0  0:07:08  0:00:10  0:06:58     0  2 1916k    2 48746    0     0   4188      0  0:07:48  0:00:11  0:07:37     0  2 1916k    2 48746    0     0   3856      0  0:08:28  0:00:12  0:08:16     0  2 1916k    2 48746    0     0   3573      0  0:09:09  0:00:13  0:08:56     0  2 1916k    2 48746    0     0   3329      0  0:09:49  0:00:14  0:09:35     0  2 1916k    2 48746    0     0   3116      0  0:10:29  0:00:15  0:10:14     0  2 1916k    2 48746    0     0   2928      0  0:11:10  0:00:16  0:10:54     0  2 1916k    2 48746    0     0   2762      0  0:11:50  0:00:17  0:11:33     0  2 1916k    2 48746    0     0   2614      0  0:12:30  0:00:18  0:12:12     0  2 1916k    2 48746    0     0   2481      0  0:13:11  0:00:19  0:12:52     0  2 1916k    2 48746    0     0   2360      0  0:13:51  0:00:20  0:13:31     0  3 1916k    3 65130    0     0   3010      0  0:10:52  0:00:21  0:10:31  3284  5 1916k    5  111k    0     0   5048      0  0:06:28  0:00:22  0:06:06 13128  9 1916k    9  191k    0     0   8298      0  0:03:56  0:00:23  0:03:33 29514 15 1916k   15  287k    0     0  11948      0  0:02:44  0:00:24  0:02:20 49152 21 1916k   21  415k    0     0  16590      0  0:01:58  0:00:25  0:01:33 75321 27 1916k   27  527k    0     0  20266      0  0:01:36  0:00:26  0:01:10 94535 36 1916k   36  703k    0     0  26074      0  0:01:15  0:00:27  0:00:48  118k 46 1916k   46  895k    0     0  31989      0  0:01:01  0:00:28  0:00:33  140k 57 1916k   57 1103k    0     0  38083      0  0:00:51  0:00:29  0:00:22  162k 70 1916k   70 1359k    0     0  45253      0  0:00:43  0:00:30  0:00:13  184k 83 1916k   83 1599k    0     0  51557      0  0:00:38  0:00:31  0:00:07  209k 97 1916k   97 1868k    0     0  58373      0  0:00:33  0:00:32  0:00:01  226k100 1916k  100 1916k    0     0  59871      0  0:00:32  0:00:32 --:--:--  248k
+[2022-01-27 15:00:25,214] {subprocess.py:83} INFO - Command exited with return code 0
+[2022-01-27 15:00:25,233] {taskinstance.py:1191} INFO - Marking task as SUCCESS. dag_id=cgi_40, task_id=load_data_source, execution_date=20220127T145951, start_date=20220127T145952, end_date=20220127T150025
+[2022-01-27 15:00:25,254] {taskinstance.py:1245} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2022-01-27 15:00:25,289] {local_task_job.py:151} INFO - Task exited with return code 0

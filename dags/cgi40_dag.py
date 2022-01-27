@@ -897,8 +897,8 @@ def etl():
     final_df = final_df.drop(columns='GROUP', axis=1)
     final_df = final_df.drop(columns='Value', axis=1)
 
-    ingest_date = datetime.now().date().strftime("%Y%m%d")
-    final_df.to_csv("/opt/airflow/dags/output/{}.csv".format(ingest_date))
+    ingest_date = datetime.now().strftime("%Y%m%d%H%M%S")
+    final_df.to_csv("/opt/airflow/dags/output/CGI_4.0_2017_2019_{}.csv".format(ingest_date))
 
 
 default_args = {
@@ -915,14 +915,15 @@ default_args = {
 dag = DAG('cgi_40', default_args=default_args, catchup=False)
 
 
-def load_data_source():
-    print("fetch_cgi_file")
+def store_to_hdfs():
+
+    
 
 
 with dag:
     load_data_source = BashOperator(
         task_id='load_data_source',
-        bash_command='cd /opt/airflow/dags/data_source && curl -LfO "https://www.teknologisk.dk/_/media/76459_GCR%2017-19%20Dataset.xlsx"',
+        bash_command='cd /opt/airflow/dags/data_source &&  curl -LfO "https://www.teknologisk.dk/_/media/76459_GCR%2017-19%20Dataset.xlsx"',
     )
 
     etl = PythonOperator(

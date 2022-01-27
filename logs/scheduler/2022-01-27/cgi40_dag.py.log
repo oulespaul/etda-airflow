@@ -1,0 +1,653 @@
+[2022-01-27 14:38:35,038] {scheduler_job.py:182} INFO - Started process (PID=39) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:38:35,039] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:38:35,044] {logging_mixin.py:104} INFO - [2022-01-27 14:38:35,044] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:38:36,251] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:38:40,065] {logging_mixin.py:104} INFO - [2022-01-27 14:38:40,064] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:38:40,076] {logging_mixin.py:104} INFO - [2022-01-27 14:38:40,075] {dag.py:1851} INFO - Creating ORM DAG for cgi_40
+[2022-01-27 14:38:40,082] {logging_mixin.py:104} INFO - [2022-01-27 14:38:40,082] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-26 14:38:40.082078+00:00
+[2022-01-27 14:38:40,089] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 5.055 seconds
+[2022-01-27 14:39:10,147] {scheduler_job.py:182} INFO - Started process (PID=41) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:39:10,147] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:39:10,152] {logging_mixin.py:104} INFO - [2022-01-27 14:39:10,152] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:39:10,437] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:39:10,449] {logging_mixin.py:104} INFO - [2022-01-27 14:39:10,449] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:39:10,458] {logging_mixin.py:104} INFO - [2022-01-27 14:39:10,458] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:39:10,463] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.318 seconds
+[2022-01-27 14:39:40,511] {scheduler_job.py:182} INFO - Started process (PID=42) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:39:40,512] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:39:40,512] {logging_mixin.py:104} INFO - [2022-01-27 14:39:40,512] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:39:40,783] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:39:40,795] {logging_mixin.py:104} INFO - [2022-01-27 14:39:40,795] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:39:40,804] {logging_mixin.py:104} INFO - [2022-01-27 14:39:40,803] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:39:40,809] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.300 seconds
+[2022-01-27 14:40:18,514] {scheduler_job.py:182} INFO - Started process (PID=37) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:40:18,515] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:40:18,515] {logging_mixin.py:104} INFO - [2022-01-27 14:40:18,515] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:40:19,349] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:40:19,365] {logging_mixin.py:104} INFO - [2022-01-27 14:40:19,364] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:40:19,391] {logging_mixin.py:104} INFO - [2022-01-27 14:40:19,391] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:40:19,403] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.900 seconds
+[2022-01-27 14:40:49,480] {scheduler_job.py:182} INFO - Started process (PID=38) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:40:49,481] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:40:49,482] {logging_mixin.py:104} INFO - [2022-01-27 14:40:49,482] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:40:49,776] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:40:49,787] {logging_mixin.py:104} INFO - [2022-01-27 14:40:49,787] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:40:49,797] {logging_mixin.py:104} INFO - [2022-01-27 14:40:49,797] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:40:49,802] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.324 seconds
+[2022-01-27 14:41:19,849] {scheduler_job.py:182} INFO - Started process (PID=39) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:41:19,850] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:41:19,850] {logging_mixin.py:104} INFO - [2022-01-27 14:41:19,850] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:41:20,132] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:41:20,144] {logging_mixin.py:104} INFO - [2022-01-27 14:41:20,144] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:41:20,153] {logging_mixin.py:104} INFO - [2022-01-27 14:41:20,153] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:41:20,157] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.311 seconds
+[2022-01-27 14:41:50,210] {scheduler_job.py:182} INFO - Started process (PID=40) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:41:50,211] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:41:50,211] {logging_mixin.py:104} INFO - [2022-01-27 14:41:50,211] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:41:50,503] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:41:50,516] {logging_mixin.py:104} INFO - [2022-01-27 14:41:50,516] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:41:50,525] {logging_mixin.py:104} INFO - [2022-01-27 14:41:50,525] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:41:50,530] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.323 seconds
+[2022-01-27 14:42:20,582] {scheduler_job.py:182} INFO - Started process (PID=41) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:42:20,583] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:42:20,583] {logging_mixin.py:104} INFO - [2022-01-27 14:42:20,583] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:42:20,853] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:42:20,866] {logging_mixin.py:104} INFO - [2022-01-27 14:42:20,866] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:42:20,875] {logging_mixin.py:104} INFO - [2022-01-27 14:42:20,875] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:42:20,880] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.301 seconds
+[2022-01-27 14:42:50,937] {scheduler_job.py:182} INFO - Started process (PID=42) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:42:50,937] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:42:50,938] {logging_mixin.py:104} INFO - [2022-01-27 14:42:50,938] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:42:51,277] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:42:51,425] {logging_mixin.py:104} INFO - [2022-01-27 14:42:51,425] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:42:51,434] {logging_mixin.py:104} INFO - [2022-01-27 14:42:51,433] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:42:51,442] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.508 seconds
+[2022-01-27 14:43:21,494] {scheduler_job.py:182} INFO - Started process (PID=43) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:43:21,495] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:43:21,495] {logging_mixin.py:104} INFO - [2022-01-27 14:43:21,495] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:43:21,769] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:43:21,781] {logging_mixin.py:104} INFO - [2022-01-27 14:43:21,781] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:43:21,790] {logging_mixin.py:104} INFO - [2022-01-27 14:43:21,790] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:43:21,795] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.304 seconds
+[2022-01-27 14:43:51,846] {scheduler_job.py:182} INFO - Started process (PID=44) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:43:51,847] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:43:51,847] {logging_mixin.py:104} INFO - [2022-01-27 14:43:51,847] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:43:52,124] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:43:52,137] {logging_mixin.py:104} INFO - [2022-01-27 14:43:52,137] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:43:52,146] {logging_mixin.py:104} INFO - [2022-01-27 14:43:52,146] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:43:52,151] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.307 seconds
+[2022-01-27 14:44:22,198] {scheduler_job.py:182} INFO - Started process (PID=45) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:44:22,199] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:44:22,199] {logging_mixin.py:104} INFO - [2022-01-27 14:44:22,199] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:44:22,463] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:44:22,475] {logging_mixin.py:104} INFO - [2022-01-27 14:44:22,475] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:44:22,484] {logging_mixin.py:104} INFO - [2022-01-27 14:44:22,484] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:44:22,489] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.294 seconds
+[2022-01-27 14:44:52,538] {scheduler_job.py:182} INFO - Started process (PID=46) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:44:52,538] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:44:52,539] {logging_mixin.py:104} INFO - [2022-01-27 14:44:52,539] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:44:52,806] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:44:52,941] {logging_mixin.py:104} INFO - [2022-01-27 14:44:52,941] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:44:52,950] {logging_mixin.py:104} INFO - [2022-01-27 14:44:52,950] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:44:52,961] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.426 seconds
+[2022-01-27 14:45:23,015] {scheduler_job.py:182} INFO - Started process (PID=47) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:45:23,016] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:45:23,017] {logging_mixin.py:104} INFO - [2022-01-27 14:45:23,016] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:45:23,297] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:45:23,311] {logging_mixin.py:104} INFO - [2022-01-27 14:45:23,310] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:45:23,320] {logging_mixin.py:104} INFO - [2022-01-27 14:45:23,320] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:45:23,334] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.322 seconds
+[2022-01-27 14:45:53,386] {scheduler_job.py:182} INFO - Started process (PID=48) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:45:53,387] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:45:53,387] {logging_mixin.py:104} INFO - [2022-01-27 14:45:53,387] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:45:53,667] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:45:53,679] {logging_mixin.py:104} INFO - [2022-01-27 14:45:53,679] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:45:53,687] {logging_mixin.py:104} INFO - [2022-01-27 14:45:53,687] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:45:53,692] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.309 seconds
+[2022-01-27 14:46:23,740] {scheduler_job.py:182} INFO - Started process (PID=49) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:46:23,741] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:46:23,742] {logging_mixin.py:104} INFO - [2022-01-27 14:46:23,741] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:46:24,032] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:46:24,044] {logging_mixin.py:104} INFO - [2022-01-27 14:46:24,044] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:46:24,053] {logging_mixin.py:104} INFO - [2022-01-27 14:46:24,053] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:46:24,058] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.321 seconds
+[2022-01-27 14:46:54,108] {scheduler_job.py:182} INFO - Started process (PID=50) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:46:54,109] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:46:54,112] {logging_mixin.py:104} INFO - [2022-01-27 14:46:54,110] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:46:54,397] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:46:54,409] {logging_mixin.py:104} INFO - [2022-01-27 14:46:54,409] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:46:54,418] {logging_mixin.py:104} INFO - [2022-01-27 14:46:54,418] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:46:54,423] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.317 seconds
+[2022-01-27 14:47:24,472] {scheduler_job.py:182} INFO - Started process (PID=51) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:47:24,476] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:47:24,477] {logging_mixin.py:104} INFO - [2022-01-27 14:47:24,477] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:47:24,743] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:47:24,878] {logging_mixin.py:104} INFO - [2022-01-27 14:47:24,878] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:47:24,887] {logging_mixin.py:104} INFO - [2022-01-27 14:47:24,887] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:47:24,895] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.426 seconds
+[2022-01-27 14:47:54,949] {scheduler_job.py:182} INFO - Started process (PID=52) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:47:54,950] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:47:54,950] {logging_mixin.py:104} INFO - [2022-01-27 14:47:54,950] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:47:55,229] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:47:55,399] {logging_mixin.py:104} INFO - [2022-01-27 14:47:55,399] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:47:55,415] {logging_mixin.py:104} INFO - [2022-01-27 14:47:55,415] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:47:55,425] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.479 seconds
+[2022-01-27 14:48:25,474] {scheduler_job.py:182} INFO - Started process (PID=53) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:48:25,475] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:48:25,476] {logging_mixin.py:104} INFO - [2022-01-27 14:48:25,475] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:48:25,743] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:48:25,755] {logging_mixin.py:104} INFO - [2022-01-27 14:48:25,755] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:48:25,764] {logging_mixin.py:104} INFO - [2022-01-27 14:48:25,764] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:48:25,769] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.297 seconds
+[2022-01-27 14:48:55,817] {scheduler_job.py:182} INFO - Started process (PID=54) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:48:55,817] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:48:55,818] {logging_mixin.py:104} INFO - [2022-01-27 14:48:55,818] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:48:56,090] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:48:56,227] {logging_mixin.py:104} INFO - [2022-01-27 14:48:56,227] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:48:56,236] {logging_mixin.py:104} INFO - [2022-01-27 14:48:56,236] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:48:56,244] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.430 seconds
+[2022-01-27 14:49:26,295] {scheduler_job.py:182} INFO - Started process (PID=55) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:49:26,295] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:49:26,296] {logging_mixin.py:104} INFO - [2022-01-27 14:49:26,296] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:49:26,579] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:49:26,591] {logging_mixin.py:104} INFO - [2022-01-27 14:49:26,591] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:49:26,600] {logging_mixin.py:104} INFO - [2022-01-27 14:49:26,600] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:49:26,605] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.313 seconds
+[2022-01-27 14:49:56,657] {scheduler_job.py:182} INFO - Started process (PID=56) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:49:56,658] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:49:56,658] {logging_mixin.py:104} INFO - [2022-01-27 14:49:56,658] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:49:56,926] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:49:57,063] {logging_mixin.py:104} INFO - [2022-01-27 14:49:57,063] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:49:57,072] {logging_mixin.py:104} INFO - [2022-01-27 14:49:57,072] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:49:57,080] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.426 seconds
+[2022-01-27 14:50:27,134] {scheduler_job.py:182} INFO - Started process (PID=57) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:50:27,135] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:50:27,135] {logging_mixin.py:104} INFO - [2022-01-27 14:50:27,135] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:50:27,408] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:50:27,421] {logging_mixin.py:104} INFO - [2022-01-27 14:50:27,421] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:50:27,430] {logging_mixin.py:104} INFO - [2022-01-27 14:50:27,430] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:50:27,434] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.304 seconds
+[2022-01-27 14:50:57,485] {scheduler_job.py:182} INFO - Started process (PID=58) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:50:57,485] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:50:57,486] {logging_mixin.py:104} INFO - [2022-01-27 14:50:57,486] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:50:57,764] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:50:57,900] {logging_mixin.py:104} INFO - [2022-01-27 14:50:57,900] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:50:57,909] {logging_mixin.py:104} INFO - [2022-01-27 14:50:57,908] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:50:57,917] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.435 seconds
+[2022-01-27 14:51:27,967] {scheduler_job.py:182} INFO - Started process (PID=59) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:51:27,967] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:51:27,968] {logging_mixin.py:104} INFO - [2022-01-27 14:51:27,968] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:51:28,251] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:51:28,388] {logging_mixin.py:104} INFO - [2022-01-27 14:51:28,388] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:51:28,397] {logging_mixin.py:104} INFO - [2022-01-27 14:51:28,397] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:51:28,405] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.441 seconds
+[2022-01-27 14:51:58,456] {scheduler_job.py:182} INFO - Started process (PID=60) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:51:58,456] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:51:58,457] {logging_mixin.py:104} INFO - [2022-01-27 14:51:58,457] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:51:58,745] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:51:58,757] {logging_mixin.py:104} INFO - [2022-01-27 14:51:58,757] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:51:58,766] {logging_mixin.py:104} INFO - [2022-01-27 14:51:58,766] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:51:58,771] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.318 seconds
+[2022-01-27 14:52:28,820] {scheduler_job.py:182} INFO - Started process (PID=61) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:52:28,821] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:52:28,821] {logging_mixin.py:104} INFO - [2022-01-27 14:52:28,821] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:52:29,098] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:52:29,110] {logging_mixin.py:104} INFO - [2022-01-27 14:52:29,110] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:52:29,120] {logging_mixin.py:104} INFO - [2022-01-27 14:52:29,120] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:52:29,125] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.308 seconds
+[2022-01-27 14:52:59,177] {scheduler_job.py:182} INFO - Started process (PID=62) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:52:59,178] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:52:59,179] {logging_mixin.py:104} INFO - [2022-01-27 14:52:59,178] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:52:59,482] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:52:59,494] {logging_mixin.py:104} INFO - [2022-01-27 14:52:59,494] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:52:59,503] {logging_mixin.py:104} INFO - [2022-01-27 14:52:59,503] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:52:59,508] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.333 seconds
+[2022-01-27 14:53:29,560] {scheduler_job.py:182} INFO - Started process (PID=63) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:53:29,562] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:53:29,562] {logging_mixin.py:104} INFO - [2022-01-27 14:53:29,562] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:53:29,831] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:53:29,965] {logging_mixin.py:104} INFO - [2022-01-27 14:53:29,965] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:53:29,974] {logging_mixin.py:104} INFO - [2022-01-27 14:53:29,974] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:53:29,982] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.424 seconds
+[2022-01-27 14:54:00,033] {scheduler_job.py:182} INFO - Started process (PID=64) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:54:00,034] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:54:00,034] {logging_mixin.py:104} INFO - [2022-01-27 14:54:00,034] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:54:00,299] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:54:00,311] {logging_mixin.py:104} INFO - [2022-01-27 14:54:00,311] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:54:00,320] {logging_mixin.py:104} INFO - [2022-01-27 14:54:00,320] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:54:00,326] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.295 seconds
+[2022-01-27 14:54:30,376] {scheduler_job.py:182} INFO - Started process (PID=65) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:54:30,377] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:54:30,377] {logging_mixin.py:104} INFO - [2022-01-27 14:54:30,377] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:54:30,649] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:54:30,789] {logging_mixin.py:104} INFO - [2022-01-27 14:54:30,788] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:54:30,797] {logging_mixin.py:104} INFO - [2022-01-27 14:54:30,797] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:54:30,806] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.432 seconds
+[2022-01-27 14:55:00,858] {scheduler_job.py:182} INFO - Started process (PID=66) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:55:00,859] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:55:00,859] {logging_mixin.py:104} INFO - [2022-01-27 14:55:00,859] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:55:01,130] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:55:01,142] {logging_mixin.py:104} INFO - [2022-01-27 14:55:01,142] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:55:01,152] {logging_mixin.py:104} INFO - [2022-01-27 14:55:01,152] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:55:01,157] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.301 seconds
+[2022-01-27 14:55:31,205] {scheduler_job.py:182} INFO - Started process (PID=67) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:55:31,206] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:55:31,207] {logging_mixin.py:104} INFO - [2022-01-27 14:55:31,207] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:55:31,474] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:55:31,487] {logging_mixin.py:104} INFO - [2022-01-27 14:55:31,487] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:55:31,497] {logging_mixin.py:104} INFO - [2022-01-27 14:55:31,497] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:55:31,502] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.299 seconds
+[2022-01-27 14:56:01,553] {scheduler_job.py:182} INFO - Started process (PID=68) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:56:01,554] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:56:01,554] {logging_mixin.py:104} INFO - [2022-01-27 14:56:01,554] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:56:01,829] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:56:01,841] {logging_mixin.py:104} INFO - [2022-01-27 14:56:01,841] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:56:01,851] {logging_mixin.py:104} INFO - [2022-01-27 14:56:01,851] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:56:01,856] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.305 seconds
+[2022-01-27 14:56:31,906] {scheduler_job.py:182} INFO - Started process (PID=69) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:56:31,907] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:56:31,908] {logging_mixin.py:104} INFO - [2022-01-27 14:56:31,907] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:56:32,180] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:56:32,192] {logging_mixin.py:104} INFO - [2022-01-27 14:56:32,192] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:56:32,202] {logging_mixin.py:104} INFO - [2022-01-27 14:56:32,202] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:56:32,207] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.304 seconds
+[2022-01-27 14:57:02,256] {scheduler_job.py:182} INFO - Started process (PID=70) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:57:02,257] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:57:02,258] {logging_mixin.py:104} INFO - [2022-01-27 14:57:02,258] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:57:02,524] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:57:02,536] {logging_mixin.py:104} INFO - [2022-01-27 14:57:02,536] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:57:02,545] {logging_mixin.py:104} INFO - [2022-01-27 14:57:02,545] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:57:02,551] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.297 seconds
+[2022-01-27 14:57:32,600] {scheduler_job.py:182} INFO - Started process (PID=71) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:57:32,601] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:57:32,601] {logging_mixin.py:104} INFO - [2022-01-27 14:57:32,601] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:57:32,866] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:57:32,878] {logging_mixin.py:104} INFO - [2022-01-27 14:57:32,878] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:57:32,888] {logging_mixin.py:104} INFO - [2022-01-27 14:57:32,888] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:57:32,893] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.296 seconds
+[2022-01-27 14:58:02,947] {scheduler_job.py:182} INFO - Started process (PID=72) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:58:02,947] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:58:02,948] {logging_mixin.py:104} INFO - [2022-01-27 14:58:02,948] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:58:03,214] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:58:03,226] {logging_mixin.py:104} INFO - [2022-01-27 14:58:03,226] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:58:03,236] {logging_mixin.py:104} INFO - [2022-01-27 14:58:03,236] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:58:03,241] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.296 seconds
+[2022-01-27 14:58:33,292] {scheduler_job.py:182} INFO - Started process (PID=73) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:58:33,292] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:58:33,293] {logging_mixin.py:104} INFO - [2022-01-27 14:58:33,293] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:58:33,583] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:58:33,595] {logging_mixin.py:104} INFO - [2022-01-27 14:58:33,595] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:58:33,605] {logging_mixin.py:104} INFO - [2022-01-27 14:58:33,605] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:58:33,610] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.321 seconds
+[2022-01-27 14:59:03,658] {scheduler_job.py:182} INFO - Started process (PID=74) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:59:03,659] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:59:03,659] {logging_mixin.py:104} INFO - [2022-01-27 14:59:03,659] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:59:03,925] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:59:03,937] {logging_mixin.py:104} INFO - [2022-01-27 14:59:03,937] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:59:03,947] {logging_mixin.py:104} INFO - [2022-01-27 14:59:03,946] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:59:03,951] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.295 seconds
+[2022-01-27 14:59:34,002] {scheduler_job.py:182} INFO - Started process (PID=75) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:59:34,003] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 14:59:34,003] {logging_mixin.py:104} INFO - [2022-01-27 14:59:34,003] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:59:34,274] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 14:59:34,286] {logging_mixin.py:104} INFO - [2022-01-27 14:59:34,286] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 14:59:34,296] {logging_mixin.py:104} INFO - [2022-01-27 14:59:34,295] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 14:59:34,301] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.301 seconds
+[2022-01-27 15:00:04,350] {scheduler_job.py:182} INFO - Started process (PID=76) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:00:04,351] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:00:04,352] {logging_mixin.py:104} INFO - [2022-01-27 15:00:04,352] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:00:04,625] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:00:04,639] {logging_mixin.py:104} INFO - [2022-01-27 15:00:04,639] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 15:00:04,649] {logging_mixin.py:104} INFO - [2022-01-27 15:00:04,648] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 15:00:04,657] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.309 seconds
+[2022-01-27 15:00:34,705] {scheduler_job.py:182} INFO - Started process (PID=77) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:00:34,706] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:00:34,707] {logging_mixin.py:104} INFO - [2022-01-27 15:00:34,707] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:00:34,979] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:00:34,993] {logging_mixin.py:104} INFO - [2022-01-27 15:00:34,992] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 15:00:35,002] {logging_mixin.py:104} INFO - [2022-01-27 15:00:35,002] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 15:00:35,007] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.304 seconds
+[2022-01-27 15:01:05,056] {scheduler_job.py:182} INFO - Started process (PID=78) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:01:05,057] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:01:05,058] {logging_mixin.py:104} INFO - [2022-01-27 15:01:05,058] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:01:05,337] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:01:05,350] {logging_mixin.py:104} INFO - [2022-01-27 15:01:05,350] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 15:01:05,359] {logging_mixin.py:104} INFO - [2022-01-27 15:01:05,359] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 15:01:05,364] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.311 seconds
+[2022-01-27 15:01:35,419] {scheduler_job.py:182} INFO - Started process (PID=79) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:01:35,420] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:01:35,420] {logging_mixin.py:104} INFO - [2022-01-27 15:01:35,420] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:01:35,699] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:01:35,713] {logging_mixin.py:104} INFO - [2022-01-27 15:01:35,713] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 15:01:35,726] {logging_mixin.py:104} INFO - [2022-01-27 15:01:35,726] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 15:01:35,732] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.317 seconds
+[2022-01-27 15:02:05,786] {scheduler_job.py:182} INFO - Started process (PID=80) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:02:05,787] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:02:05,787] {logging_mixin.py:104} INFO - [2022-01-27 15:02:05,787] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:02:06,060] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:02:06,072] {logging_mixin.py:104} INFO - [2022-01-27 15:02:06,072] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 15:02:06,081] {logging_mixin.py:104} INFO - [2022-01-27 15:02:06,081] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 15:02:06,086] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.303 seconds
+[2022-01-27 15:02:36,135] {scheduler_job.py:182} INFO - Started process (PID=81) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:02:36,136] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:02:36,137] {logging_mixin.py:104} INFO - [2022-01-27 15:02:36,137] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:02:36,423] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:02:36,436] {logging_mixin.py:104} INFO - [2022-01-27 15:02:36,436] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 15:02:36,445] {logging_mixin.py:104} INFO - [2022-01-27 15:02:36,445] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 15:02:36,450] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.317 seconds
+[2022-01-27 15:03:06,503] {scheduler_job.py:182} INFO - Started process (PID=82) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:03:06,504] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:03:06,504] {logging_mixin.py:104} INFO - [2022-01-27 15:03:06,504] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:03:06,819] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:03:06,832] {logging_mixin.py:104} INFO - [2022-01-27 15:03:06,832] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 15:03:06,842] {logging_mixin.py:104} INFO - [2022-01-27 15:03:06,842] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 15:03:06,849] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.348 seconds
+[2022-01-27 15:03:36,899] {scheduler_job.py:182} INFO - Started process (PID=83) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:03:36,900] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:03:36,900] {logging_mixin.py:104} INFO - [2022-01-27 15:03:36,900] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:03:37,172] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:03:37,185] {logging_mixin.py:104} INFO - [2022-01-27 15:03:37,185] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 15:03:37,194] {logging_mixin.py:104} INFO - [2022-01-27 15:03:37,194] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 15:03:37,199] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.303 seconds
+[2022-01-27 15:04:07,248] {scheduler_job.py:182} INFO - Started process (PID=84) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:04:07,249] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:04:07,250] {logging_mixin.py:104} INFO - [2022-01-27 15:04:07,250] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:04:07,525] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:04:07,537] {logging_mixin.py:104} INFO - [2022-01-27 15:04:07,537] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 15:04:07,547] {logging_mixin.py:104} INFO - [2022-01-27 15:04:07,547] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 15:04:07,552] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.306 seconds
+[2022-01-27 15:04:37,602] {scheduler_job.py:182} INFO - Started process (PID=85) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:04:37,603] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:04:37,604] {logging_mixin.py:104} INFO - [2022-01-27 15:04:37,603] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:04:37,878] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:04:37,890] {logging_mixin.py:104} INFO - [2022-01-27 15:04:37,890] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 15:04:37,899] {logging_mixin.py:104} INFO - [2022-01-27 15:04:37,899] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 15:04:37,904] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.304 seconds
+[2022-01-27 15:05:07,952] {scheduler_job.py:182} INFO - Started process (PID=86) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:05:07,953] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:05:07,953] {logging_mixin.py:104} INFO - [2022-01-27 15:05:07,953] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:05:08,226] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:05:08,238] {logging_mixin.py:104} INFO - [2022-01-27 15:05:08,238] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 15:05:08,247] {logging_mixin.py:104} INFO - [2022-01-27 15:05:08,247] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 15:05:08,251] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.302 seconds
+[2022-01-27 15:05:39,042] {scheduler_job.py:182} INFO - Started process (PID=88) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:05:39,043] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:05:39,043] {logging_mixin.py:104} INFO - [2022-01-27 15:05:39,043] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:05:39,314] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:05:39,326] {logging_mixin.py:104} INFO - [2022-01-27 15:05:39,326] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 15:05:39,335] {logging_mixin.py:104} INFO - [2022-01-27 15:05:39,335] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 15:05:39,340] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.301 seconds
+[2022-01-27 15:06:10,125] {scheduler_job.py:182} INFO - Started process (PID=90) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:06:10,126] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:06:10,127] {logging_mixin.py:104} INFO - [2022-01-27 15:06:10,126] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:06:10,411] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:06:10,423] {logging_mixin.py:104} INFO - [2022-01-27 15:06:10,423] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 15:06:10,432] {logging_mixin.py:104} INFO - [2022-01-27 15:06:10,432] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 15:06:10,437] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.314 seconds
+[2022-01-27 15:06:41,210] {scheduler_job.py:182} INFO - Started process (PID=92) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:06:41,211] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:06:41,211] {logging_mixin.py:104} INFO - [2022-01-27 15:06:41,211] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:06:41,483] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:06:41,496] {logging_mixin.py:104} INFO - [2022-01-27 15:06:41,496] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 15:06:41,505] {logging_mixin.py:104} INFO - [2022-01-27 15:06:41,505] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 15:06:41,510] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.302 seconds
+[2022-01-27 15:07:12,295] {scheduler_job.py:182} INFO - Started process (PID=94) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:07:12,295] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:07:12,296] {logging_mixin.py:104} INFO - [2022-01-27 15:07:12,296] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:07:12,570] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:07:12,582] {logging_mixin.py:104} INFO - [2022-01-27 15:07:12,582] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 15:07:12,591] {logging_mixin.py:104} INFO - [2022-01-27 15:07:12,591] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 15:07:12,596] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.304 seconds
+[2022-01-27 15:07:43,379] {scheduler_job.py:182} INFO - Started process (PID=96) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:07:43,380] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:07:43,380] {logging_mixin.py:104} INFO - [2022-01-27 15:07:43,380] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:07:43,661] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:07:43,673] {logging_mixin.py:104} INFO - [2022-01-27 15:07:43,673] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 15:07:43,682] {logging_mixin.py:104} INFO - [2022-01-27 15:07:43,682] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 15:07:43,686] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.310 seconds
+[2022-01-27 15:08:14,475] {scheduler_job.py:182} INFO - Started process (PID=98) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:08:14,476] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:08:14,477] {logging_mixin.py:104} INFO - [2022-01-27 15:08:14,476] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:08:14,761] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:08:14,773] {logging_mixin.py:104} INFO - [2022-01-27 15:08:14,773] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 15:08:14,782] {logging_mixin.py:104} INFO - [2022-01-27 15:08:14,782] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 15:08:14,787] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.326 seconds
+[2022-01-27 15:08:45,554] {scheduler_job.py:182} INFO - Started process (PID=100) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:08:45,555] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:08:45,555] {logging_mixin.py:104} INFO - [2022-01-27 15:08:45,555] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:08:45,825] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:08:45,837] {logging_mixin.py:104} INFO - [2022-01-27 15:08:45,837] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 15:08:45,847] {logging_mixin.py:104} INFO - [2022-01-27 15:08:45,847] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 15:08:45,852] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.301 seconds
+[2022-01-27 15:09:16,635] {scheduler_job.py:182} INFO - Started process (PID=102) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:09:16,635] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:09:16,636] {logging_mixin.py:104} INFO - [2022-01-27 15:09:16,636] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:09:16,905] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:09:16,917] {logging_mixin.py:104} INFO - [2022-01-27 15:09:16,917] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 15:09:16,926] {logging_mixin.py:104} INFO - [2022-01-27 15:09:16,926] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 15:09:16,931] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.299 seconds
+[2022-01-27 15:09:47,718] {scheduler_job.py:182} INFO - Started process (PID=104) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:09:47,719] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:09:47,719] {logging_mixin.py:104} INFO - [2022-01-27 15:09:47,719] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:09:47,988] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:09:48,000] {logging_mixin.py:104} INFO - [2022-01-27 15:09:48,000] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 15:09:48,010] {logging_mixin.py:104} INFO - [2022-01-27 15:09:48,009] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 15:09:48,015] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.299 seconds
+[2022-01-27 15:10:18,798] {scheduler_job.py:182} INFO - Started process (PID=106) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:10:18,798] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:10:18,799] {logging_mixin.py:104} INFO - [2022-01-27 15:10:18,799] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:10:19,065] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:10:19,078] {logging_mixin.py:104} INFO - [2022-01-27 15:10:19,077] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 15:10:19,087] {logging_mixin.py:104} INFO - [2022-01-27 15:10:19,087] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 15:10:19,092] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.297 seconds
+[2022-01-27 15:10:49,875] {scheduler_job.py:182} INFO - Started process (PID=108) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:10:49,875] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:10:49,876] {logging_mixin.py:104} INFO - [2022-01-27 15:10:49,876] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:10:50,147] {scheduler_job.py:643} INFO - DAG(s) dict_keys(['cgi_40']) retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:10:50,158] {logging_mixin.py:104} INFO - [2022-01-27 15:10:50,158] {dag.py:1832} INFO - Sync 1 DAGs
+[2022-01-27 15:10:50,167] {logging_mixin.py:104} INFO - [2022-01-27 15:10:50,167] {dag.py:2305} INFO - Setting next_dagrun for cgi_40 to 2022-01-27 14:38:40.082078+00:00
+[2022-01-27 15:10:50,172] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.300 seconds
+[2022-01-27 15:11:20,956] {scheduler_job.py:182} INFO - Started process (PID=110) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:11:20,957] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:11:20,957] {logging_mixin.py:104} INFO - [2022-01-27 15:11:20,957] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:11:20,966] {logging_mixin.py:104} INFO - [2022-01-27 15:11:20,960] {dagbag.py:320} ERROR - Failed to import: /opt/airflow/dags/cgi40_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/dagbag.py", line 317, in _load_modules_from_file
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 674, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 781, in get_code
+  File "<frozen importlib._bootstrap_external>", line 741, in source_to_code
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/cgi40_dag.py", line 923
+    with dag:
+       ^
+IndentationError: expected an indented block
+[2022-01-27 15:11:20,966] {scheduler_job.py:645} WARNING - No viable dags retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:11:20,979] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.026 seconds
+[2022-01-27 15:11:51,062] {scheduler_job.py:182} INFO - Started process (PID=112) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:11:51,063] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:11:51,064] {logging_mixin.py:104} INFO - [2022-01-27 15:11:51,063] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:11:51,067] {logging_mixin.py:104} INFO - [2022-01-27 15:11:51,066] {dagbag.py:320} ERROR - Failed to import: /opt/airflow/dags/cgi40_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/dagbag.py", line 317, in _load_modules_from_file
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 674, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 781, in get_code
+  File "<frozen importlib._bootstrap_external>", line 741, in source_to_code
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/cgi40_dag.py", line 923
+    with dag:
+       ^
+IndentationError: expected an indented block
+[2022-01-27 15:11:51,067] {scheduler_job.py:645} WARNING - No viable dags retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:11:51,080] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.020 seconds
+[2022-01-27 15:12:21,162] {scheduler_job.py:182} INFO - Started process (PID=114) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:12:21,163] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:12:21,163] {logging_mixin.py:104} INFO - [2022-01-27 15:12:21,163] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:12:21,168] {logging_mixin.py:104} INFO - [2022-01-27 15:12:21,167] {dagbag.py:320} ERROR - Failed to import: /opt/airflow/dags/cgi40_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/dagbag.py", line 317, in _load_modules_from_file
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 674, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 781, in get_code
+  File "<frozen importlib._bootstrap_external>", line 741, in source_to_code
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/cgi40_dag.py", line 923
+    with dag:
+       ^
+IndentationError: expected an indented block
+[2022-01-27 15:12:21,169] {scheduler_job.py:645} WARNING - No viable dags retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:12:21,184] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.026 seconds
+[2022-01-27 15:12:51,241] {scheduler_job.py:182} INFO - Started process (PID=116) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:12:51,241] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:12:51,242] {logging_mixin.py:104} INFO - [2022-01-27 15:12:51,242] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:12:51,245] {logging_mixin.py:104} INFO - [2022-01-27 15:12:51,245] {dagbag.py:320} ERROR - Failed to import: /opt/airflow/dags/cgi40_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/dagbag.py", line 317, in _load_modules_from_file
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 674, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 781, in get_code
+  File "<frozen importlib._bootstrap_external>", line 741, in source_to_code
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/cgi40_dag.py", line 923
+    with dag:
+       ^
+IndentationError: expected an indented block
+[2022-01-27 15:12:51,246] {scheduler_job.py:645} WARNING - No viable dags retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:12:51,258] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.020 seconds
+[2022-01-27 15:13:21,337] {scheduler_job.py:182} INFO - Started process (PID=118) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:13:21,337] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:13:21,338] {logging_mixin.py:104} INFO - [2022-01-27 15:13:21,338] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:13:21,341] {logging_mixin.py:104} INFO - [2022-01-27 15:13:21,341] {dagbag.py:320} ERROR - Failed to import: /opt/airflow/dags/cgi40_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/dagbag.py", line 317, in _load_modules_from_file
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 674, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 781, in get_code
+  File "<frozen importlib._bootstrap_external>", line 741, in source_to_code
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/cgi40_dag.py", line 923
+    with dag:
+       ^
+IndentationError: expected an indented block
+[2022-01-27 15:13:21,342] {scheduler_job.py:645} WARNING - No viable dags retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:13:21,354] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.020 seconds
+[2022-01-27 15:13:51,439] {scheduler_job.py:182} INFO - Started process (PID=120) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:13:51,439] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:13:51,440] {logging_mixin.py:104} INFO - [2022-01-27 15:13:51,440] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:13:51,444] {logging_mixin.py:104} INFO - [2022-01-27 15:13:51,443] {dagbag.py:320} ERROR - Failed to import: /opt/airflow/dags/cgi40_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/dagbag.py", line 317, in _load_modules_from_file
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 674, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 781, in get_code
+  File "<frozen importlib._bootstrap_external>", line 741, in source_to_code
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/cgi40_dag.py", line 923
+    with dag:
+       ^
+IndentationError: expected an indented block
+[2022-01-27 15:13:51,444] {scheduler_job.py:645} WARNING - No viable dags retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:13:51,461] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.025 seconds
+[2022-01-27 15:14:21,531] {scheduler_job.py:182} INFO - Started process (PID=122) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:14:21,532] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:14:21,532] {logging_mixin.py:104} INFO - [2022-01-27 15:14:21,532] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:14:21,536] {logging_mixin.py:104} INFO - [2022-01-27 15:14:21,535] {dagbag.py:320} ERROR - Failed to import: /opt/airflow/dags/cgi40_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/dagbag.py", line 317, in _load_modules_from_file
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 674, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 781, in get_code
+  File "<frozen importlib._bootstrap_external>", line 741, in source_to_code
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/cgi40_dag.py", line 923
+    with dag:
+       ^
+IndentationError: expected an indented block
+[2022-01-27 15:14:21,536] {scheduler_job.py:645} WARNING - No viable dags retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:14:21,548] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.020 seconds
+[2022-01-27 15:14:51,624] {scheduler_job.py:182} INFO - Started process (PID=124) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:14:51,625] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:14:51,626] {logging_mixin.py:104} INFO - [2022-01-27 15:14:51,625] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:14:51,629] {logging_mixin.py:104} INFO - [2022-01-27 15:14:51,628] {dagbag.py:320} ERROR - Failed to import: /opt/airflow/dags/cgi40_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/dagbag.py", line 317, in _load_modules_from_file
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 674, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 781, in get_code
+  File "<frozen importlib._bootstrap_external>", line 741, in source_to_code
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/cgi40_dag.py", line 923
+    with dag:
+       ^
+IndentationError: expected an indented block
+[2022-01-27 15:14:51,629] {scheduler_job.py:645} WARNING - No viable dags retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:14:51,641] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.019 seconds
+[2022-01-27 15:15:21,733] {scheduler_job.py:182} INFO - Started process (PID=126) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:15:21,733] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:15:21,734] {logging_mixin.py:104} INFO - [2022-01-27 15:15:21,734] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:15:21,737] {logging_mixin.py:104} INFO - [2022-01-27 15:15:21,737] {dagbag.py:320} ERROR - Failed to import: /opt/airflow/dags/cgi40_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/dagbag.py", line 317, in _load_modules_from_file
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 674, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 781, in get_code
+  File "<frozen importlib._bootstrap_external>", line 741, in source_to_code
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/cgi40_dag.py", line 923
+    with dag:
+       ^
+IndentationError: expected an indented block
+[2022-01-27 15:15:21,737] {scheduler_job.py:645} WARNING - No viable dags retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:15:21,754] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.024 seconds
+[2022-01-27 15:15:51,825] {scheduler_job.py:182} INFO - Started process (PID=128) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:15:51,825] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:15:51,826] {logging_mixin.py:104} INFO - [2022-01-27 15:15:51,826] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:15:51,829] {logging_mixin.py:104} INFO - [2022-01-27 15:15:51,829] {dagbag.py:320} ERROR - Failed to import: /opt/airflow/dags/cgi40_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/dagbag.py", line 317, in _load_modules_from_file
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 674, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 781, in get_code
+  File "<frozen importlib._bootstrap_external>", line 741, in source_to_code
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/cgi40_dag.py", line 923
+    with dag:
+       ^
+IndentationError: expected an indented block
+[2022-01-27 15:15:51,830] {scheduler_job.py:645} WARNING - No viable dags retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:15:51,842] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.020 seconds
+[2022-01-27 15:16:21,926] {scheduler_job.py:182} INFO - Started process (PID=130) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:16:21,927] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:16:21,927] {logging_mixin.py:104} INFO - [2022-01-27 15:16:21,927] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:16:21,931] {logging_mixin.py:104} INFO - [2022-01-27 15:16:21,931] {dagbag.py:320} ERROR - Failed to import: /opt/airflow/dags/cgi40_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/dagbag.py", line 317, in _load_modules_from_file
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 674, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 781, in get_code
+  File "<frozen importlib._bootstrap_external>", line 741, in source_to_code
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/cgi40_dag.py", line 923
+    with dag:
+       ^
+IndentationError: expected an indented block
+[2022-01-27 15:16:21,932] {scheduler_job.py:645} WARNING - No viable dags retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:16:21,944] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.022 seconds
+[2022-01-27 15:16:52,021] {scheduler_job.py:182} INFO - Started process (PID=132) to work on /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:16:52,022] {scheduler_job.py:633} INFO - Processing file /opt/airflow/dags/cgi40_dag.py for tasks to queue
+[2022-01-27 15:16:52,022] {logging_mixin.py:104} INFO - [2022-01-27 15:16:52,022] {dagbag.py:487} INFO - Filling up the DagBag from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:16:52,026] {logging_mixin.py:104} INFO - [2022-01-27 15:16:52,025] {dagbag.py:320} ERROR - Failed to import: /opt/airflow/dags/cgi40_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/dagbag.py", line 317, in _load_modules_from_file
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 674, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 781, in get_code
+  File "<frozen importlib._bootstrap_external>", line 741, in source_to_code
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/opt/airflow/dags/cgi40_dag.py", line 923
+    with dag:
+       ^
+IndentationError: expected an indented block
+[2022-01-27 15:16:52,026] {scheduler_job.py:645} WARNING - No viable dags retrieved from /opt/airflow/dags/cgi40_dag.py
+[2022-01-27 15:16:52,038] {scheduler_job.py:190} INFO - Processing /opt/airflow/dags/cgi40_dag.py took 0.020 seconds

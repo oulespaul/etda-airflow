@@ -1,0 +1,28 @@
+[2022-01-27 14:42:50,995] {taskinstance.py:876} INFO - Dependencies all met for <TaskInstance: cgi_40.load_data_source 2022-01-27T14:42:49.346142+00:00 [queued]>
+[2022-01-27 14:42:51,004] {taskinstance.py:876} INFO - Dependencies all met for <TaskInstance: cgi_40.load_data_source 2022-01-27T14:42:49.346142+00:00 [queued]>
+[2022-01-27 14:42:51,005] {taskinstance.py:1067} INFO - 
+--------------------------------------------------------------------------------
+[2022-01-27 14:42:51,005] {taskinstance.py:1068} INFO - Starting attempt 1 of 1
+[2022-01-27 14:42:51,005] {taskinstance.py:1069} INFO - 
+--------------------------------------------------------------------------------
+[2022-01-27 14:42:51,013] {taskinstance.py:1087} INFO - Executing <Task(BashOperator): load_data_source> on 2022-01-27T14:42:49.346142+00:00
+[2022-01-27 14:42:51,021] {standard_task_runner.py:52} INFO - Started process 55 to run task
+[2022-01-27 14:42:51,026] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'cgi_40', 'load_data_source', '2022-01-27T14:42:49.346142+00:00', '--job-id', '6', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/cgi40_dag.py', '--cfg-path', '/tmp/tmpbl6xno4r', '--error-file', '/tmp/tmp2879ep05']
+[2022-01-27 14:42:51,026] {standard_task_runner.py:77} INFO - Job 6: Subtask load_data_source
+[2022-01-27 14:42:51,057] {logging_mixin.py:104} INFO - Running <TaskInstance: cgi_40.load_data_source 2022-01-27T14:42:49.346142+00:00 [running]> on host bb053c5f0074
+[2022-01-27 14:42:51,091] {taskinstance.py:1282} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_EMAIL=oulespaul@gmail.com
+AIRFLOW_CTX_DAG_OWNER=ETDA
+AIRFLOW_CTX_DAG_ID=cgi_40
+AIRFLOW_CTX_TASK_ID=load_data_source
+AIRFLOW_CTX_EXECUTION_DATE=2022-01-27T14:42:49.346142+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-01-27T14:42:49.346142+00:00
+[2022-01-27 14:42:51,092] {subprocess.py:52} INFO - Tmp dir root location: 
+ /tmp
+[2022-01-27 14:42:51,092] {subprocess.py:63} INFO - Running command: ['bash', '-c', 'pwd && ls']
+[2022-01-27 14:42:51,101] {subprocess.py:75} INFO - Output:
+[2022-01-27 14:42:51,102] {subprocess.py:79} INFO - /tmp/***tmpuap78smb
+[2022-01-27 14:42:51,104] {subprocess.py:83} INFO - Command exited with return code 0
+[2022-01-27 14:42:51,132] {taskinstance.py:1191} INFO - Marking task as SUCCESS. dag_id=cgi_40, task_id=load_data_source, execution_date=20220127T144249, start_date=20220127T144250, end_date=20220127T144251
+[2022-01-27 14:42:51,175] {taskinstance.py:1245} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2022-01-27 14:42:51,200] {local_task_job.py:151} INFO - Task exited with return code 0
