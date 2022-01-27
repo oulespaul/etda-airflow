@@ -6,7 +6,6 @@ from pywebhdfs.webhdfs import PyWebHdfsClient
 from pprint import pprint
 import pandas as pd
 
-
 def etl():
     print("etl on progress...")
     pd.set_option('display.max_columns', None)
@@ -925,10 +924,10 @@ def store_to_hdfs():
 
     ingest_date = datetime.now().strftime("%Y%m%d%H%M%S")
 
-    with open('/opt/airflow/dags/output/CGI_4.0_2017_2019.csv') as file_data:
+    with open('/opt/airflow/dags/output/CGI_4.0_2017_2019.csv', 'r', encoding="utf8") as file_data:
         my_data = file_data.read()
         hdfs.create_file(
-            my_dir+'/CGI_4.0_2017_2019_{}.csv'.format(ingest_date), my_data, overwrite=True)
+            my_dir+'/CGI_4.0_2017_2019_{}.csv'.format(ingest_date), my_data.encode('utf-8'), overwrite=True)
 
     pprint("Stored!")
     pprint(hdfs.list_dir(my_dir))

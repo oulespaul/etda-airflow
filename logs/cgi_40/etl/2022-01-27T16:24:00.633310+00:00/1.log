@@ -1,0 +1,175 @@
+[2022-01-27 16:24:05,463] {taskinstance.py:876} INFO - Dependencies all met for <TaskInstance: cgi_40.etl 2022-01-27T16:24:00.633310+00:00 [queued]>
+[2022-01-27 16:24:05,471] {taskinstance.py:876} INFO - Dependencies all met for <TaskInstance: cgi_40.etl 2022-01-27T16:24:00.633310+00:00 [queued]>
+[2022-01-27 16:24:05,471] {taskinstance.py:1067} INFO - 
+--------------------------------------------------------------------------------
+[2022-01-27 16:24:05,471] {taskinstance.py:1068} INFO - Starting attempt 1 of 1
+[2022-01-27 16:24:05,471] {taskinstance.py:1069} INFO - 
+--------------------------------------------------------------------------------
+[2022-01-27 16:24:05,478] {taskinstance.py:1087} INFO - Executing <Task(PythonOperator): etl> on 2022-01-27T16:24:00.633310+00:00
+[2022-01-27 16:24:05,485] {standard_task_runner.py:52} INFO - Started process 106 to run task
+[2022-01-27 16:24:05,488] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'cgi_40', 'etl', '2022-01-27T16:24:00.633310+00:00', '--job-id', '16', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/cgi40_dag.py', '--cfg-path', '/tmp/tmpvs6dpxjz', '--error-file', '/tmp/tmp8dajz63h']
+[2022-01-27 16:24:05,488] {standard_task_runner.py:77} INFO - Job 16: Subtask etl
+[2022-01-27 16:24:05,512] {logging_mixin.py:104} INFO - Running <TaskInstance: cgi_40.etl 2022-01-27T16:24:00.633310+00:00 [running]> on host ca77e06d0f72
+[2022-01-27 16:24:05,540] {taskinstance.py:1282} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_EMAIL=oulespaul@gmail.com
+AIRFLOW_CTX_DAG_OWNER=ETDA
+AIRFLOW_CTX_DAG_ID=cgi_40
+AIRFLOW_CTX_TASK_ID=etl
+AIRFLOW_CTX_EXECUTION_DATE=2022-01-27T16:24:00.633310+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-01-27T16:24:00.633310+00:00
+[2022-01-27 16:24:05,541] {logging_mixin.py:104} INFO - etl on progress...
+[2022-01-27 16:24:09,451] {logging_mixin.py:104} INFO - country: Albania
+[2022-01-27 16:24:09,460] {logging_mixin.py:104} INFO - country: Algeria
+[2022-01-27 16:24:09,469] {logging_mixin.py:104} INFO - country: Angola
+[2022-01-27 16:24:09,478] {logging_mixin.py:104} INFO - country: Argentina
+[2022-01-27 16:24:09,487] {logging_mixin.py:104} INFO - country: Armenia
+[2022-01-27 16:24:09,496] {logging_mixin.py:104} INFO - country: Australia
+[2022-01-27 16:24:09,505] {logging_mixin.py:104} INFO - country: Austria
+[2022-01-27 16:24:09,513] {logging_mixin.py:104} INFO - country: Azerbaijan
+[2022-01-27 16:24:09,522] {logging_mixin.py:104} INFO - country: Bahrain
+[2022-01-27 16:24:09,531] {logging_mixin.py:104} INFO - country: Bangladesh
+[2022-01-27 16:24:09,540] {logging_mixin.py:104} INFO - country: Barbados
+[2022-01-27 16:24:09,549] {logging_mixin.py:104} INFO - country: Belgium
+[2022-01-27 16:24:09,558] {logging_mixin.py:104} INFO - country: Benin
+[2022-01-27 16:24:09,567] {logging_mixin.py:104} INFO - country: Bosnia and Herzegovina
+[2022-01-27 16:24:09,576] {logging_mixin.py:104} INFO - country: Bolivia
+[2022-01-27 16:24:09,584] {logging_mixin.py:104} INFO - country: Botswana
+[2022-01-27 16:24:09,593] {logging_mixin.py:104} INFO - country: Brazil
+[2022-01-27 16:24:09,602] {logging_mixin.py:104} INFO - country: Brunei Darussalam
+[2022-01-27 16:24:09,611] {logging_mixin.py:104} INFO - country: Bulgaria
+[2022-01-27 16:24:09,620] {logging_mixin.py:104} INFO - country: Burkina Faso
+[2022-01-27 16:24:09,628] {logging_mixin.py:104} INFO - country: Burundi
+[2022-01-27 16:24:09,637] {logging_mixin.py:104} INFO - country: Cambodia
+[2022-01-27 16:24:09,646] {logging_mixin.py:104} INFO - country: Cameroon
+[2022-01-27 16:24:09,655] {logging_mixin.py:104} INFO - country: Canada
+[2022-01-27 16:24:09,664] {logging_mixin.py:104} INFO - country: Cape Verde
+[2022-01-27 16:24:09,672] {logging_mixin.py:104} INFO - country: Chad
+[2022-01-27 16:24:09,681] {logging_mixin.py:104} INFO - country: Chile
+[2022-01-27 16:24:09,690] {logging_mixin.py:104} INFO - country: China
+[2022-01-27 16:24:09,699] {logging_mixin.py:104} INFO - country: Colombia
+[2022-01-27 16:24:09,708] {logging_mixin.py:104} INFO - country: Congo, Democratic Rep.
+[2022-01-27 16:24:09,719] {logging_mixin.py:104} INFO - country: Costa Rica
+[2022-01-27 16:24:09,727] {logging_mixin.py:104} INFO - country: Côte d'Ivoire
+[2022-01-27 16:24:09,736] {logging_mixin.py:104} INFO - country: Croatia
+[2022-01-27 16:24:09,745] {logging_mixin.py:104} INFO - country: Cyprus
+[2022-01-27 16:24:09,754] {logging_mixin.py:104} INFO - country: Czech Republic
+[2022-01-27 16:24:09,763] {logging_mixin.py:104} INFO - country: Denmark
+[2022-01-27 16:24:09,772] {logging_mixin.py:104} INFO - country: Dominican Republic
+[2022-01-27 16:24:09,780] {logging_mixin.py:104} INFO - country: Ecuador
+[2022-01-27 16:24:09,790] {logging_mixin.py:104} INFO - country: Egypt
+[2022-01-27 16:24:09,798] {logging_mixin.py:104} INFO - country: El Salvador
+[2022-01-27 16:24:09,807] {logging_mixin.py:104} INFO - country: Estonia
+[2022-01-27 16:24:09,816] {logging_mixin.py:104} INFO - country: Ethiopia
+[2022-01-27 16:24:09,825] {logging_mixin.py:104} INFO - country: Finland
+[2022-01-27 16:24:09,833] {logging_mixin.py:104} INFO - country: France
+[2022-01-27 16:24:09,842] {logging_mixin.py:104} INFO - country: Gabon
+[2022-01-27 16:24:09,851] {logging_mixin.py:104} INFO - country: Gambia, The
+[2022-01-27 16:24:09,860] {logging_mixin.py:104} INFO - country: Georgia
+[2022-01-27 16:24:09,868] {logging_mixin.py:104} INFO - country: Germany
+[2022-01-27 16:24:09,877] {logging_mixin.py:104} INFO - country: Ghana
+[2022-01-27 16:24:09,886] {logging_mixin.py:104} INFO - country: Greece
+[2022-01-27 16:24:09,895] {logging_mixin.py:104} INFO - country: Guatemala
+[2022-01-27 16:24:09,904] {logging_mixin.py:104} INFO - country: Guinea
+[2022-01-27 16:24:09,912] {logging_mixin.py:104} INFO - country: Haiti
+[2022-01-27 16:24:09,921] {logging_mixin.py:104} INFO - country: Honduras
+[2022-01-27 16:24:09,930] {logging_mixin.py:104} INFO - country: Hong Kong SAR
+[2022-01-27 16:24:09,939] {logging_mixin.py:104} INFO - country: Hungary
+[2022-01-27 16:24:09,948] {logging_mixin.py:104} INFO - country: Iceland
+[2022-01-27 16:24:09,957] {logging_mixin.py:104} INFO - country: India
+[2022-01-27 16:24:09,966] {logging_mixin.py:104} INFO - country: Indonesia
+[2022-01-27 16:24:09,975] {logging_mixin.py:104} INFO - country: Iran, Islamic Rep.
+[2022-01-27 16:24:09,984] {logging_mixin.py:104} INFO - country: Ireland
+[2022-01-27 16:24:09,993] {logging_mixin.py:104} INFO - country: Israel
+[2022-01-27 16:24:10,002] {logging_mixin.py:104} INFO - country: Italy
+[2022-01-27 16:24:10,011] {logging_mixin.py:104} INFO - country: Jamaica
+[2022-01-27 16:24:10,019] {logging_mixin.py:104} INFO - country: Japan
+[2022-01-27 16:24:10,028] {logging_mixin.py:104} INFO - country: Jordan
+[2022-01-27 16:24:10,037] {logging_mixin.py:104} INFO - country: Kazakhstan
+[2022-01-27 16:24:10,046] {logging_mixin.py:104} INFO - country: Kenya
+[2022-01-27 16:24:10,055] {logging_mixin.py:104} INFO - country: Korea, Rep.
+[2022-01-27 16:24:10,063] {logging_mixin.py:104} INFO - country: Kuwait
+[2022-01-27 16:24:10,072] {logging_mixin.py:104} INFO - country: Kyrgyz Republic
+[2022-01-27 16:24:10,081] {logging_mixin.py:104} INFO - country: Lao PDR
+[2022-01-27 16:24:10,090] {logging_mixin.py:104} INFO - country: Latvia
+[2022-01-27 16:24:10,099] {logging_mixin.py:104} INFO - country: Lebanon
+[2022-01-27 16:24:10,108] {logging_mixin.py:104} INFO - country: Lesotho
+[2022-01-27 16:24:10,117] {logging_mixin.py:104} INFO - country: Liberia
+[2022-01-27 16:24:10,125] {logging_mixin.py:104} INFO - country: Lithuania
+[2022-01-27 16:24:10,134] {logging_mixin.py:104} INFO - country: Luxembourg
+[2022-01-27 16:24:10,144] {logging_mixin.py:104} INFO - country: North Macedonia
+[2022-01-27 16:24:10,153] {logging_mixin.py:104} INFO - country: Madagascar
+[2022-01-27 16:24:10,161] {logging_mixin.py:104} INFO - country: Malawi
+[2022-01-27 16:24:10,170] {logging_mixin.py:104} INFO - country: Malaysia
+[2022-01-27 16:24:10,179] {logging_mixin.py:104} INFO - country: Mali
+[2022-01-27 16:24:10,188] {logging_mixin.py:104} INFO - country: Malta
+[2022-01-27 16:24:10,197] {logging_mixin.py:104} INFO - country: Mauritania
+[2022-01-27 16:24:10,205] {logging_mixin.py:104} INFO - country: Mauritius
+[2022-01-27 16:24:10,214] {logging_mixin.py:104} INFO - country: Mexico
+[2022-01-27 16:24:10,223] {logging_mixin.py:104} INFO - country: Moldova
+[2022-01-27 16:24:10,232] {logging_mixin.py:104} INFO - country: Mongolia
+[2022-01-27 16:24:10,241] {logging_mixin.py:104} INFO - country: Montenegro
+[2022-01-27 16:24:10,250] {logging_mixin.py:104} INFO - country: Morocco
+[2022-01-27 16:24:10,259] {logging_mixin.py:104} INFO - country: Mozambique
+[2022-01-27 16:24:10,268] {logging_mixin.py:104} INFO - country: Namibia
+[2022-01-27 16:24:10,276] {logging_mixin.py:104} INFO - country: Nepal
+[2022-01-27 16:24:10,285] {logging_mixin.py:104} INFO - country: Netherlands
+[2022-01-27 16:24:10,294] {logging_mixin.py:104} INFO - country: New Zealand
+[2022-01-27 16:24:10,303] {logging_mixin.py:104} INFO - country: Nicaragua
+[2022-01-27 16:24:10,312] {logging_mixin.py:104} INFO - country: Nigeria
+[2022-01-27 16:24:10,320] {logging_mixin.py:104} INFO - country: Norway
+[2022-01-27 16:24:10,329] {logging_mixin.py:104} INFO - country: Oman
+[2022-01-27 16:24:10,338] {logging_mixin.py:104} INFO - country: Pakistan
+[2022-01-27 16:24:10,347] {logging_mixin.py:104} INFO - country: Panama
+[2022-01-27 16:24:10,355] {logging_mixin.py:104} INFO - country: Paraguay
+[2022-01-27 16:24:10,364] {logging_mixin.py:104} INFO - country: Peru
+[2022-01-27 16:24:10,374] {logging_mixin.py:104} INFO - country: Philippines
+[2022-01-27 16:24:10,383] {logging_mixin.py:104} INFO - country: Poland
+[2022-01-27 16:24:10,391] {logging_mixin.py:104} INFO - country: Portugal
+[2022-01-27 16:24:10,400] {logging_mixin.py:104} INFO - country: Qatar
+[2022-01-27 16:24:10,409] {logging_mixin.py:104} INFO - country: Romania
+[2022-01-27 16:24:10,418] {logging_mixin.py:104} INFO - country: Russian Federation
+[2022-01-27 16:24:10,426] {logging_mixin.py:104} INFO - country: Rwanda
+[2022-01-27 16:24:10,435] {logging_mixin.py:104} INFO - country: Saudi Arabia
+[2022-01-27 16:24:10,444] {logging_mixin.py:104} INFO - country: Senegal
+[2022-01-27 16:24:10,453] {logging_mixin.py:104} INFO - country: Serbia
+[2022-01-27 16:24:10,461] {logging_mixin.py:104} INFO - country: Seychelles
+[2022-01-27 16:24:10,470] {logging_mixin.py:104} INFO - country: Sierra Leone
+[2022-01-27 16:24:10,479] {logging_mixin.py:104} INFO - country: Singapore
+[2022-01-27 16:24:10,488] {logging_mixin.py:104} INFO - country: Slovak Republic
+[2022-01-27 16:24:10,497] {logging_mixin.py:104} INFO - country: Slovenia
+[2022-01-27 16:24:10,506] {logging_mixin.py:104} INFO - country: South Africa
+[2022-01-27 16:24:10,515] {logging_mixin.py:104} INFO - country: Spain
+[2022-01-27 16:24:10,524] {logging_mixin.py:104} INFO - country: Sri Lanka
+[2022-01-27 16:24:10,534] {logging_mixin.py:104} INFO - country: Eswatini
+[2022-01-27 16:24:10,543] {logging_mixin.py:104} INFO - country: Sweden
+[2022-01-27 16:24:10,552] {logging_mixin.py:104} INFO - country: Switzerland
+[2022-01-27 16:24:10,561] {logging_mixin.py:104} INFO - country: Taiwan, China
+[2022-01-27 16:24:10,571] {logging_mixin.py:104} INFO - country: Tajikistan
+[2022-01-27 16:24:10,580] {logging_mixin.py:104} INFO - country: Tanzania
+[2022-01-27 16:24:10,589] {logging_mixin.py:104} INFO - country: Thailand
+[2022-01-27 16:24:10,598] {logging_mixin.py:104} INFO - country: Trinidad and Tobago
+[2022-01-27 16:24:10,607] {logging_mixin.py:104} INFO - country: Tunisia
+[2022-01-27 16:24:10,616] {logging_mixin.py:104} INFO - country: Turkey
+[2022-01-27 16:24:10,625] {logging_mixin.py:104} INFO - country: Uganda
+[2022-01-27 16:24:10,634] {logging_mixin.py:104} INFO - country: Ukraine
+[2022-01-27 16:24:10,644] {logging_mixin.py:104} INFO - country: United Arab Emirates
+[2022-01-27 16:24:10,653] {logging_mixin.py:104} INFO - country: United Kingdom
+[2022-01-27 16:24:10,662] {logging_mixin.py:104} INFO - country: United States
+[2022-01-27 16:24:10,671] {logging_mixin.py:104} INFO - country: Uruguay
+[2022-01-27 16:24:10,680] {logging_mixin.py:104} INFO - country: Venezuela
+[2022-01-27 16:24:10,692] {logging_mixin.py:104} INFO - country: Viet Nam
+[2022-01-27 16:24:10,702] {logging_mixin.py:104} INFO - country: Yemen
+[2022-01-27 16:24:10,711] {logging_mixin.py:104} INFO - country: Zambia
+[2022-01-27 16:24:10,720] {logging_mixin.py:104} INFO - country: Zimbabwe
+[2022-01-27 16:24:10,729] {logging_mixin.py:104} INFO - country: Average GCR
+[2022-01-27 16:24:10,741] {logging_mixin.py:104} INFO - country: Europe and North America
+[2022-01-27 16:24:10,750] {logging_mixin.py:104} INFO - country: Middle East and North Africa
+[2022-01-27 16:24:10,759] {logging_mixin.py:104} INFO - country: Sub-Saharan Africa
+[2022-01-27 16:24:10,768] {logging_mixin.py:104} INFO - country: Latin America and the Caribbean
+[2022-01-27 16:24:10,777] {logging_mixin.py:104} INFO - country: Eurasia
+[2022-01-27 16:24:10,787] {logging_mixin.py:104} INFO - country: East Asia and Pacific
+[2022-01-27 16:24:10,796] {logging_mixin.py:104} INFO - country: South Asia
+[2022-01-27 16:24:11,588] {python.py:151} INFO - Done. Returned value was: None
+[2022-01-27 16:24:11,605] {taskinstance.py:1191} INFO - Marking task as SUCCESS. dag_id=cgi_40, task_id=etl, execution_date=20220127T162400, start_date=20220127T162405, end_date=20220127T162411
+[2022-01-27 16:24:11,625] {taskinstance.py:1245} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2022-01-27 16:24:11,669] {local_task_job.py:151} INFO - Task exited with return code 0

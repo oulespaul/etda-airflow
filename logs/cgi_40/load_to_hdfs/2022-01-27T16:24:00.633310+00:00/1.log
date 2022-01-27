@@ -1,0 +1,58 @@
+[2022-01-27 16:24:12,480] {taskinstance.py:876} INFO - Dependencies all met for <TaskInstance: cgi_40.load_to_hdfs 2022-01-27T16:24:00.633310+00:00 [queued]>
+[2022-01-27 16:24:12,488] {taskinstance.py:876} INFO - Dependencies all met for <TaskInstance: cgi_40.load_to_hdfs 2022-01-27T16:24:00.633310+00:00 [queued]>
+[2022-01-27 16:24:12,488] {taskinstance.py:1067} INFO - 
+--------------------------------------------------------------------------------
+[2022-01-27 16:24:12,488] {taskinstance.py:1068} INFO - Starting attempt 1 of 1
+[2022-01-27 16:24:12,488] {taskinstance.py:1069} INFO - 
+--------------------------------------------------------------------------------
+[2022-01-27 16:24:12,496] {taskinstance.py:1087} INFO - Executing <Task(PythonOperator): load_to_hdfs> on 2022-01-27T16:24:00.633310+00:00
+[2022-01-27 16:24:12,502] {standard_task_runner.py:52} INFO - Started process 108 to run task
+[2022-01-27 16:24:12,505] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'cgi_40', 'load_to_hdfs', '2022-01-27T16:24:00.633310+00:00', '--job-id', '17', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/cgi40_dag.py', '--cfg-path', '/tmp/tmpjnokmbvo', '--error-file', '/tmp/tmps8j2i5mg']
+[2022-01-27 16:24:12,505] {standard_task_runner.py:77} INFO - Job 17: Subtask load_to_hdfs
+[2022-01-27 16:24:12,530] {logging_mixin.py:104} INFO - Running <TaskInstance: cgi_40.load_to_hdfs 2022-01-27T16:24:00.633310+00:00 [running]> on host ca77e06d0f72
+[2022-01-27 16:24:12,558] {taskinstance.py:1282} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_EMAIL=oulespaul@gmail.com
+AIRFLOW_CTX_DAG_OWNER=ETDA
+AIRFLOW_CTX_DAG_ID=cgi_40
+AIRFLOW_CTX_TASK_ID=load_to_hdfs
+AIRFLOW_CTX_EXECUTION_DATE=2022-01-27T16:24:00.633310+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-01-27T16:24:00.633310+00:00
+[2022-01-27 16:24:12,607] {taskinstance.py:1481} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1137, in _run_raw_task
+    self._prepare_and_execute_task_with_callbacks(context, task)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1311, in _prepare_and_execute_task_with_callbacks
+    result = self._execute_task(context, task_copy)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1341, in _execute_task
+    result = task_copy.execute(context=context)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/operators/python.py", line 150, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/operators/python.py", line 161, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/cgi40_dag.py", line 930, in store_to_hdfs
+    my_dir+'/CGI_4.0_2017_2019_{}.csv'.format(ingest_date), my_data, overwrite=True)
+  File "/home/airflow/.local/lib/python3.6/site-packages/pywebhdfs/webhdfs.py", line 115, in create_file
+    **self.request_extra_opts)
+  File "/home/airflow/.local/lib/python3.6/site-packages/requests/api.py", line 134, in put
+    return request('put', url, data=data, **kwargs)
+  File "/home/airflow/.local/lib/python3.6/site-packages/requests/api.py", line 61, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/airflow/.local/lib/python3.6/site-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/airflow/.local/lib/python3.6/site-packages/requests/sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/airflow/.local/lib/python3.6/site-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 677, in urlopen
+    chunked=chunked,
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 392, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/usr/local/lib/python3.6/http/client.py", line 1291, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/usr/local/lib/python3.6/http/client.py", line 1336, in _send_request
+    body = _encode(body, 'body')
+  File "/usr/local/lib/python3.6/http/client.py", line 175, in _encode
+    (name.title(), data[err.start:err.end], name)) from None
+UnicodeEncodeError: 'latin-1' codec can't encode characters in position 6-13: Body ('ผู้จัดทำ') is not valid Latin-1. Use body.encode('utf-8') if you want to send it encoded in UTF-8.
+[2022-01-27 16:24:12,679] {taskinstance.py:1531} INFO - Marking task as FAILED. dag_id=cgi_40, task_id=load_to_hdfs, execution_date=20220127T162400, start_date=20220127T162412, end_date=20220127T162412
+[2022-01-27 16:24:12,758] {local_task_job.py:151} INFO - Task exited with return code 1

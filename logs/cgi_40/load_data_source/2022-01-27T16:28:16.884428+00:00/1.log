@@ -1,0 +1,30 @@
+[2022-01-27 16:28:18,168] {taskinstance.py:876} INFO - Dependencies all met for <TaskInstance: cgi_40.load_data_source 2022-01-27T16:28:16.884428+00:00 [queued]>
+[2022-01-27 16:28:18,176] {taskinstance.py:876} INFO - Dependencies all met for <TaskInstance: cgi_40.load_data_source 2022-01-27T16:28:16.884428+00:00 [queued]>
+[2022-01-27 16:28:18,176] {taskinstance.py:1067} INFO - 
+--------------------------------------------------------------------------------
+[2022-01-27 16:28:18,176] {taskinstance.py:1068} INFO - Starting attempt 1 of 1
+[2022-01-27 16:28:18,176] {taskinstance.py:1069} INFO - 
+--------------------------------------------------------------------------------
+[2022-01-27 16:28:18,184] {taskinstance.py:1087} INFO - Executing <Task(BashOperator): load_data_source> on 2022-01-27T16:28:16.884428+00:00
+[2022-01-27 16:28:18,191] {standard_task_runner.py:52} INFO - Started process 118 to run task
+[2022-01-27 16:28:18,194] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'cgi_40', 'load_data_source', '2022-01-27T16:28:16.884428+00:00', '--job-id', '21', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/cgi40_dag.py', '--cfg-path', '/tmp/tmpk9lsslyb', '--error-file', '/tmp/tmpd72ryvra']
+[2022-01-27 16:28:18,194] {standard_task_runner.py:77} INFO - Job 21: Subtask load_data_source
+[2022-01-27 16:28:18,218] {logging_mixin.py:104} INFO - Running <TaskInstance: cgi_40.load_data_source 2022-01-27T16:28:16.884428+00:00 [running]> on host ca77e06d0f72
+[2022-01-27 16:28:18,247] {taskinstance.py:1282} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_EMAIL=oulespaul@gmail.com
+AIRFLOW_CTX_DAG_OWNER=ETDA
+AIRFLOW_CTX_DAG_ID=cgi_40
+AIRFLOW_CTX_TASK_ID=load_data_source
+AIRFLOW_CTX_EXECUTION_DATE=2022-01-27T16:28:16.884428+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-01-27T16:28:16.884428+00:00
+[2022-01-27 16:28:18,247] {subprocess.py:52} INFO - Tmp dir root location: 
+ /tmp
+[2022-01-27 16:28:18,248] {subprocess.py:63} INFO - Running command: ['bash', '-c', 'cd /opt/***/dags/data_source &&  curl -LfO "https://www.teknologisk.dk/_/media/76459_GCR%2017-19%20Dataset.xlsx"']
+[2022-01-27 16:28:18,256] {subprocess.py:75} INFO - Output:
+[2022-01-27 16:28:18,262] {subprocess.py:79} INFO -   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+[2022-01-27 16:28:18,263] {subprocess.py:79} INFO -                                  Dload  Upload   Total   Spent    Left  Speed
+[2022-01-27 16:28:21,138] {subprocess.py:79} INFO -   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  2 1916k    2 48746    0     0  26025      0  0:01:15  0:00:01  0:01:14 26011 60 1916k   60 1167k    0     0   408k      0  0:00:04  0:00:02  0:00:02  408k100 1916k  100 1916k    0     0   666k      0  0:00:02  0:00:02 --:--:--  666k
+[2022-01-27 16:28:21,140] {subprocess.py:83} INFO - Command exited with return code 0
+[2022-01-27 16:28:21,158] {taskinstance.py:1191} INFO - Marking task as SUCCESS. dag_id=cgi_40, task_id=load_data_source, execution_date=20220127T162816, start_date=20220127T162818, end_date=20220127T162821
+[2022-01-27 16:28:21,177] {taskinstance.py:1245} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2022-01-27 16:28:21,213] {local_task_job.py:151} INFO - Task exited with return code 0
