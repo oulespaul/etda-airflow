@@ -2,6 +2,8 @@ from airflow import DAG
 from airflow.operators.bash import BashOperator
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime, timedelta
+from pywebhdfs.webhdfs import PyWebHdfsClient
+from pprint import pprint
 import pandas as pd
 
 
@@ -897,8 +899,7 @@ def etl():
     final_df = final_df.drop(columns='GROUP', axis=1)
     final_df = final_df.drop(columns='Value', axis=1)
 
-    ingest_date = datetime.now().strftime("%Y%m%d%H%M%S")
-    final_df.to_csv("/opt/airflow/dags/output/CGI_4.0_2017_2019_{}.csv".format(ingest_date))
+    final_df.to_csv("/opt/airflow/dags/output/CGI_4.0_2017_2019.csv")
 
 
 default_args = {
@@ -916,8 +917,21 @@ dag = DAG('cgi_40', default_args=default_args, catchup=False)
 
 
 def store_to_hdfs():
+    hdfs = PyWebHdfsClient(host='10.121.101.145',
+                           port='50070', user_name='cloudera')
+    my_dir = '/user/cloudera/raw/index_dashboard/Global/CGI_4.0'
+    hdfs.make_dir(my_dir)
+    hdfs.make_dir(my_dir, permission=755)
 
-    
+    ingest_date = datetime.now().strftime("%Y%m%d%H%M%S")
+
+    with open('/opt/airflow/dags/output/CGI_4.0_2017_2019.csv') as file_data:
+        my_data = file_data.read()
+        hdfs.create_file(
+            my_dir+'/CGI_4.0_2017_2019_{}.csv'.format(ingest_date), my_data, overwrite=True)
+
+    pprint("Stored!")
+    pprint(hdfs.list_dir(my_dir))
 
 
 with dag:
@@ -931,4 +945,9 @@ with dag:
         python_callable=etl,
     )
 
-load_data_source >> etl
+    load_to_hdfs = PythonOperator(
+        task_id='load_to_hdfs',
+        python_callable=store_to_hdfs,
+    )
+
+load_data_source >> etl >> load_to_hdfs
