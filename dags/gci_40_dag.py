@@ -898,7 +898,7 @@ default_args = {
     'schedule_interval': '@yearly',
 }
 
-dag = DAG('cgi_40', default_args=default_args, catchup=False)
+dag = DAG('gci_40', default_args=default_args, catchup=False)
 
 
 def store_to_hdfs():
