@@ -6,26 +6,25 @@ from pywebhdfs.webhdfs import PyWebHdfsClient
 from pprint import pprint
 import pandas as pd
 
-def etl():
-    print("etl on progress...")
+
+def transform():
     pd.set_option('display.max_columns', None)
 
-    df = pd.read_excel('/opt/airflow/dags/data_source/76459_GCR%2017-19%20Dataset.xlsx',
-                       sheet_name='Data', skiprows=2, engine="openpyxl").drop(0)
-    df = df[df['Attribute'] != 'PERIOD']  # Drop Attr equal PERIOD row
+    df = pd.read_excel('data_source/76459_GCR%2017-19%20Dataset.xlsx',
+                       sheet_name='Data', skiprows=2).drop(0)
 
-    # Header implementation session
-    # Add new columns about index type
     i = 3
     df = pd.concat([df.iloc[:, :i],
                     pd.DataFrame('',
-                                 columns=['Sub-index', 'Pillar', 'Sub-pillar', 'Sub-sub-pillar', 'Indicator',
-                                          'Sub-indicator', 'Others', 'Type', 'unit', 'Country', 'Ingest Date'], index=df.index), df.iloc[:, i:]],
+                                 columns=['sub_index', 'pillar', 'sub_pillar', 'sub_sub_pillar', 'indicator',
+                                          'sub_indicator', 'others'],
+                                 index=df.index), df.iloc[:, i:]],
                    axis=1)
 
-    df.rename(columns={'Edition': 'Year',
-              'Series name': 'Index Name'}, inplace=True)
-    df.insert(loc=1, column='ผู้จัดทำ', value='WEF')
+    df.rename(columns={'Edition': 'year', 'Index': 'index',
+              'Country': 'country'}, inplace=True)
+    df.drop(['Series code (if applicable)', 'Series name'], axis=1, inplace=True)
+    df = df[df['Attribute'] != 'PERIOD']
 
     series_dict = {
         "EOSQ035": {
@@ -840,65 +839,51 @@ def etl():
     def get_value_from_key(key, sub_key):
         return series_dict.get(key, {}).get(sub_key, "")
 
-    df["Pillar"] = df["Series Global ID"].apply(
+    df["pillar"] = df["Series Global ID"].apply(
         get_value_from_key, args=("pillar",))
-    df["Sub-pillar"] = df["Series Global ID"].apply(
+    df["sub_pillar"] = df["Series Global ID"].apply(
         get_value_from_key, args=("sub_pillar",))
-    df["Sub-sub-pillar"] = df["Series Global ID"].apply(
+    df["sub_sub_pillar"] = df["Series Global ID"].apply(
         get_value_from_key, args=("sub_pillar_pillar",))
-    df["Indicator"] = df["Series Global ID"].apply(
+    df["indicator"] = df["Series Global ID"].apply(
         get_value_from_key, args=("indicator",))
-    df["Sub-index"] = df["Series Global ID"].apply(
+    df["sub_index"] = df["Series Global ID"].apply(
         get_value_from_key, args=("sub_index",))
-    df["Sub-indicator"] = df["Series Global ID"].apply(
+    df["sub_indicator"] = df["Series Global ID"].apply(
         get_value_from_key, args=("sub_indicator",))
-    df["Others"] = df["Series Global ID"].apply(
+    df["others"] = df["Series Global ID"].apply(
         get_value_from_key, args=("others",))
 
-    countries = (
-        "Albania", "Algeria", "Angola", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahrain",
-        "Bangladesh", "Barbados", "Belgium", "Benin", "Bosnia and Herzegovina", "Bolivia", "Botswana", "Brazil",
-        "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Chad",
-        "Chile", "China", "Colombia", "Congo, Democratic Rep.", "Costa Rica", "Côte d'Ivoire", "Croatia", "Cyprus",
-        "Czech Republic", "Denmark", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Estonia", "Ethiopia",
-        "Finland",
-        "France", "Gabon", "Gambia, The", "Georgia", "Germany", "Ghana", "Greece", "Guatemala", "Guinea", "Haiti",
-        "Honduras",
-        "Hong Kong SAR", "Hungary", "Iceland", "India", "Indonesia", "Iran, Islamic Rep.", "Ireland", "Israel", "Italy",
-        "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Korea, Rep.", "Kuwait", "Kyrgyz Republic", "Lao PDR",
-        "Latvia",
-        "Lebanon", "Lesotho", "Liberia", "Lithuania", "Luxembourg", "North Macedonia", "Madagascar", "Malawi", "Malaysia",
-        "Mali", "Malta", "Mauritania", "Mauritius", "Mexico", "Moldova", "Mongolia", "Montenegro", "Morocco", "Mozambique",
-        "Namibia", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Nigeria", "Norway", "Oman", "Pakistan", "Panama",
-        "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russian Federation", "Rwanda",
-        "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovak Republic", "Slovenia",
-        "South Africa", "Spain", "Sri Lanka", "Eswatini", "Sweden", "Switzerland", "Taiwan, China", "Tajikistan",
-        "Tanzania",
-        "Thailand", "Trinidad and Tobago", "Tunisia", "Turkey", "Uganda", "Ukraine", "United Arab Emirates",
-        "United Kingdom",
-        "United States", "Uruguay", "Venezuela", "Viet Nam", "Yemen", "Zambia", "Zimbabwe", "Average GCR",
-        "Europe and North America", "Middle East and North Africa", "Sub-Saharan Africa", "Latin America and the Caribbean",
-        "Eurasia", "East Asia and Pacific", "South Asia")
+    df.drop('Series Global ID', axis=1, inplace=True)
 
-    def pivot(country):
-        tmp = df.pivot(
-            index=['Index', 'ผู้จัดทำ', 'Year', 'Index Name', 'Sub-index', 'Pillar', 'Sub-pillar',
-                   'Sub-sub-pillar', 'Indicator', 'Sub-indicator', 'Others', 'Country', 'Ingest Date'],
-            columns=['Attribute'],
-            values=country
-        )
-        print("country: {}".format(country))
-        tmp['Country'] = country
-        tmp['Ingest Date'] = datetime.now().date()
-        return tmp
+    df = df.melt(
+        id_vars=['index', 'year', 'sub_index', 'pillar', 'sub_pillar',
+                 'sub_sub_pillar', 'indicator', 'sub_indicator', 'others', 'Attribute'],
+        var_name="country",
+        value_name="value"
+    )
 
-    dfs = [pivot(country) for country in countries]
-    final_df = pd.concat(dfs)
+    ingest_date = datetime.now()
 
-    final_df = final_df.drop(columns='GROUP', axis=1)
-    final_df = final_df.drop(columns='Value', axis=1)
+    df['organizer'] = 'WEF'
+    df['master_index'] = 'CGI 4.0'
+    df['date_etl'] = ingest_date.strftime("%Y-%m-%d %H:%M:%S")
+    df.rename(columns={'Attribute': 'unit_2',
+              'Dataset': 'index'}, inplace=True)
 
-    final_df.to_csv("/opt/airflow/dags/output/CGI_4.0_2017_2019.csv")
+    col = ["country", "year", "master_index", "organizer", "index", "sub_index", "pillar", "sub_pillar", "sub_sub_pillar",
+           "indicator", "sub_indicator", "others", "unit_2", "value", "date_etl"]
+
+    df = df[col]
+    year_list = df['year'].unique()
+
+    for year in year_list:
+        final = df[df['year'] == year].copy()
+        current_year = str(year)[0:4]
+        final['year'] = current_year
+
+        final.to_csv('CGI_40_{}_{}.csv'.format(
+            current_year, ingest_date.strftime("%Y%m%d%H%M%S")), index=False)
 
 
 default_args = {
@@ -909,7 +894,7 @@ default_args = {
     'email_on_failure': False,
     'email_on_retry': False,
     'retry_delay': timedelta(minutes=5),
-    'schedule_interval': '@daily',
+    'schedule_interval': '@yearly',
 }
 
 dag = DAG('cgi_40', default_args=default_args, catchup=False)
@@ -934,14 +919,14 @@ def store_to_hdfs():
 
 
 with dag:
-    load_data_source = BashOperator(
-        task_id='load_data_source',
+    ingestion = BashOperator(
+        task_id='ingestion',
         bash_command='cd /opt/airflow/dags/data_source &&  curl -LfO "https://www.teknologisk.dk/_/media/76459_GCR%2017-19%20Dataset.xlsx"',
     )
 
-    etl = PythonOperator(
-        task_id='etl',
-        python_callable=etl,
+    transform = PythonOperator(
+        task_id='transform',
+        python_callable=transform,
     )
 
     load_to_hdfs = PythonOperator(
@@ -949,4 +934,4 @@ with dag:
         python_callable=store_to_hdfs,
     )
 
-load_data_source >> etl >> load_to_hdfs
+ingestion >> transform >> load_to_hdfs
