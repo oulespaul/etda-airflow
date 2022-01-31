@@ -11,7 +11,7 @@ def transform():
     pd.set_option('display.max_columns', None)
 
     df = pd.read_excel('data_source/76459_GCR%2017-19%20Dataset.xlsx',
-                       sheet_name='Data', skiprows=2).drop(0)
+                       sheet_name='Data', skiprows=2, engine="openpyxl").drop(0)
 
     i = 3
     df = pd.concat([df.iloc[:, :i],
