@@ -5,12 +5,13 @@ from datetime import datetime, timedelta
 from pywebhdfs.webhdfs import PyWebHdfsClient
 from pprint import pprint
 import pandas as pd
+import os
 
 
 def transform():
     pd.set_option('display.max_columns', None)
 
-    df = pd.read_excel('data_source/76459_GCR%2017-19%20Dataset.xlsx',
+    df = pd.read_excel('/opt/airflow/dags/data_source/data_source/76459_GCR%2017-19%20Dataset.xlsx',
                        sheet_name='Data', skiprows=2, engine="openpyxl").drop(0)
 
     i = 3
@@ -882,7 +883,7 @@ def transform():
         current_year = str(year)[0:4]
         final['year'] = current_year
 
-        final.to_csv('CGI_40_{}_{}.csv'.format(
+        final.to_csv('/opt/airflow/dags/output/cgi40/CGI_40_{}_{}.csv'.format(
             current_year, ingest_date.strftime("%Y%m%d%H%M%S")), index=False)
 
 
@@ -907,15 +908,21 @@ def store_to_hdfs():
     hdfs.make_dir(my_dir)
     hdfs.make_dir(my_dir, permission=755)
 
-    ingest_date = datetime.now().strftime("%Y%m%d%H%M%S")
+    path = "/opt/airflow/dags/output/cgi40"
 
-    with open('/opt/airflow/dags/output/CGI_4.0_2017_2019.csv', 'r', encoding="utf8") as file_data:
-        my_data = file_data.read()
-        hdfs.create_file(
-            my_dir+'/CGI_4.0_2017_2019_{}.csv'.format(ingest_date), my_data.encode('utf-8'), overwrite=True)
+    os.chdir(path)
 
-    pprint("Stored!")
-    pprint(hdfs.list_dir(my_dir))
+    for file in os.listdir():
+        if file.endswith(".csv"):
+            file_path = f"{path}/{file}"
+
+            with open(file_path, 'r', encoding="utf8") as file_data:
+                my_data = file_data.read()
+                hdfs.create_file(
+                    my_dir+file, my_data.encode('utf-8'), overwrite=True)
+
+                pprint("Stored! file: {}".format(file))
+                pprint(hdfs.list_dir(my_dir))
 
 
 with dag:
