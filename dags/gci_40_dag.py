@@ -11,7 +11,7 @@ import os
 def transform():
     pd.set_option('display.max_columns', None)
 
-    df = pd.read_excel('/opt/airflow/dags/data_source/cgi40/76459_GCR%2017-19%20Dataset.xlsx',
+    df = pd.read_excel('/opt/airflow/dags/data_source/gci40/76459_GCR%2017-19%20Dataset.xlsx',
                        sheet_name='Data', skiprows=2, engine="openpyxl").drop(0)
 
     i = 3
@@ -867,7 +867,7 @@ def transform():
     ingest_date = datetime.now()
 
     df['organizer'] = 'WEF'
-    df['master_index'] = 'CGI 4.0'
+    df['master_index'] = 'GCI 4.0'
     df['date_etl'] = ingest_date.strftime("%Y-%m-%d %H:%M:%S")
     df.rename(columns={'Attribute': 'unit_2',
               'Dataset': 'index'}, inplace=True)
@@ -883,7 +883,7 @@ def transform():
         current_year = str(year)[0:4]
         final['year'] = current_year
 
-        final.to_csv('/opt/airflow/dags/output/cgi40/CGI_40_{}_{}.csv'.format(
+        final.to_csv('/opt/airflow/dags/output/gci40/GCI_40_{}_{}.csv'.format(
             current_year, ingest_date.strftime("%Y%m%d%H%M%S")), index=False)
 
 
@@ -904,11 +904,11 @@ dag = DAG('cgi_40', default_args=default_args, catchup=False)
 def store_to_hdfs():
     hdfs = PyWebHdfsClient(host='10.121.101.145',
                            port='50070', user_name='cloudera')
-    my_dir = '/user/cloudera/raw/index_dashboard/Global/CGI_4.0'
+    my_dir = '/user/cloudera/raw/index_dashboard/Global/GCI_4.0'
     hdfs.make_dir(my_dir)
     hdfs.make_dir(my_dir, permission=755)
 
-    path = "/opt/airflow/dags/output/cgi40"
+    path = "/opt/airflow/dags/output/gci40"
 
     os.chdir(path)
 
@@ -928,7 +928,7 @@ def store_to_hdfs():
 with dag:
     ingestion = BashOperator(
         task_id='ingestion',
-        bash_command='cd /opt/airflow/dags/data_source/cgi40 &&  curl -LfO "https://www.teknologisk.dk/_/media/76459_GCR%2017-19%20Dataset.xlsx"',
+        bash_command='cd /opt/airflow/dags/data_source/gci40 &&  curl -LfO "https://www.teknologisk.dk/_/media/76459_GCR%2017-19%20Dataset.xlsx"',
     )
 
     transform = PythonOperator(
@@ -943,7 +943,7 @@ with dag:
 
     clean_up_output = BashOperator(
         task_id='clean_up_output',
-        bash_command='rm -rf /opt/airflow/dags/output/cgi40/*',
+        bash_command='rm -rf /opt/airflow/dags/output/gci40/*',
     )
 
 ingestion >> transform >> load_to_hdfs >> clean_up_output
