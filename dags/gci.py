@@ -10,7 +10,7 @@ import os
 
 def transform():
     df = pd.read_excel('/opt/airflow/dags/data_source/gci/GCI_Dataset_2007-2017.xlsx',
-                       sheet_name='Data', skiprows=3)
+                       sheet_name='Data', skiprows=3, engine="openpyxl")
 
     i = 3
     df = pd.concat([df.iloc[:, :i],
@@ -870,7 +870,6 @@ def transform():
     df.rename(columns={'Attribute': 'unit_2',
               'Dataset': 'index', 'Country': 'country'}, inplace=True)
     df['value'] = df['value'].replace(['n/a '], '')
-
 
     col = ["country", "year", "master_index", "organizer", "index", "sub_index", "pillar", "sub_pillar", "sub_sub_pillar",
            "indicator", "sub_indicator", "others", "unit_2", "value", "date_etl", "index_name"]
