@@ -943,7 +943,7 @@ with dag:
 
     clean_up_output = BashOperator(
         task_id='clean_up_output',
-        bash_command='rm -rf /opt/airflow/dags/output/gci40/*',
+        bash_command='rm -f /opt/airflow/dags/output/gci40/*',
     )
 
 ingestion >> transform >> load_to_hdfs >> clean_up_output
