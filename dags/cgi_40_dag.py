@@ -11,7 +11,7 @@ import os
 def transform():
     pd.set_option('display.max_columns', None)
 
-    df = pd.read_excel('/opt/airflow/dags/data_source/data_source/76459_GCR%2017-19%20Dataset.xlsx',
+    df = pd.read_excel('/opt/airflow/dags/data_source/cgi40/76459_GCR%2017-19%20Dataset.xlsx',
                        sheet_name='Data', skiprows=2, engine="openpyxl").drop(0)
 
     i = 3
@@ -928,7 +928,7 @@ def store_to_hdfs():
 with dag:
     ingestion = BashOperator(
         task_id='ingestion',
-        bash_command='cd /opt/airflow/dags/data_source &&  curl -LfO "https://www.teknologisk.dk/_/media/76459_GCR%2017-19%20Dataset.xlsx"',
+        bash_command='cd /opt/airflow/dags/data_source/cgi40 &&  curl -LfO "https://www.teknologisk.dk/_/media/76459_GCR%2017-19%20Dataset.xlsx"',
     )
 
     transform = PythonOperator(
