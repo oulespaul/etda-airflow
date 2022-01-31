@@ -919,7 +919,7 @@ def store_to_hdfs():
             with open(file_path, 'r', encoding="utf8") as file_data:
                 my_data = file_data.read()
                 hdfs.create_file(
-                    my_dir+file, my_data.encode('utf-8'), overwrite=True)
+                    my_dir+f"/{file}", my_data.encode('utf-8'), overwrite=True)
 
                 pprint("Stored! file: {}".format(file))
                 pprint(hdfs.list_dir(my_dir))
