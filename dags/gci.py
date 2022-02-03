@@ -902,8 +902,8 @@ dag = DAG('gci', default_args=default_args, catchup=False)
 
 
 def store_to_hdfs():
-    hdfs = PyWebHdfsClient(host='10.121.101.145',
-                           port='50070', user_name='cloudera')
+    hdfs = PyWebHdfsClient(host='10.121.101.130',
+                           port='50070', user_name='hdfs')
     my_dir = '/user/cloudera/raw/index_dashboard/Global/GCI'
     hdfs.make_dir(my_dir)
     hdfs.make_dir(my_dir, permission=755)
