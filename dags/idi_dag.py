@@ -150,14 +150,7 @@ def store_to_hdfs():
 with dag:
     ingestion = BashOperator(
         task_id='ingestion',
-        bash_command="""cd /opt/airflow/dags/data_source/idi 
-        && curl -LfO 'https://www.itu.int/en/ITU-D/Statistics/Documents/statistics/2021/December/FixedTelephoneSubscriptions_2000-2020.xlsx'
-        && curl -LfO 'https://www.itu.int/en/ITU-D/Statistics/Documents/statistics/2021/December/MobileCellularSubscriptions_2000-2020.xlsx'
-        && curl -LfO 'https://www.itu.int/en/ITU-D/Statistics/Documents/statistics/2021/December/FixedBroadbandSubscriptions_2000-2020.xlsx'
-        && curl -LfO 'https://www.itu.int/en/ITU-D/Statistics/Documents/statistics/2021/December/MobileBroadbandSubscriptions_2007-2020.xlsx'
-        && curl -LfO 'https://www.itu.int/en/ITU-D/Statistics/Documents/statistics/2021/December/InternationalBandwidthInMbits_2007-2020.xlsx'
-        && curl -LfO 'https://www.itu.int/en/ITU-D/Statistics/Documents/statistics/2021/December/PercentIndividualsUsingInternet.xlsx'
-        """,
+        bash_command="cd /opt/airflow/dags/data_source/idi && chmod 755 sources.sh && bash ./sources.sh",
     )
 
     transform = PythonOperator(

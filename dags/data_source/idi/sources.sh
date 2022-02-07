@@ -1,0 +1,6 @@
+curl -LfO 'https://www.itu.int/en/ITU-D/Statistics/Documents/statistics/2021/December/FixedTelephoneSubscriptions_2000-2020.xlsx'
+curl -LfO 'https://www.itu.int/en/ITU-D/Statistics/Documents/statistics/2021/December/MobileCellularSubscriptions_2000-2020.xlsx' 
+curl -LfO 'https://www.itu.int/en/ITU-D/Statistics/Documents/statistics/2021/December/FixedBroadbandSubscriptions_2000-2020.xlsx'
+curl -LfO 'https://www.itu.int/en/ITU-D/Statistics/Documents/statistics/2021/December/MobileBroadbandSubscriptions_2007-2020.xlsx'
+curl -LfO 'https://www.itu.int/en/ITU-D/Statistics/Documents/statistics/2021/December/InternationalBandwidthInMbits_2007-2020.xlsx'
+curl -LfO 'https://www.itu.int/en/ITU-D/Statistics/Documents/statistics/2021/December/PercentIndividualsUsingInternet.xlsx'
