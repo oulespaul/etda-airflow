@@ -105,7 +105,7 @@ def transform():
         current_year = str(year)[0:4]
         final['year'] = current_year
 
-        final.to_csv('IDI_{}_{}.csv'.format(
+        final.to_csv('/opt/airflow/dags/output/idi/IDI_{}_{}.csv'.format(
             current_year, ingest_date.strftime("%Y%m%d%H%M%S")), index=False)
 
 
@@ -150,7 +150,7 @@ def store_to_hdfs():
 with dag:
     ingestion = BashOperator(
         task_id='ingestion',
-        bash_command="cd /opt/airflow/dags/data_source/idi && chmod 755 sources.sh && bash ./sources.sh",
+        bash_command='cd /opt/airflow/dags/data_source/idi && ./sources.sh ',
     )
 
     transform = PythonOperator(
