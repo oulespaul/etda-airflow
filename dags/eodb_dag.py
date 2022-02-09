@@ -31,7 +31,7 @@ class EoDB():
 
     def __init__(self):
         self._firefox_driver_path = "/usr/local/bin"
-        self._airflow_path = "/opt/airflow/dags/output/eodb"
+        self._airflow_path = "/opt/airflow/dags/data_source/eodb"
 
         self._index = "EoDB"
         self._index_name = "Ease of Doing Business Ranking"
@@ -425,7 +425,7 @@ def store_to_hdfs():
     hdfs.make_dir(my_dir)
     hdfs.make_dir(my_dir, permission=755)
 
-    for file in glob.glob('/opt/airflow/dags/EoDB/tmp/data/*'):
+    for file in glob.glob('/opt/airflow/dags/data_source/eodb/tmp/data/*'):
         with open(file, 'r', encoding="utf8") as file_data:
             my_data = file_data.read()
             hdfs.create_file(
