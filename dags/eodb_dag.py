@@ -434,15 +434,16 @@ def store_to_hdfs():
 
     pprint("Stored!")
 
+
 with dag:
     scrap_and_extract_transform = PythonOperator(
         task_id='scrap_and_extract_transform',
         python_callable=extract_transform,
     )
 
-    # load_to_hdfs = PythonOperator(
-    #     task_id='load_to_hdfs',
-    #     python_callable=store_to_hdfs,
-    # )
+    load_to_hdfs = PythonOperator(
+        task_id='load_to_hdfs',
+        python_callable=store_to_hdfs,
+    )
 
-scrap_and_extract_transform
+scrap_and_extract_transform >> load_to_hdfs
