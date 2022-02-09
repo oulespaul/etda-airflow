@@ -252,15 +252,14 @@ def store_to_hdfs():
     hdfs.make_dir(my_dir)
     hdfs.make_dir(my_dir, permission=755)
 
-    for file in glob.glob('/opt/airflow/dags/data_source/dai/tmp/data/*'):
+    for file in glob.glob('/opt/airflow/dags/data_source/dai/tmp/data/*.csv'):
         with open(file, 'r', encoding="utf8") as file_data:
             my_data = file_data.read()
             hdfs.create_file(
-                my_dir + file.split('/')[-1], my_data.encode('utf-8'), overwrite=True)
+                f"{my_dir}/" + file.split('/')[-1], my_data.encode('utf-8'), overwrite=True)
         os.remove(file)
 
     pprint("Stored!")
-    # pprint(hdfs.list_dir(my_dir))
 
 
 with dag:
