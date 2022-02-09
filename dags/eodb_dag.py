@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 import glob
 from time import sleep
-from datetime import timedelta, date, datetime
+from datetime import timedelta, datetime
 import zipfile
 import filecmp
 import pandas as pd
