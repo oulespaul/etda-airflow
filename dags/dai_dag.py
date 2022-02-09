@@ -99,7 +99,7 @@ class DAI():
             tmp_data = []
 
             df = pd.read_excel(
-                '{}/tmp/raw_check/DAIforweb.xlsx'.format(self._airflow_path))
+                '{}/tmp/raw_check/DAIforweb.xlsx'.format(self._airflow_path), engine="openpyxl")
             for index, row in df.iterrows():
                 if int(year) != int(row['Year']):
                     continue
