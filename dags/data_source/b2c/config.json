@@ -1,0 +1,82 @@
+[
+  {
+    "year": "2019",
+    "source_link": "https://unctad.org/system/files/official-document/tn_unctad_ict4d14_en.pdf",
+    "source_file_name": "tn_unctad_ict4d14_en.pdf",
+    "page_scrap_list": [8, 9, 10, 11],
+    "col_drop": ["Index\rvalue\rchange\r(2017-\r18 data)", "2018\rIndex\rrank"],
+    "col_rename": {
+      "2019\rRank": "B2C Index Rank",
+      "Economy": "country",
+      "Share of\rindividuals\rusing the\rInternet\r(2018 or\rlatest)": "Share of individuals using the Internet",
+      "Share of\rindividuals\rwith an\raccount\r(15+, 2017)": "Share of individuals with an account (15+)",
+      "Secure\rInternet\rservers\r(normalized,\r2018)": "Secure Internet servers (normalized)",
+      "UPU\rpostal\rreliability\rscore\r(2018 or\rlatest)": "UPU postal reliability score",
+      "2019\rIndex\rvalue": "B2C Index Value"
+    },
+    "series_dict": {
+      "B2C Index Value": {
+        "unit_2": "index"
+      },
+      "B2C Index Rank": {
+        "unit_2": "rank"
+      },
+      "Share of individuals with an account (15+)": {
+        "unit_2": "value",
+        "indicator": "Account ownership"
+      },
+      "Secure Internet servers (normalized)": {
+        "unit_2": "value",
+        "indicator": "Secure Internet Servers Per 1 million people"
+      },
+      "Share of individuals using the Internet": {
+        "unit_2": "value",
+        "indicator": "Individuals using the Internet"
+      },
+      "UPU postal reliability score": {
+        "unit_2": "value",
+        "pillar": "Postal Reliability Index"
+      }
+    }
+  },
+  {
+    "year": "2020",
+    "source_link": "https://unctad.org/system/files/official-document/tn_unctad_ict4d17_en.pdf",
+    "source_file_name": "tn_unctad_ict4d17_en.pdf",
+    "page_scrap_list": [15, 16, 17],
+    "col_drop": ["Index\rvalue\rchange\r(2019-\r20data)", "Rank\r2019"],
+    "col_rename": {
+      "2020\rRank": "B2C Index Rank",
+      "Economy": "country",
+      "Share of\rindividuals\rusing the\rInternet\r(2019 or\rlatest)": "Share of individuals using the Internet",
+      "Share of\rindividuals\rwith an\raccount\r(15+, 2017)": "Share of individuals with an account (15+)",
+      "Secure\rInternet\rservers\r(normalize\rd, 2019)": "Secure Internet servers (normalized)",
+      "UPU\rpostal\rreliability\rscore\r(2019 or\rlatest)": "UPU postal reliability score",
+      "2020\rIndex\rvalue)": "B2C Index Value"
+    },
+    "series_dict": {
+      "B2C Index Value": {
+        "unit_2": "index"
+      },
+      "B2C Index Rank": {
+        "unit_2": "rank"
+      },
+      "Share of individuals with an account (15+)": {
+        "unit_2": "value",
+        "indicator": "Account ownership"
+      },
+      "Secure Internet servers (normalized)": {
+        "unit_2": "value",
+        "indicator": "Secure Internet Servers Per 1 million people"
+      },
+      "Share of individuals using the Internet": {
+        "unit_2": "value",
+        "indicator": "Individuals using the Internet"
+      },
+      "UPU postal reliability score": {
+        "unit_2": "value",
+        "pillar": "Postal Reliability Index"
+      }
+    }
+  }
+]

@@ -3,3 +3,4 @@ openpyxl
 pywebhdfs
 pprintpp
 selenium
+tabula
