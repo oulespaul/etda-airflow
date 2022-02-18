@@ -1,3 +1,4 @@
 *.xlsx
 *.csv
 logs/*
+dags/__pycache__
