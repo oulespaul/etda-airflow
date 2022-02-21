@@ -18,12 +18,13 @@ def transform():
     def ingestion_n_transform(year, source_file_name, page_scrap_list, col_drop, col_rename, series_dict):
         file_path = "{}/{}".format(datasource_path, source_file_name)
 
-        tables = tabula.read_pdf(
-            file_path, guess=False, pages=page_scrap_list, silent=True)
+        tables = tabula.read_pdf(file_path, guess=False,
+                                 pages=page_scrap_list, silent=True)
         df = pd.concat(tables)
 
         df.drop(col_drop, axis=1, inplace=True)
         df.rename(columns=col_rename, inplace=True)
+        df['country'] = df['country'].str.replace('\r', ' ')
 
         # Add col standard format
         i = 3
@@ -52,21 +53,23 @@ def transform():
             get_value_from_key, args=("unit_2",))
 
         ingest_date = datetime.now()
-        df['master_index'] = 'IDI'
+        df['master_index'] = 'B2C'
         df['index'] = "UNCTAD B2C E-commerce Index "
         df['organizer'] = 'UNCTAD'
-        df['date_etl'] = ingest_date.strftime("%Y-%m-%d %H:%M:%S")
+        df['ingest_date'] = ingest_date.strftime("%Y/%m/%d %H:%M")
         df['year'] = year
+        df['unit_2'].replace(['rank', 'index', 'value'], [
+            'Rank', 'Score', 'Score'], inplace=True)
 
         col = ["country", "year", "master_index", "organizer", "index", "sub_index", "pillar", "sub_pillar",
                "sub_sub_pillar",
-               "indicator", "sub_indicator", "others", "unit_2", "value", "date_etl"]
+               "indicator", "sub_indicator", "others", "unit_2", "value", "ingest_date"]
 
         df = df[col]
         df = df.sort_values(by=['country', 'year', 'indicator'])
 
         df.to_csv('{}/B2C_{}_{}.csv'.format(output_path, year,
-                  ingest_date.strftime("%Y%m%d%H%M%S")), index=False)
+                                            ingest_date.strftime("%Y%m%d%H%M%S")), index=False)
 
     def ingestion_init():
         # Get config
