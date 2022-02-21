@@ -3247,3 +3247,125 @@ File Path                                                                       
 /opt/airflow/dags/data_source/idi/MobileCellularSubscriptions_2000-2020.xlsx                             0           0
 /opt/airflow/dags/data_source/idi/PercentIndividualsUsingInternet.xlsx                                   0           0
 ================================================================================
+[2022-02-21 16:52:05,411] {dag_processing.py:1123} INFO - Finding 'running' jobs without a recent heartbeat
+[2022-02-21 16:52:05,416] {dag_processing.py:1127} INFO - Failing jobs without heartbeat after 2022-02-21 16:47:05.416089+00:00
+[2022-02-21 16:52:15,482] {dag_processing.py:1123} INFO - Finding 'running' jobs without a recent heartbeat
+[2022-02-21 16:52:15,487] {dag_processing.py:1127} INFO - Failing jobs without heartbeat after 2022-02-21 16:47:15.486069+00:00
+[2022-02-21 16:52:25,897] {dag_processing.py:1123} INFO - Finding 'running' jobs without a recent heartbeat
+[2022-02-21 16:52:25,903] {dag_processing.py:1127} INFO - Failing jobs without heartbeat after 2022-02-21 16:47:25.902208+00:00
+[2022-02-21 16:52:25,957] {dag_processing.py:862} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                                         PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+------------------------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/b2c_dag.py                                                                             0           0
+/opt/airflow/dags/cgi40_dag_deprecated.py                                                                0           0
+/opt/airflow/dags/dai_dag.py                                                                             0           0
+/opt/airflow/dags/eodb_dag.py                                                                            0           0
+/opt/airflow/dags/gci.py                                                          108  1.88s             0           0
+/opt/airflow/dags/gci_40_dag.py                                                                          0           0
+/opt/airflow/dags/idi_dag.py                                                                             0           0
+/opt/airflow/dags/wcr_dag.py                                                      106  2.05s             0           0
+/opt/airflow/dags/data_source/gci/GCI_Dataset_2007-2017.xlsx                                             0           0
+/opt/airflow/dags/data_source/idi/FixedBroadbandSubscriptions_2000-2020.xlsx                             0           0
+/opt/airflow/dags/data_source/idi/FixedTelephoneSubscriptions_2000-2020.xlsx                             0           0
+/opt/airflow/dags/data_source/idi/InternationalBandwidthInMbits_2007-2020.xlsx                           0           0
+/opt/airflow/dags/data_source/idi/MobileBroadbandSubscriptions_2007-2020.xlsx                            0           0
+/opt/airflow/dags/data_source/idi/MobileCellularSubscriptions_2000-2020.xlsx                             0           0
+/opt/airflow/dags/data_source/idi/PercentIndividualsUsingInternet.xlsx                                   0           0
+/opt/airflow/dags/gsi_dag.py                                                                             1           0  29.04s          2022-02-21T16:52:23
+/opt/airflow/dags/hci_dag.py                                                                             1           0  29.19s          2022-02-21T16:52:24
+================================================================================
+[2022-02-21 16:52:36,000] {dag_processing.py:1123} INFO - Finding 'running' jobs without a recent heartbeat
+[2022-02-21 16:52:36,003] {dag_processing.py:1127} INFO - Failing jobs without heartbeat after 2022-02-21 16:47:36.003267+00:00
+[2022-02-21 16:52:46,142] {dag_processing.py:1123} INFO - Finding 'running' jobs without a recent heartbeat
+[2022-02-21 16:52:46,149] {dag_processing.py:1127} INFO - Failing jobs without heartbeat after 2022-02-21 16:47:46.149276+00:00
+[2022-02-21 16:52:56,348] {dag_processing.py:1123} INFO - Finding 'running' jobs without a recent heartbeat
+[2022-02-21 16:52:56,356] {dag_processing.py:1127} INFO - Failing jobs without heartbeat after 2022-02-21 16:47:56.355623+00:00
+[2022-02-21 16:52:56,414] {dag_processing.py:862} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                                         PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+------------------------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/cgi40_dag_deprecated.py                                                                0           0
+/opt/airflow/dags/dai_dag.py                                                      118  7.42s             0           0
+/opt/airflow/dags/gci_40_dag.py                                                                          0           0
+/opt/airflow/dags/idi_dag.py                                                      120  6.52s             0           0
+/opt/airflow/dags/data_source/gci/GCI_Dataset_2007-2017.xlsx                                             0           0
+/opt/airflow/dags/data_source/idi/FixedBroadbandSubscriptions_2000-2020.xlsx                             0           0
+/opt/airflow/dags/data_source/idi/FixedTelephoneSubscriptions_2000-2020.xlsx                             0           0
+/opt/airflow/dags/data_source/idi/InternationalBandwidthInMbits_2007-2020.xlsx                           0           0
+/opt/airflow/dags/data_source/idi/MobileBroadbandSubscriptions_2007-2020.xlsx                            0           0
+/opt/airflow/dags/data_source/idi/MobileCellularSubscriptions_2000-2020.xlsx                             0           0
+/opt/airflow/dags/data_source/idi/PercentIndividualsUsingInternet.xlsx                                   0           0
+/opt/airflow/dags/b2c_dag.py                                                                             1           0  12.46s          2022-02-21T16:52:48
+/opt/airflow/dags/eodb_dag.py                                                                            1           0  12.56s          2022-02-21T16:52:49
+/opt/airflow/dags/gci.py                                                                                 1           0  13.24s          2022-02-21T16:52:37
+/opt/airflow/dags/gsi_dag.py                                                                             1           0  29.04s          2022-02-21T16:52:23
+/opt/airflow/dags/hci_dag.py                                                                             1           0  29.19s          2022-02-21T16:52:24
+/opt/airflow/dags/wcr_dag.py                                                                             1           0  12.61s          2022-02-21T16:52:36
+================================================================================
+[2022-02-21 16:53:06,721] {dag_processing.py:1123} INFO - Finding 'running' jobs without a recent heartbeat
+[2022-02-21 16:53:06,727] {dag_processing.py:1127} INFO - Failing jobs without heartbeat after 2022-02-21 16:48:06.727197+00:00
+[2022-02-21 16:53:16,938] {dag_processing.py:1123} INFO - Finding 'running' jobs without a recent heartbeat
+[2022-02-21 16:53:16,948] {dag_processing.py:1127} INFO - Failing jobs without heartbeat after 2022-02-21 16:48:16.948502+00:00
+[2022-02-21 16:53:27,220] {dag_processing.py:1123} INFO - Finding 'running' jobs without a recent heartbeat
+[2022-02-21 16:53:27,223] {dag_processing.py:1127} INFO - Failing jobs without heartbeat after 2022-02-21 16:48:27.223569+00:00
+[2022-02-21 16:53:27,281] {dag_processing.py:862} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                                         PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+------------------------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/cgi40_dag_deprecated.py                                         140  20.32s            0           0
+/opt/airflow/dags/gci_40_dag.py                                                   136  21.38s            0           0
+/opt/airflow/dags/data_source/gci/GCI_Dataset_2007-2017.xlsx                                             0           0  0.15s           2022-02-21T16:53:06
+/opt/airflow/dags/data_source/idi/FixedBroadbandSubscriptions_2000-2020.xlsx                             0           0  0.14s           2022-02-21T16:53:05
+/opt/airflow/dags/data_source/idi/FixedTelephoneSubscriptions_2000-2020.xlsx                             0           0  0.17s           2022-02-21T16:53:05
+/opt/airflow/dags/data_source/idi/InternationalBandwidthInMbits_2007-2020.xlsx                           0           0  0.22s           2022-02-21T16:53:05
+/opt/airflow/dags/data_source/idi/MobileBroadbandSubscriptions_2007-2020.xlsx                            0           0  0.22s           2022-02-21T16:53:05
+/opt/airflow/dags/data_source/idi/MobileCellularSubscriptions_2000-2020.xlsx                             0           0  0.17s           2022-02-21T16:53:05
+/opt/airflow/dags/data_source/idi/PercentIndividualsUsingInternet.xlsx                                   0           0  0.17s           2022-02-21T16:53:05
+/opt/airflow/dags/b2c_dag.py                                                                             1           0  12.46s          2022-02-21T16:52:48
+/opt/airflow/dags/dai_dag.py                                                                             1           0  16.19s          2022-02-21T16:53:05
+/opt/airflow/dags/eodb_dag.py                                                                            1           0  12.56s          2022-02-21T16:52:49
+/opt/airflow/dags/gci.py                                                                                 1           0  13.24s          2022-02-21T16:52:37
+/opt/airflow/dags/gsi_dag.py                                                                             1           0  29.04s          2022-02-21T16:52:23
+/opt/airflow/dags/hci_dag.py                                                                             1           0  29.19s          2022-02-21T16:52:24
+/opt/airflow/dags/idi_dag.py                                                                             1           0  15.27s          2022-02-21T16:53:05
+/opt/airflow/dags/wcr_dag.py                                                                             1           0  12.61s          2022-02-21T16:52:36
+================================================================================
+[2022-02-21 16:53:37,439] {dag_processing.py:1123} INFO - Finding 'running' jobs without a recent heartbeat
+[2022-02-21 16:53:37,442] {dag_processing.py:1127} INFO - Failing jobs without heartbeat after 2022-02-21 16:48:37.442570+00:00
+[2022-02-21 16:53:47,541] {dag_processing.py:1123} INFO - Finding 'running' jobs without a recent heartbeat
+[2022-02-21 16:53:47,552] {dag_processing.py:1127} INFO - Failing jobs without heartbeat after 2022-02-21 16:48:47.551748+00:00
+[2022-02-21 16:53:57,505] {dag_processing.py:862} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                                       PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+------------------------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/data_source/gci/GCI_Dataset_2007-2017.xlsx                                             0           0  0.12s           2022-02-21T16:53:41
+/opt/airflow/dags/data_source/idi/FixedBroadbandSubscriptions_2000-2020.xlsx                             0           0  0.14s           2022-02-21T16:53:41
+/opt/airflow/dags/data_source/idi/FixedTelephoneSubscriptions_2000-2020.xlsx                             0           0  0.14s           2022-02-21T16:53:41
+/opt/airflow/dags/data_source/idi/InternationalBandwidthInMbits_2007-2020.xlsx                           0           0  0.16s           2022-02-21T16:53:40
+/opt/airflow/dags/data_source/idi/MobileBroadbandSubscriptions_2007-2020.xlsx                            0           0  0.10s           2022-02-21T16:53:40
+/opt/airflow/dags/data_source/idi/MobileCellularSubscriptions_2000-2020.xlsx                             0           0  0.16s           2022-02-21T16:53:41
+/opt/airflow/dags/data_source/idi/PercentIndividualsUsingInternet.xlsx                                   0           0  0.10s           2022-02-21T16:53:40
+/opt/airflow/dags/b2c_dag.py                                                                             1           0  5.02s           2022-02-21T16:53:40
+/opt/airflow/dags/cgi40_dag_deprecated.py                                                                1           0  22.69s          2022-02-21T16:53:29
+/opt/airflow/dags/dai_dag.py                                                                             1           0  2.21s           2022-02-21T16:53:40
+/opt/airflow/dags/eodb_dag.py                                                                            1           0  2.71s           2022-02-21T16:53:38
+/opt/airflow/dags/gci.py                                                                                 1           0  2.65s           2022-02-21T16:53:35
+/opt/airflow/dags/gci_40_dag.py                                                                          1           0  23.47s          2022-02-21T16:53:29
+/opt/airflow/dags/gsi_dag.py                                                                             1           0  3.08s           2022-02-21T16:53:32
+/opt/airflow/dags/hci_dag.py                                                                             1           0  3.31s           2022-02-21T16:53:32
+/opt/airflow/dags/idi_dag.py                                                                             1           0  1.92s           2022-02-21T16:53:42
+/opt/airflow/dags/wcr_dag.py                                                                             1           0  2.98s           2022-02-21T16:53:35
+================================================================================
+[2022-02-21 16:53:57,646] {dag_processing.py:1123} INFO - Finding 'running' jobs without a recent heartbeat
+[2022-02-21 16:53:57,652] {dag_processing.py:1127} INFO - Failing jobs without heartbeat after 2022-02-21 16:48:57.652065+00:00
+[2022-02-21 16:54:07,755] {dag_processing.py:1123} INFO - Finding 'running' jobs without a recent heartbeat
+[2022-02-21 16:54:07,774] {dag_processing.py:1127} INFO - Failing jobs without heartbeat after 2022-02-21 16:49:07.774396+00:00

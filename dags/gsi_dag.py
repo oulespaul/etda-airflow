@@ -19,12 +19,12 @@ def transform():
         # creating a pdf file object
         pdfFileObj = open("{}/{}".format(datasource_path, pdf_file), 'rb')
         # show dataframe about country
-        country_df = pd.read_csv("{}".format(country_file))
+        country_df = pd.read_csv("{}/{}".format(datasource_path, country_file))
         # creating a pdf reader object
         pdfReader = PdfFileReader(pdfFileObj)
         # show official column dataframe
         gsi_index_meta_data = pd.read_excel("{}".format(
-            meta_data_file), sheet_name='Global Cyber_Metadata', header=1)
+            meta_data_file), sheet_name='Global Cyber_Metadata', header=1, engine="openpyxl")
         all_num_lst = []
         for i in range(page_start - 1, page_end):
             pageObj = pdfReader.getPage(i)
