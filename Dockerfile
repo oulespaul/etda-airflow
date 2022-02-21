@@ -15,4 +15,14 @@ RUN apt-get update                             \
    && rm -fr /var/lib/apt/lists/*                \
    && curl -L https://github.com/mozilla/geckodriver/releases/download/v0.30.0/geckodriver-v0.30.0-linux64.tar.gz | tar xz -C /usr/local/bin
 
+# Install OpenJDK-11
+RUN apt update && \
+    apt-get install -y openjdk-11-jdk && \
+    apt-get install -y ant && \
+    apt-get clean;
+
+# Set JAVA_HOME
+ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64/
+RUN export JAVA_HOME
+
 USER airflow

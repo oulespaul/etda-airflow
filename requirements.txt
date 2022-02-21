@@ -4,3 +4,4 @@ pywebhdfs
 pprintpp
 selenium
 tabula-py
+PyPDF2
