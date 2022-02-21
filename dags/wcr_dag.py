@@ -250,7 +250,7 @@ default_args = {
     'email_on_failure': False,
     'email_on_retry': False,
     'retry_delay': timedelta(minutes=5),
-    'schedule_interval': '@daily',
+    'schedule_interval': '@yearly',
 }
 
 dag = DAG('WCR', default_args=default_args, catchup=False)
