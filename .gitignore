@@ -2,3 +2,4 @@
 *.csv
 logs/*
 dags/__pycache__
+!dags/data_source/gsi
