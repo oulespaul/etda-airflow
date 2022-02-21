@@ -23,8 +23,11 @@ def transform():
         # creating a pdf reader object
         pdfReader = PdfFileReader(pdfFileObj)
         # show official column dataframe
-        gsi_index_meta_data = pd.read_excel("{}".format(
-            meta_data_file), sheet_name='Global Cyber_Metadata', header=1, engine="openpyxl")
+        gsi_index_meta_data = pd.read_excel("{}/{}".format(
+            datasource_path, meta_data_file),
+            sheet_name='Global Cyber_Metadata',
+            header=1,
+            engine="openpyxl")
         all_num_lst = []
         for i in range(page_start - 1, page_end):
             pageObj = pdfReader.getPage(i)
