@@ -10,11 +10,11 @@ import os
 import json
 
 
-def transform(source_file_name, series_dict):
+def transform():
     datasource_path = "/opt/airflow/dags/data_source/gci"
     output_path = "/opt/airflow/dags/output/gci"
 
-    def ingestion_n_transform():
+    def ingestion_n_transform(source_file_name, series_dict):
         df = pd.read_excel('{}/{}'.format(datasource_path, source_file_name),
                            sheet_name='Data', skiprows=3, engine="openpyxl")
 
