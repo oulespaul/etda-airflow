@@ -17,7 +17,7 @@ def transform():
 
     def create_security_table(pdf_file, country_file, meta_data_file, page_start, page_end, year):
         # creating a pdf file object
-        pdfFileObj = open("{}".format(pdf_file), 'rb')
+        pdfFileObj = open("{}/{}".format(datasource_path, pdf_file), 'rb')
         # show dataframe about country
         country_df = pd.read_csv("{}".format(country_file))
         # creating a pdf reader object
