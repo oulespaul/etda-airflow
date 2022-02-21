@@ -1,6 +1,6 @@
 [
   {
-    "file_name": "GCI_Dataset_2007-2017.xlsx",
+    "source_file_name": "GCI_Dataset_2007-2017.xlsx",
     "series_dict": {
       "A": {
         "index": "Global Competitiveness Index",
