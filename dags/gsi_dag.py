@@ -51,34 +51,36 @@ def transform():
                         lst2.append(Txtlst[j])
             all_num_lst.append(lst1)
             all_num_lst.append(lst2)
-            number_df = pd.DataFrame(all_num_lst)
-            number_df = number_df.dropna()
-            number_df = number_df.reset_index(drop=True)
-            number_df = number_df.rename(columns={0: 'Index score', 1: 'Legal Measures', 2: 'Technical Measures',
-                                                  3: 'Organizational Measures', 4: 'Capacity Building', 5: 'Cooperation'})
-            early_gsi_df = pd.concat([country_df, number_df], axis=1)
-            early_gsi_df = early_gsi_df.melt(
-                id_vars=['Country'], var_name="index_group", value_name="value")
-            gsi_df = early_gsi_df.merge(
-                gsi_index_meta_data, how='left', left_on='index_group', right_on='Name')
-            # add column of year is 2020
-            ingest_date = datetime.now()
-            gsi_df['year'] = year
-            gsi_df['value'] = gsi_df['value'].astype(float)
-            gsi_df["value"] = np.where(gsi_df["pillar"].isna(
-            ), gsi_df['value'] / 100, gsi_df['value'] / 20)
-            drop_col = ['index_group', 'Code', 'Type',
-                        'Name', 'Unit', 'Definition', 'Source']
-            gsi_df = gsi_df.drop(drop_col, axis=1)
-            gsi_df.columns = gsi_df.columns.str.lower()
-            gsi_df['index'] = 'Global Cybersecurity Index'
-            gsi_df['master_index'] = 'Global Cybersecurity Index'
-            gsi_df['organizer'] = 'ITU'
-            gsi_df['unit_2'] = 'Score'
-            gsi_df['ingest_date'] = ingest_date.strftime("%Y-%m-%d %H:%M:%S")
+        number_df = pd.DataFrame(all_num_lst)
+        number_df = number_df.dropna()
+        number_df = pd.DataFrame(all_num_lst)
+        number_df = number_df.dropna()
+        early_gsi_df = pd.concat(
+            [country_df, number_df], axis=1, ignore_index=True)
+        early_gsi_df = early_gsi_df.rename(columns={0: 'Country', 1: 'Index score', 2: 'Legal Measures', 3: 'Technical Measures',
+                                                    4: 'Organizational Measures', 5: 'Capacity Building', 6: 'Cooperation'})
+        early_gsi_df = early_gsi_df.melt(
+            id_vars=['Country'], var_name="index_group", value_name="value")
+        gsi_df = early_gsi_df.merge(
+            gsi_index_meta_data, how='left', left_on='index_group', right_on='Name')
+        # add column of year is 2020
+        ingest_date = datetime.now()
+        gsi_df['year'] = year
+        gsi_df['value'] = gsi_df['value'].astype(float)
+        gsi_df["value"] = np.where(gsi_df["pillar"].isna(
+        ), gsi_df['value'] / 100, gsi_df['value'] / 20)
+        drop_col = ['index_group', 'Code', 'Type',
+                    'Name', 'Unit', 'Definition', 'Source']
+        gsi_df = gsi_df.drop(drop_col, axis=1)
+        gsi_df.columns = gsi_df.columns.str.lower()
+        gsi_df['index'] = 'Global Cybersecurity Index'
+        gsi_df['master_index'] = 'Global Cybersecurity Index'
+        gsi_df['organizer'] = 'ITU'
+        gsi_df['unit_2'] = 'Score'
+        gsi_df['ingest_date'] = ingest_date.strftime("%Y-%m-%d %H:%M:%S")
 
-            gsi_df.to_csv('{}/GSI_{}_{}.csv'.format(output_path, year,
-                                                    ingest_date.strftime("%Y%m%d%H%M%S")), index=False)
+        gsi_df.to_csv('{}/GSI_{}_{}.csv'.format(output_path, year,
+                                                ingest_date.strftime("%Y%m%d%H%M%S")), index=False)
 
     def ingestion_init():
         # Get config

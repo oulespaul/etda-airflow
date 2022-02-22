@@ -26,10 +26,10 @@ def transform():
                        axis=1)
 
         df.rename(columns={'Edition': 'year', 'Index': 'index',
-                           'Country': 'country'}, inplace=True)
+                  'Country': 'country'}, inplace=True)
         df.drop(['Series code (if applicable)',
                 'Series name'], axis=1, inplace=True)
-        df = df[df['Attribute'] != 'PERIOD']
+        df = df[df['Attribute'].isin(['VALUE', 'RANK'])]
 
         def get_value_from_key(key, sub_key):
             return series_dict.get(key, {}).get(sub_key, "")
@@ -62,14 +62,16 @@ def transform():
 
         df['organizer'] = 'WEF'
         df['master_index'] = 'GCI 4.0'
-        df['date_etl'] = ingest_date.strftime("%Y-%m-%d %H:%M:%S")
+        df['ingest_date'] = ingest_date.strftime("%Y-%m-%d %H:%M:%S")
         df.rename(columns={'Attribute': 'unit_2',
-                           'Dataset': 'index'}, inplace=True)
+                  'Dataset': 'index'}, inplace=True)
+        df['unit_2'].replace(['RANK', 'VALUE', 'Value'], [
+                             'Rank', 'Score', 'Score'], inplace=True)
 
         col = ["country", "year", "master_index", "organizer", "index", "sub_index", "pillar", "sub_pillar", "sub_sub_pillar",
-               "indicator", "sub_indicator", "others", "unit_2", "value", "date_etl"]
-
+               "indicator", "sub_indicator", "others", "unit_2", "value", "ingest_date"]
         df = df[col]
+
         year_list = df['year'].unique()
 
         for year in year_list:
