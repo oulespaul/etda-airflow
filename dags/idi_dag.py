@@ -11,21 +11,8 @@ import os
 def transform():
     data_source_dir = '/opt/airflow/dags/data_source/idi'
 
-    df1 = pd.read_excel(
-        f'{data_source_dir}/FixedTelephoneSubscriptions_2000-2020.xlsx', sheet_name='i112', engine="openpyxl")
-    df2 = pd.read_excel(
-        f'{data_source_dir}/MobileCellularSubscriptions_2000-2020.xlsx', sheet_name='i271', engine="openpyxl")
-    df3 = pd.read_excel(
-        f'{data_source_dir}/MobileBroadbandSubscriptions_2007-2020.xlsx', sheet_name='i271mw', engine="openpyxl")
-    df4 = pd.read_excel(
-        f'{data_source_dir}/InternationalBandwidthInMbits_2007-2020.xlsx', sheet_name='i4214', engine="openpyxl")
-    df5 = pd.read_excel(
-        f'{data_source_dir}/FixedBroadbandSubscriptions_2000-2020.xlsx', sheet_name='i4213tfbb', engine="openpyxl")
-    df6 = pd.read_excel(
-        f'{data_source_dir}/PercentIndividualsUsingInternet.xlsx', sheet_name='Data', engine="openpyxl")
-
-    df = [df1, df2, df3, df4, df5, df6]
-    df = pd.concat(df)
+    df = pd.read_excel(
+        f'{data_source_dir}/Global Ranking Dashboard.xlsx', sheet_name='IDI', skiprows=1)
 
     i = 3
     df = pd.concat([df.iloc[:, :i],
@@ -35,68 +22,48 @@ def transform():
                                  index=df.index), df.iloc[:, i:]],
                    axis=1)
 
-    df.drop(df.columns[df.columns.str.contains(
-        '_notes$')], axis=1, inplace=True)
-    df.drop(df.columns[df.columns.str.contains(
-        '_source$')], axis=1, inplace=True)
-
-    series_dict = {
-        "Fixed-telephone subscriptions": {
-            "pillar": "ICT Access",
-            "indicator": "Fixed-telephone subscriptions per 100 inhabitants"
-        },
-        "Mobile-cellular telephone subscriptions;  by postpaid/prepaid": {
-            "pillar": "ICT Access",
-            "indicator": "Mobile-cellular subscriptions per 100 inhabitants"
-        },
-        "Active mobile-broadband subscriptions": {
-            "pillar": "ICT Use",
-            "indicator": "Active mobile-broadband subscriptions per 100 inhabitants"
-        },
-        "International bandwidth;  in Mbit/s": {
-            "pillar": "ICT Access",
-            "indicator": "International bandwidth (bit/s) per Internet user"
-        },
-        "Fixed-broadband subscriptions": {
-            "pillar": "ICT Use",
-            "indicator": "Fixed-broadband subscriptions per 100 inhabitants"
-        },
-        "Internet users (%)": {
-            "pillar": "ICT Access",
-            "indicator": "Internet users (%)"
-        }
-    }
-
     def get_value_from_key(key, sub_key):
         return series_dict.get(key, {}).get(sub_key, "")
 
-    df["pillar"] = df["Indicator"].apply(get_value_from_key, args=("pillar",))
-    df["indicator"] = df["Indicator"].apply(
+    df["index"] = df["Index Name"].apply(get_value_from_key, args=("index",))
+    df["pillar"] = df["Index Name"].apply(get_value_from_key, args=("pillar",))
+    df["indicator"] = df["Index Name"].apply(
         get_value_from_key, args=("indicator",))
+    df["others"] = df["Index Name"].apply(get_value_from_key, args=("others",))
+
+    df.drop(['Type', 'Index Name', 'Unit 1'], axis=1, inplace=True)
+    df.rename(columns={'Index': 'master_index', 'ผู้จัดทำ': 'organizer',
+              'Year': 'year', 'Unit 2': 'unit_2'}, inplace=True)
 
     df = df.melt(
-        id_vars=['Indicator', 'Country', 'sub_index', 'pillar', 'sub_pillar',
-                 'sub_sub_pillar', 'indicator', 'sub_indicator', 'others'],
-        var_name="unit_2",
+        id_vars=['master_index', 'organizer', 'year', 'sub_index', 'pillar', 'sub_pillar',
+                 'sub_sub_pillar', 'indicator', 'sub_indicator', 'others', 'unit_2'],
+        var_name="country",
         value_name="value"
     )
 
+    def is_number(value):
+        try:
+            Decimal(value)
+            return True
+        except Exception:
+            return False
+
     ingest_date = datetime.now()
 
-    df.rename(columns={'Country': 'country'}, inplace=True)
     df['index'] = "ICT Development Index"
-    df['master_index'] = 'IDI'
-    df['organizer'] = 'ITU'
-    unit_split = df['unit_2'].str.split('_', 1)
-    df['year'] = unit_split.str[0]
-    df['unit_2'] = unit_split.str[1]
-    df['date_etl'] = ingest_date.strftime("%Y-%m-%d %H:%M:%S")
+    df['ingest_date'] = ingest_date.strftime("%Y/%m/%d %H:%M")
+    df['unit_2'].replace(['Score', 'Value'], ['Rank', 'Score'], inplace=True)
+
+    # Filter value
+    df = df[df['value'].apply(is_number)]
+    df = df[~df['value'].isnull()]
 
     col = ["country", "year", "master_index", "organizer", "index", "sub_index", "pillar", "sub_pillar", "sub_sub_pillar",
-           "indicator", "sub_indicator", "others", "unit_2", "value", "date_etl"]
+           "indicator", "sub_indicator", "others", "unit_2", "value", "ingest_date"]
 
     df = df[col]
-    df = df.sort_values(by=['country', 'year', 'indicator'])
+    df = df.sort_values(by=['country', 'year', 'pillar', 'indicator'])
 
     year_list = df['year'].unique()
 

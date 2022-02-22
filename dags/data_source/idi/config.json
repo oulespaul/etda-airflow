@@ -1,0 +1,86 @@
+[
+  {
+    "source_file_name": "GCR_2017-19_20Dataset.xlsx",
+    "series_dict": {
+      "IDI Rank": {
+        "others": ""
+      },
+      "IDI": {
+        "others": ""
+      },
+      "Access Rank": {
+        "pillar": "ICT Access"
+      },
+      "Access": {
+        "pillar": "ICT Access"
+      },
+      "Fixed-telephone subscriptions per 100 inhabitants": {
+        "pillar": "ICT Access",
+        "indicator": "Fixed-telephone subscriptions per 100 inhabitants"
+      },
+      "Mobile-cellular subscriptions per 100 inhabitants": {
+        "pillar": "ICT Access",
+        "indicator": "Mobile-cellular subscriptions per 100 inhabitants"
+      },
+      "International Internet bandwidth Bit/s per Internet user": {
+        "pillar": "ICT Access",
+        "indicator": "International bandwidth (bit/s) per Internet user"
+      },
+      "Percentage of households with computer": {
+        "pillar": "ICT Access",
+        "indicator": "Percentage of households with a computer"
+      },
+      "Percentage of households with Internet": {
+        "pillar": "ICT Access",
+        "indicator": "Percentage of households with Internet access"
+      },
+      "Skills Rank": {
+        "pillar": "ICT Skills"
+      },
+      "Skills": {
+        "pillar": "ICT Skills"
+      },
+      "Gross enrolment ratio (Secondary)": {
+        "pillar": "ICT Skills",
+        "indicator": "Secondary gross enrollment ratio"
+      },
+      "Gross enrolment ratio (Tertiary)": {
+        "pillar": "ICT Skills",
+        "indicator": "Tertiary gross enrolment ratio"
+      },
+      "Mean years of schooling": {
+        "pillar": "ICT Skills",
+        "indicator": "Mean years of schooling"
+      },
+      "Use Rank": {
+        "pillar": "ICT Use"
+      },
+      "Use": {
+        "pillar": "ICT Use"
+      },
+      "Percentage of individuals using the Internet": {
+        "pillar": "ICT Use",
+        "indicator": "Percentage of individuals using the Internet"
+      },
+      "Fixed-broadband subscriptions per 100 inhabitants": {
+        "pillar": "ICT Use",
+        "indicator": "Fixed-broadband subscriptions per 100 inhabitants"
+      },
+      "Active mobile-broadband subscriptions per 100 inhabitants": {
+        "pillar": "ICT Use",
+        "indicator": "Active mobile-broadband subscriptions per 100 inhabitants"
+      },
+      "Active mobile broadband subscriptions per 100 inhabitants": {
+        "pillar": "ICT Use",
+        "indicator": "Active mobile-broadband subscriptions per 100 inhabitants"
+      },
+      "Rank": {
+        "others": ""
+      },
+      "Adult literacy rate": {
+        "pillar": "ICT Use",
+        "indicator": "Adult literacy rate"
+      }
+    }
+  }
+]
