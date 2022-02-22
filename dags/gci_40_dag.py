@@ -6,561 +6,96 @@ from pywebhdfs.webhdfs import PyWebHdfsClient
 from pprint import pprint
 import pandas as pd
 import os
+import json
 
 
 def transform():
-    pd.set_option('display.max_columns', None)
+    datasource_path = "/opt/airflow/dags/data_source/gci40"
+    output_path = "/opt/airflow/dags/output/gci40"
 
-    df = pd.read_excel('/opt/airflow/dags/data_source/gci40/76459_GCR%2017-19%20Dataset.xlsx',
-                       sheet_name='Data', skiprows=2, engine="openpyxl").drop(0)
+    def ingestion_n_transform(source_file_name, series_dict):
+        df = pd.read_excel('{}/{}'.format(datasource_path, source_file_name),
+                           sheet_name='Data', skiprows=2, engine="openpyxl").drop(0)
 
-    i = 3
-    df = pd.concat([df.iloc[:, :i],
-                    pd.DataFrame('',
-                                 columns=['sub_index', 'pillar', 'sub_pillar', 'sub_sub_pillar', 'indicator',
-                                          'sub_indicator', 'others'],
-                                 index=df.index), df.iloc[:, i:]],
-                   axis=1)
+        i = 3
+        df = pd.concat([df.iloc[:, :i],
+                        pd.DataFrame('',
+                                     columns=['sub_index', 'pillar', 'sub_pillar', 'sub_sub_pillar', 'indicator',
+                                              'sub_indicator', 'others'],
+                                     index=df.index), df.iloc[:, i:]],
+                       axis=1)
 
-    df.rename(columns={'Edition': 'year', 'Index': 'index',
-              'Country': 'country'}, inplace=True)
-    df.drop(['Series code (if applicable)', 'Series name'], axis=1, inplace=True)
-    df = df[df['Attribute'] != 'PERIOD']
+        df.rename(columns={'Edition': 'year', 'Index': 'index',
+                           'Country': 'country'}, inplace=True)
+        df.drop(['Series code (if applicable)',
+                'Series name'], axis=1, inplace=True)
+        df = df[df['Attribute'] != 'PERIOD']
 
-    series_dict = {
-        'A': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements', 'pillar': '', 'sub_pillar': '',
-              'indicator': '', 'sub_indicator': ''},
-        'A.01': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '1st pillar: Institutions', 'sub_pillar': '', 'indicator': '', 'sub_indicator': ''},
-        'A.01.01': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                    'pillar': '1st pillar: Institutions', 'sub_pillar': 'A. Public institutions', 'indicator': '',
-                    'sub_indicator': ''},
-        'A.01.01.01': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                       'pillar': '1st pillar: Institutions', 'sub_pillar': 'A. Public institutions',
-                       'indicator': '1. Property rights', 'sub_indicator': ''},
-        '1.01': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '1st pillar: Institutions', 'sub_pillar': 'A. Public institutions',
-                 'indicator': '1. Property rights', 'sub_indicator': 'Property rights, 1-7 (best)'},
-        '1.02': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '1st pillar: Institutions', 'sub_pillar': 'A. Public institutions',
-                 'indicator': '1. Property rights', 'sub_indicator': 'Intellectual property protection, 1-7 (best)'},
-        'A.01.01.02': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                       'pillar': '1st pillar: Institutions', 'sub_pillar': 'A. Public institutions',
-                       'indicator': '2. Ethics and corruption', 'sub_indicator': ''},
-        '1.03': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '1st pillar: Institutions', 'sub_pillar': 'A. Public institutions',
-                 'indicator': '2. Ethics and corruption', 'sub_indicator': 'Diversion of public funds, 1-7 (best)'},
-        '1.04': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '1st pillar: Institutions', 'sub_pillar': 'A. Public institutions',
-                 'indicator': '2. Ethics and corruption', 'sub_indicator': 'Public trust in politicians, 1-7 (best)'},
-        '1.05': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '1st pillar: Institutions', 'sub_pillar': 'A. Public institutions',
-                 'indicator': '2. Ethics and corruption', 'sub_indicator': 'Irregular payments and bribes, 1-7 (best)'},
-        'A.01.01.03': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                       'pillar': '1st pillar: Institutions', 'sub_pillar': 'A. Public institutions',
-                       'indicator': '3. Undue influence', 'sub_indicator': ''},
-        '1.06': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '1st pillar: Institutions', 'sub_pillar': 'A. Public institutions',
-                 'indicator': '3. Undue influence', 'sub_indicator': 'Judicial independence, 1-7 (best)'},
-        '1.07': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '1st pillar: Institutions', 'sub_pillar': 'A. Public institutions',
-                 'indicator': '3. Undue influence',
-                 'sub_indicator': 'Favoritism in decisions of government officials, 1-7 (best)'},
-        'A.01.01.04': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                       'pillar': '1st pillar: Institutions', 'sub_pillar': 'A. Public institutions',
-                       'indicator': '4. Government efficiency', 'sub_indicator': ''},
-        '1.08': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '1st pillar: Institutions', 'sub_pillar': 'A. Public institutions',
-                 'indicator': '4. Government efficiency', 'sub_indicator': 'Efficiency of government spending'},
-        '1.09': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '1st pillar: Institutions', 'sub_pillar': 'A. Public institutions',
-                 'indicator': '4. Government efficiency', 'sub_indicator': 'Burden of government regulation, 1-7 (best)'},
-        '1.1': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                'pillar': '1st pillar: Institutions', 'sub_pillar': 'A. Public institutions',
-                'indicator': '4. Government efficiency',
-                'sub_indicator': 'Efficiency of legal framework in settling disputes, 1-7 (best)'},
-        '1.11': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '1st pillar: Institutions', 'sub_pillar': 'A. Public institutions',
-                 'indicator': '4. Government efficiency',
-                 'sub_indicator': 'Efficiency of legal framework in challenging regs., 1-7 (best)'},
-        '1.12': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '1st pillar: Institutions', 'sub_pillar': 'A. Public institutions',
-                 'indicator': '4. Government efficiency',
-                 'sub_indicator': 'Transparency of government policymaking, 1-7 (best)'},
-        'A.01.01.05': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                       'pillar': '1st pillar: Institutions', 'sub_pillar': 'A. Public institutions',
-                       'indicator': '5. Security', 'sub_indicator': ''},
-        '1.13': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '1st pillar: Institutions', 'sub_pillar': 'A. Public institutions', 'indicator': '5. Security',
-                 'sub_indicator': 'Business costs of terrorism, 1-7 (best)'},
-        '1.14': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '1st pillar: Institutions', 'sub_pillar': 'A. Public institutions', 'indicator': '5. Security',
-                 'sub_indicator': 'Business costs of crime and violence, 1-7 (best)'},
-        '1.15': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '1st pillar: Institutions', 'sub_pillar': 'A. Public institutions', 'indicator': '5. Security',
-                 'sub_indicator': 'Organized crime, 1-7 (best)'},
-        '1.16': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '1st pillar: Institutions', 'sub_pillar': 'A. Public institutions', 'indicator': '5. Security',
-                 'sub_indicator': 'Reliability of police services, 1-7 (best)'},
-        'A.01.02': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                    'pillar': '1st pillar: Institutions', 'sub_pillar': 'B. Private institutions', 'indicator': '',
-                    'sub_indicator': ''},
-        'A.01.02.01': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                       'pillar': '1st pillar: Institutions', 'sub_pillar': 'B. Private institutions',
-                       'indicator': '1. Corporate ethics', 'sub_indicator': ''},
-        '1.17': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '1st pillar: Institutions', 'sub_pillar': 'B. Private institutions',
-                 'indicator': '1. Corporate ethics', 'sub_indicator': 'Ethical behavior of firms, 1-7 (best)'},
-        'A.01.02.02': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                       'pillar': '1st pillar: Institutions', 'sub_pillar': 'B. Private institutions',
-                       'indicator': '2. Accountability', 'sub_indicator': ''},
-        '1.18': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '1st pillar: Institutions', 'sub_pillar': 'B. Private institutions',
-                 'indicator': '2. Accountability',
-                 'sub_indicator': 'Strength of auditing and reporting standards, 1-7 (best)'},
-        '1.19': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '1st pillar: Institutions', 'sub_pillar': 'B. Private institutions',
-                 'indicator': '2. Accountability', 'sub_indicator': 'Efficacy of corporate boards, 1-7 (best)'},
-        '1.2': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                'pillar': '1st pillar: Institutions', 'sub_pillar': 'B. Private institutions',
-                'indicator': '2. Accountability',
-                'sub_indicator': 'Protection of minority shareholders’ interests, 1-7 (best)'},
-        '1.21': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '1st pillar: Institutions', 'sub_pillar': 'B. Private institutions',
-                 'indicator': '2. Accountability', 'sub_indicator': 'Strength of investor protection, 0–10 (best)*'},
-        'A.02': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '2nd pillar: Infrastructure', 'sub_pillar': '', 'indicator': '', 'sub_indicator': ''},
-        'A.02.01': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                    'pillar': '2nd pillar: Infrastructure', 'sub_pillar': 'A. Transport infrastructure', 'indicator': '',
-                    'sub_indicator': ''},
-        '2.01': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '2nd pillar: Infrastructure',
-                 'sub_pillar': 'A. Transport infrastructure', 'indicator': '',
-                 'sub_indicator': 'Quality of overall infrastructure, 1-7 (best)'},
-        '2.02': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '2nd pillar: Infrastructure', 'sub_pillar': 'A. Transport infrastructure', 'indicator': '',
-                 'sub_indicator': 'Quality of roads, 1-7 (best)'},
-        '2.03': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '2nd pillar: Infrastructure', 'sub_pillar': 'A. Transport infrastructure', 'indicator': '',
-                 'sub_indicator': 'Quality of railroad infrastructure, 1-7 (best)'},
-        '2.04': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '2nd pillar: Infrastructure', 'sub_pillar': 'A. Transport infrastructure', 'indicator': '',
-                 'sub_indicator': 'Quality of port infrastructure, 1-7 (best)'},
-        '2.05': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '2nd pillar: Infrastructure', 'sub_pillar': 'A. Transport infrastructure', 'indicator': '',
-                 'sub_indicator': 'Quality of air transport infrastructure, 1-7 (best)'},
-        '2.06': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '2nd pillar: Infrastructure', 'sub_pillar': 'A. Transport infrastructure', 'indicator': '',
-                 'sub_indicator': 'Available airline seat km/week, millions*'},
-        'A.02.02': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                    'pillar': '2nd pillar: Infrastructure', 'sub_pillar': 'B. Electricity and telephony infrastructure',
-                    'indicator': '', 'sub_indicator': ''},
-        '2.07': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '2nd pillar: Infrastructure', 'sub_pillar': 'B. Electricity and telephony infrastructure',
-                 'indicator': '', 'sub_indicator': 'Quality of electricity supply, 1-7 (best)'},
-        '2.08': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '2nd pillar: Infrastructure', 'sub_pillar': 'B. Electricity and telephony infrastructure',
-                 'indicator': '', 'sub_indicator': 'Mobile telephone subscriptions/100 pop.*'},
-        '2.09': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '2nd pillar: Infrastructure', 'sub_pillar': 'B. Electricity and telephony infrastructure',
-                 'indicator': '', 'sub_indicator': 'Fixed telephone lines/100 pop.*'},
-        'A.03': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '3rd pillar: Macroeconomic environment', 'sub_pillar': '', 'indicator': '',
-                 'sub_indicator': ''},
-        '3.01': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '3rd pillar: Macroeconomic environment', 'sub_pillar': '', 'indicator': '',
-                 'sub_indicator': 'Government budget balance, % GDP*'},
-        '3.02': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '3rd pillar: Macroeconomic environment', 'sub_pillar': '', 'indicator': '',
-                 'sub_indicator': 'Gross national savings, % GDP*'},
-        '3.03': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '3rd pillar: Macroeconomic environment', 'sub_pillar': '', 'indicator': '',
-                 'sub_indicator': 'Inflation, annual % change*'},
-        '3.04': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '3rd pillar: Macroeconomic environment', 'sub_pillar': '', 'indicator': '',
-                 'sub_indicator': 'General government debt, % GDP*'},
-        '3.05': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '3rd pillar: Macroeconomic environment', 'sub_pillar': '', 'indicator': '',
-                 'sub_indicator': 'Country credit rating, 0–100 (best)*'},
-        'A.04': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '4th pillar: Health and primary education', 'sub_pillar': '', 'indicator': '',
-                 'sub_indicator': ''},
-        'A.04.01': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                    'pillar': '4th pillar: Health and primary education',
-                    'sub_pillar': 'A. Health', 'indicator': '', 'sub_indicator': ''},
-        '4.01': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '4th pillar: Health and primary education', 'sub_pillar': 'A. Health', 'indicator': '',
-                 'sub_indicator': 'Business impact of malaria, 1-7 (best)'},
-        '4.02': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '4th pillar: Health and primary education', 'sub_pillar': 'A. Health', 'indicator': '',
-                 'sub_indicator': 'Malaria cases/100,000 pop.*'},
-        '4.03': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '4th pillar: Health and primary education', 'sub_pillar': 'A. Health', 'indicator': '',
-                 'sub_indicator': 'Business impact of tuberculosis, 1-7 (best)'},
-        '4.04': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '4th pillar: Health and primary education', 'sub_pillar': 'A. Health', 'indicator': '',
-                 'sub_indicator': 'Tuberculosis cases/100,000 pop.*'},
-        '4.05': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '4th pillar: Health and primary education', 'sub_pillar': 'A. Health', 'indicator': '',
-                 'sub_indicator': 'Business impact of HIV/AIDS, 1-7 (best)'},
-        '4.06': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '4th pillar: Health and primary education', 'sub_pillar': 'A. Health', 'indicator': '',
-                 'sub_indicator': 'HIV prevalence, % adult pop.*'},
-        '4.07': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '4th pillar: Health and primary education', 'sub_pillar': 'A. Health', 'indicator': '',
-                 'sub_indicator': 'Infant mortality, deaths/1,000 live births*'},
-        '4.08': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '4th pillar: Health and primary education', 'sub_pillar': 'A. Health', 'indicator': '',
-                 'sub_indicator': 'Life expectancy, years*'},
-        'A.04.02': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                    'pillar': '4th pillar: Health and primary education', 'sub_pillar': 'B. Primary education',
-                    'indicator': '', 'sub_indicator': ''},
-        '4.09': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                 'pillar': '4th pillar: Health and primary education', 'sub_pillar': 'B. Primary education',
-                 'indicator': '',
-                 'sub_indicator': 'Quality of primary education, 1-7 (best)'},
-        '4.1': {'index': 'Global Competitiveness Index', 'sub_index': 'Basic requirements',
-                'pillar': '4th pillar: Health and primary education', 'sub_pillar': 'B. Primary education',
-                'indicator': '',
-                'sub_indicator': 'Primary education enrollment, net %*'},
-        'B': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-              'pillar': '4th pillar: Health and primary education', 'sub_pillar': 'B. Primary education', 'indicator': '',
-              'sub_indicator': ''}, 'B.05': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                                             'pillar': '5th pillar: Higher education and training', 'sub_pillar': '',
-                                             'indicator': '', 'sub_indicator': ''},
-        'B.05.01': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                    'pillar': '5th pillar: Higher education and training', 'sub_pillar': 'A. Quantity of education',
-                    'indicator': '', 'sub_indicator': ''},
-        '5.01': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '5th pillar: Higher education and training', 'sub_pillar': 'A. Quantity of education',
-                 'indicator': '', 'sub_indicator': 'Secondary education enrollment, gross %*'},
-        '5.02': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '5th pillar: Higher education and training', 'sub_pillar': 'A. Quantity of education',
-                 'indicator': '', 'sub_indicator': 'Tertiary education enrollment, gross %*'},
-        'B.05.02': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                    'pillar': '5th pillar: Higher education and training', 'sub_pillar': 'B. Quality of education',
-                    'indicator': '', 'sub_indicator': ''},
-        '5.03': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '5th pillar: Higher education and training', 'sub_pillar': 'B. Quality of education',
-                 'indicator': '', 'sub_indicator': 'Quality of the education system, 1-7 (best)'},
-        '5.04': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '5th pillar: Higher education and training', 'sub_pillar': 'B. Quality of education',
-                 'indicator': '', 'sub_indicator': 'Quality of math and science education, 1-7 (best)'},
-        '5.05': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '5th pillar: Higher education and training', 'sub_pillar': 'B. Quality of education',
-                 'indicator': '', 'sub_indicator': 'Quality of management schools, 1-7 (best)'},
-        '5.06': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '5th pillar: Higher education and training', 'sub_pillar': 'B. Quality of education',
-                 'indicator': '', 'sub_indicator': 'Internet access in schools, 1-7 (best)'},
-        'B.05.03': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                    'pillar': '5th pillar: Higher education and training', 'sub_pillar': 'C. On-the-job training',
-                    'indicator': '', 'sub_indicator': ''},
-        '5.07': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '5th pillar: Higher education and training', 'sub_pillar': 'C. On-the-job training',
-                 'indicator': '', 'sub_indicator': 'Availability of research and training services, 1-7 (best)'},
-        '5.08': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '5th pillar: Higher education and training', 'sub_pillar': 'C. On-the-job training',
-                 'indicator': '', 'sub_indicator': 'Extent of staff training, 1-7 (best)'},
-        'B.06': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '6th pillar: Goods market efficiency', 'sub_pillar': '', 'indicator': '',
-                 'sub_indicator': ''},
-        'B.06.01': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                    'pillar': '6th pillar: Goods market efficiency', 'sub_pillar': 'A. Competition', 'indicator': '',
-                    'sub_indicator': ''},
-        'B.06.01.01': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                       'pillar': '6th pillar: Goods market efficiency', 'sub_pillar': 'A. Competition',
-                       'indicator': '1. Domestic competition ', 'sub_indicator': ''},
-        '6.01': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '6th pillar: Goods market efficiency', 'sub_pillar': 'A. Competition',
-                 'indicator': '1. Domestic competition ', 'sub_indicator': 'Intensity of local competition, 1-7 (best)'},
-        '6.02': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '6th pillar: Goods market efficiency', 'sub_pillar': 'A. Competition',
-                 'indicator': '1. Domestic competition ', 'sub_indicator': 'Extent of market domi''ce, 1-7 (best)'},
-        '6.03': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '6th pillar: Goods market efficiency', 'sub_pillar': 'A. Competition',
-                 'indicator': '1. Domestic competition ',
-                 'sub_indicator': 'Effectiveness of anti-monopoly policy, 1-7 (best)'},
-        '6.04': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '6th pillar: Goods market efficiency', 'sub_pillar': 'A. Competition',
-                 'indicator': '1. Domestic competition ',
-                 'sub_indicator': 'Effect of taxation on incentives to invest, 1-7 (best)'},
-        '6.05': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '6th pillar: Goods market efficiency', 'sub_pillar': 'A. Competition',
-                 'indicator': '1. Domestic competition ', 'sub_indicator': 'Total tax rate, % profits*'},
-        '6.06': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '6th pillar: Goods market efficiency', 'sub_pillar': 'A. Competition',
-                 'indicator': '1. Domestic competition ', 'sub_indicator': 'No. procedures to start a business*'},
-        '6.07': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '6th pillar: Goods market efficiency', 'sub_pillar': 'A. Competition',
-                 'indicator': '1. Domestic competition ', 'sub_indicator': 'No. days to start a business*'},
-        '6.08': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '6th pillar: Goods market efficiency', 'sub_pillar': 'A. Competition',
-                 'indicator': '1. Domestic competition ', 'sub_indicator': 'Agricultural policy costs, 1-7 (best)'},
-        'B.06.01.02': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                       'pillar': '6th pillar: Goods market efficiency', 'sub_pillar': 'A. Competition',
-                       'indicator': '2. Foreign competition ', 'sub_indicator': ''},
-        '6.09': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '6th pillar: Goods market efficiency', 'sub_pillar': 'A. Competition',
-                 'indicator': '2. Foreign competition ', 'sub_indicator': 'Prevalence of trade barriers, 1-7 (best)'},
-        '6.1': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                'pillar': '6th pillar: Goods market efficiency', 'sub_pillar': 'A. Competition',
-                'indicator': '2. Foreign competition ', 'sub_indicator': 'Trade tariffs, % duty*'},
-        '6.11': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '6th pillar: Goods market efficiency', 'sub_pillar': 'A. Competition',
-                 'indicator': '2. Foreign competition ', 'sub_indicator': 'Prevalence of foreign ownership, 1-7 (best)'},
-        '6.12': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '6th pillar: Goods market efficiency', 'sub_pillar': 'A. Competition',
-                 'indicator': '2. Foreign competition ', 'sub_indicator': 'Business impact of rules on FDI, 1-7 (best)'},
-        '6.13': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '6th pillar: Goods market efficiency', 'sub_pillar': 'A. Competition',
-                 'indicator': '2. Foreign competition ', 'sub_indicator': 'Burden of customs procedures, 1-7 (best)'},
-        '6.14': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '6th pillar: Goods market efficiency', 'sub_pillar': 'A. Competition',
-                 'indicator': '2. Foreign competition ', 'sub_indicator': 'Imports as a percentage of GDP*'},
-        'B.06.02': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                    'pillar': '6th pillar: Goods market efficiency', 'sub_pillar': 'B. Quality of demand conditions',
-                    'indicator': '', 'sub_indicator': ''},
-        '6.15': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '6th pillar: Goods market efficiency', 'sub_pillar': 'B. Quality of demand conditions',
-                 'indicator': '', 'sub_indicator': 'Degree of customer orientation, 1-7 (best)'},
-        '6.16': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '6th pillar: Goods market efficiency', 'sub_pillar': 'B. Quality of demand conditions',
-                 'indicator': '', 'sub_indicator': 'Buyer sophistication, 1-7 (best)'},
-        'B.07': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '7th pillar: Labor market efficiency', 'sub_pillar': '', 'indicator': '',
-                 'sub_indicator': ''},
-        'B.07.01': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                    'pillar': '7th pillar: Labor market efficiency', 'sub_pillar': 'A. Flexibility', 'indicator': '',
-                    'sub_indicator': ''},
-        '7.01': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '7th pillar: Labor market efficiency', 'sub_pillar': 'A. Flexibility', 'indicator': '',
-                 'sub_indicator': 'Cooperation in labor-employer relations, 1-7 (best)'},
-        '7.02': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '7th pillar: Labor market efficiency', 'sub_pillar': 'A. Flexibility', 'indicator': '',
-                 'sub_indicator': 'Flexibility of wage determination, 1-7 (best)'},
-        '7.03': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '7th pillar: Labor market efficiency', 'sub_pillar': 'A. Flexibility', 'indicator': '',
-                 'sub_indicator': 'Hiring and firing practices, 1-7 (best)'},
-        '7.04': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '7th pillar: Labor market efficiency', 'sub_pillar': 'A. Flexibility', 'indicator': '',
-                 'sub_indicator': 'Redundancy costs, weeks of salary*'},
-        '7.05': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '7th pillar: Labor market efficiency', 'sub_pillar': 'A. Flexibility', 'indicator': '',
-                 'sub_indicator': 'Effect of taxation on incentives to work, 1-7 (best)'},
-        'B.07.02': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                    'pillar': '7th pillar: Labor market efficiency', 'sub_pillar': 'B. Efficient use of talent',
-                    'indicator': '', 'sub_indicator': ''},
-        '7.06': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '7th pillar: Labor market efficiency', 'sub_pillar': 'B. Efficient use of talent',
-                 'indicator': '',
-                 'sub_indicator': 'Pay and productivity, 1-7 (best)'},
-        '7.07': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '7th pillar: Labor market efficiency', 'sub_pillar': 'B. Efficient use of talent',
-                 'indicator': '',
-                 'sub_indicator': 'Reliance on professional management, 1-7 (best)'},
-        '7.08': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '7th pillar: Labor market efficiency', 'sub_pillar': 'B. Efficient use of talent',
-                 'indicator': '',
-                 'sub_indicator': 'Country capacity to retain talent, 1-7 (best)'},
-        '7.09': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '7th pillar: Labor market efficiency', 'sub_pillar': 'B. Efficient use of talent',
-                 'indicator': '',
-                 'sub_indicator': 'Country capacity to attract talent, 1-7 (best)'},
-        '7.1': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                'pillar': '7th pillar: Labor market efficiency', 'sub_pillar': 'B. Efficient use of talent',
-                'indicator': '',
-                'sub_indicator': 'Women in labor force, ratio to men*'},
-        'B.08': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '8th pillar: Fi''cial market development', 'sub_pillar': '', 'indicator': '',
-                 'sub_indicator': ''},
-        'B.08.01': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                    'pillar': '8th pillar: Fi''cial market development', 'sub_pillar': 'A. Efficiency', 'indicator': '',
-                    'sub_indicator': ''},
-        '8.01': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '8th pillar: Fi''cial market development', 'sub_pillar': 'A. Efficiency', 'indicator': '',
-                 'sub_indicator': 'Fi''cial services meeting business needs, 1-7 (best)'},
-        '8.02': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '8th pillar: Fi''cial market development', 'sub_pillar': 'A. Efficiency', 'indicator': '',
-                 'sub_indicator': 'Affordability of fi''cial services, 1-7 (best)'},
-        '8.03': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '8th pillar: Fi''cial market development', 'sub_pillar': 'A. Efficiency', 'indicator': '',
-                 'sub_indicator': 'Fi''cing through local equity market, 1-7 (best)'},
-        '8.04': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '8th pillar: Fi''cial market development', 'sub_pillar': 'A. Efficiency', 'indicator': '',
-                 'sub_indicator': 'Ease of access to loans, 1-7 (best)'},
-        '8.05': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '8th pillar: Fi''cial market development', 'sub_pillar': 'A. Efficiency', 'indicator': '',
-                 'sub_indicator': 'Venture capital availability, 1-7 (best)'},
-        'B.08.02': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                    'pillar': '8th pillar: Fi''cial market development', 'sub_pillar': 'B. Trustworthiness and confidence',
-                    'indicator': '', 'sub_indicator': ''},
-        '8.06': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '8th pillar: Fi''cial market development', 'sub_pillar': 'B. Trustworthiness and confidence',
-                 'indicator': '', 'sub_indicator': 'Soundness of banks, 1-7 (best)'},
-        '8.07': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '8th pillar: Fi''cial market development', 'sub_pillar': 'B. Trustworthiness and confidence',
-                 'indicator': '', 'sub_indicator': 'Regulation of securities exchanges, 1-7 (best)'},
-        '8.08': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '8th pillar: Fi''cial market development', 'sub_pillar': 'B. Trustworthiness and confidence',
-                 'indicator': '', 'sub_indicator': 'Legal rights index, 0–10 (best)*'},
-        'B.09': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '9th pillar: Technological readiness', 'sub_pillar': '', 'indicator': '',
-                 'sub_indicator': ''},
-        'B.09.01': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                    'pillar': '9th pillar: Technological readiness', 'sub_pillar': 'A. Technological adoption',
-                    'indicator': '', 'sub_indicator': ''},
-        '9.01': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '9th pillar: Technological readiness', 'sub_pillar': 'A. Technological adoption',
-                 'indicator': '',
-                 'sub_indicator': 'Availability of latest technologies, 1-7 (best)'},
-        '9.02': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '9th pillar: Technological readiness', 'sub_pillar': 'A. Technological adoption',
-                 'indicator': '',
-                 'sub_indicator': 'Firm-level technology absorption, 1-7 (best)'},
-        '9.03': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '9th pillar: Technological readiness', 'sub_pillar': 'A. Technological adoption',
-                 'indicator': '',
-                 'sub_indicator': 'FDI and technology transfer, 1-7 (best)'},
-        'B.09.02': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                    'pillar': '9th pillar: Technological readiness', 'sub_pillar': 'B. ICT use ', 'indicator': '',
-                    'sub_indicator': ''},
-        '9.04': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '9th pillar: Technological readiness', 'sub_pillar': 'B. ICT use ', 'indicator': '',
-                 'sub_indicator': 'Individuals using Internet, %*'},
-        '9.05': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '9th pillar: Technological readiness', 'sub_pillar': 'B. ICT use ', 'indicator': '',
-                 'sub_indicator': 'Fixed broadband Internet subscriptions/100 pop.*'},
-        '9.06': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '9th pillar: Technological readiness', 'sub_pillar': 'B. ICT use ', 'indicator': '',
-                 'sub_indicator': 'Int’l Internet bandwidth, kb/s per user*'},
-        '9.07': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '9th pillar: Technological readiness', 'sub_pillar': 'B. ICT use ', 'indicator': '',
-                 'sub_indicator': 'Mobile broadband subscriptions/100 pop.*'},
-        'B.10': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                 'pillar': '10th pillar: Market size', 'sub_pillar': '', 'indicator': '', 'sub_indicator': ''},
-        'B.10.01': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                    'pillar': '10th pillar: Market size', 'sub_pillar': 'A. Domestic market size', 'indicator': '',
-                    'sub_indicator': ''},
-        '10.01': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                  'pillar': '10th pillar: Market size', 'sub_pillar': 'A. Domestic market size', 'indicator': '',
-                  'sub_indicator': 'Domestic market size index, 1–7 (best)*'},
-        '10.03': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                  'pillar': '10th pillar: Market size', 'sub_pillar': 'A. Domestic market size', 'indicator': '',
-                  'sub_indicator': 'GDP (PPP$ billions)*'},
-        '10.04': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                  'pillar': '10th pillar: Market size', 'sub_pillar': 'A. Domestic market size', 'indicator': '',
-                  'sub_indicator': 'Exports as a percentage of GDP*'},
-        'B.10.02': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                    'pillar': '10th pillar: Market size', 'sub_pillar': 'B. Foreign market size', 'indicator': '',
-                    'sub_indicator': ''},
-        '10.02': {'index': 'Global Competitiveness Index', 'sub_index': 'Efficiency enhancers',
-                  'pillar': '10th pillar: Market size', 'sub_pillar': 'B. Foreign market size', 'indicator': '',
-                  'sub_indicator': 'Foreign market size index, 1–7 (best)*'},
-        'C': {'index': 'Global Competitiveness Index', 'sub_index': 'Innovation and sophistication factors',
-              'pillar': '10th pillar: Market size', 'sub_pillar': 'B. Foreign market size', 'indicator': '',
-              'sub_indicator': ''},
-        'C.11': {'index': 'Global Competitiveness Index', 'sub_index': 'Innovation and sophistication factors',
-                 'pillar': '11th pillar: Business sophistication ', 'sub_pillar': '', 'indicator': '',
-                 'sub_indicator': ''},
-        '11.01': {'index': 'Global Competitiveness Index', 'sub_index': 'Innovation and sophistication factors',
-                  'pillar': '11th pillar: Business sophistication ', 'sub_pillar': '', 'indicator': '',
-                  'sub_indicator': 'Local supplier quantity, 1-7 (best)'},
-        '11.02': {'index': 'Global Competitiveness Index', 'sub_index': 'Innovation and sophistication factors',
-                  'pillar': '11th pillar: Business sophistication ', 'sub_pillar': '', 'indicator': '',
-                  'sub_indicator': 'Local supplier quality, 1-7 (best)'},
-        '11.03': {'index': 'Global Competitiveness Index', 'sub_index': 'Innovation and sophistication factors',
-                  'pillar': '11th pillar: Business sophistication ', 'sub_pillar': '', 'indicator': '',
-                  'sub_indicator': 'State of cluster development, 1-7 (best)'},
-        '11.04': {'index': 'Global Competitiveness Index', 'sub_index': 'Innovation and sophistication factors',
-                  'pillar': '11th pillar: Business sophistication ', 'sub_pillar': '', 'indicator': '',
-                  'sub_indicator': 'Nature of competitive advantage, 1-7 (best)'},
-        '11.05': {'index': 'Global Competitiveness Index', 'sub_index': 'Innovation and sophistication factors',
-                  'pillar': '11th pillar: Business sophistication ', 'sub_pillar': '', 'indicator': '',
-                  'sub_indicator': 'Value chain breadth, 1-7 (best)'},
-        '11.06': {'index': 'Global Competitiveness Index', 'sub_index': 'Innovation and sophistication factors',
-                  'pillar': '11th pillar: Business sophistication ', 'sub_pillar': '', 'indicator': '',
-                  'sub_indicator': 'Control of international distribution, 1-7 (best)'},
-        '11.07': {'index': 'Global Competitiveness Index', 'sub_index': 'Innovation and sophistication factors',
-                  'pillar': '11th pillar: Business sophistication ', 'sub_pillar': '', 'indicator': '',
-                  'sub_indicator': 'Production process sophistication, 1-7 (best)'},
-        '11.08': {'index': 'Global Competitiveness Index', 'sub_index': 'Innovation and sophistication factors',
-                  'pillar': '11th pillar: Business sophistication ', 'sub_pillar': '', 'indicator': '',
-                  'sub_indicator': 'Extent of marketing, 1-7 (best)'},
-        '11.09': {'index': 'Global Competitiveness Index', 'sub_index': 'Innovation and sophistication factors',
-                  'pillar': '11th pillar: Business sophistication ', 'sub_pillar': '', 'indicator': '',
-                  'sub_indicator': 'Willingness to delegate authority, 1-7 (best)'},
-        'C.12': {'index': 'Global Competitiveness Index', 'sub_index': 'Innovation and sophistication factors',
-                 'pillar': '12th pillar: Innovation', 'sub_pillar': '', 'indicator': '', 'sub_indicator': ''},
-        '12.01': {'index': 'Global Competitiveness Index', 'sub_index': 'Innovation and sophistication factors',
-                  'pillar': '12th pillar: Innovation', 'sub_pillar': '', 'indicator': '',
-                  'sub_indicator': 'Capacity for innovation, 1-7 (best)'},
-        '12.02': {'index': 'Global Competitiveness Index', 'sub_index': 'Innovation and sophistication factors',
-                  'pillar': '12th pillar: Innovation', 'sub_pillar': '', 'indicator': '',
-                  'sub_indicator': 'Quality of scientific research institutions, 1-7 (best)'},
-        '12.03': {'index': 'Global Competitiveness Index', 'sub_index': 'Innovation and sophistication factors',
-                  'pillar': '12th pillar: Innovation', 'sub_pillar': '', 'indicator': '',
-                  'sub_indicator': 'Company spending on R&D, 1-7 (best)'},
-        '12.04': {'index': 'Global Competitiveness Index', 'sub_index': 'Innovation and sophistication factors',
-                  'pillar': '12th pillar: Innovation', 'sub_pillar': '', 'indicator': '',
-                  'sub_indicator': 'University-industry collaboration in R&D, 1-7 (best)'},
-        '12.05': {'index': 'Global Competitiveness Index', 'sub_index': 'Innovation and sophistication factors',
-                  'pillar': '12th pillar: Innovation', 'sub_pillar': '', 'indicator': '',
-                  'sub_indicator': 'Gov’t procurement of advanced tech products, 1-7 (best)'},
-        '12.06': {'index': 'Global Competitiveness Index', 'sub_index': 'Innovation and sophistication factors',
-                  'pillar': '12th pillar: Innovation', 'sub_pillar': '', 'indicator': '',
-                  'sub_indicator': 'Availability of scientists and engineers, 1-7 (best)'},
-        '12.07': {'index': 'Global Competitiveness Index', 'sub_index': 'Innovation and sophistication factors',
-                  'pillar': '12th pillar: Innovation', 'sub_pillar': '', 'indicator': '',
-                  'sub_indicator': 'PCT patents, applications/million pop.*'}}
+        def get_value_from_key(key, sub_key):
+            return series_dict.get(key, {}).get(sub_key, "")
 
-    def get_value_from_key(key, sub_key):
-        return series_dict.get(key, {}).get(sub_key, "")
+        df["pillar"] = df["Series Global ID"].apply(
+            get_value_from_key, args=("pillar",))
+        df["sub_pillar"] = df["Series Global ID"].apply(
+            get_value_from_key, args=("sub_pillar",))
+        df["sub_sub_pillar"] = df["Series Global ID"].apply(
+            get_value_from_key, args=("sub_pillar_pillar",))
+        df["indicator"] = df["Series Global ID"].apply(
+            get_value_from_key, args=("indicator",))
+        df["sub_index"] = df["Series Global ID"].apply(
+            get_value_from_key, args=("sub_index",))
+        df["sub_indicator"] = df["Series Global ID"].apply(
+            get_value_from_key, args=("sub_indicator",))
+        df["others"] = df["Series Global ID"].apply(
+            get_value_from_key, args=("others",))
 
-    df["pillar"] = df["Series Global ID"].apply(
-        get_value_from_key, args=("pillar",))
-    df["sub_pillar"] = df["Series Global ID"].apply(
-        get_value_from_key, args=("sub_pillar",))
-    df["sub_sub_pillar"] = df["Series Global ID"].apply(
-        get_value_from_key, args=("sub_pillar_pillar",))
-    df["indicator"] = df["Series Global ID"].apply(
-        get_value_from_key, args=("indicator",))
-    df["sub_index"] = df["Series Global ID"].apply(
-        get_value_from_key, args=("sub_index",))
-    df["sub_indicator"] = df["Series Global ID"].apply(
-        get_value_from_key, args=("sub_indicator",))
-    df["others"] = df["Series Global ID"].apply(
-        get_value_from_key, args=("others",))
+        df.drop('Series Global ID', axis=1, inplace=True)
 
-    df.drop('Series Global ID', axis=1, inplace=True)
+        df = df.melt(
+            id_vars=['index', 'year', 'sub_index', 'pillar', 'sub_pillar',
+                     'sub_sub_pillar', 'indicator', 'sub_indicator', 'others', 'Attribute'],
+            var_name="country",
+            value_name="value"
+        )
 
-    df = df.melt(
-        id_vars=['index', 'year', 'sub_index', 'pillar', 'sub_pillar',
-                 'sub_sub_pillar', 'indicator', 'sub_indicator', 'others', 'Attribute'],
-        var_name="country",
-        value_name="value"
-    )
+        ingest_date = datetime.now()
 
-    ingest_date = datetime.now()
+        df['organizer'] = 'WEF'
+        df['master_index'] = 'GCI 4.0'
+        df['date_etl'] = ingest_date.strftime("%Y-%m-%d %H:%M:%S")
+        df.rename(columns={'Attribute': 'unit_2',
+                           'Dataset': 'index'}, inplace=True)
 
-    df['organizer'] = 'WEF'
-    df['master_index'] = 'GCI 4.0'
-    df['date_etl'] = ingest_date.strftime("%Y-%m-%d %H:%M:%S")
-    df.rename(columns={'Attribute': 'unit_2',
-              'Dataset': 'index'}, inplace=True)
+        col = ["country", "year", "master_index", "organizer", "index", "sub_index", "pillar", "sub_pillar", "sub_sub_pillar",
+               "indicator", "sub_indicator", "others", "unit_2", "value", "date_etl"]
 
-    col = ["country", "year", "master_index", "organizer", "index", "sub_index", "pillar", "sub_pillar", "sub_sub_pillar",
-           "indicator", "sub_indicator", "others", "unit_2", "value", "date_etl"]
+        df = df[col]
+        year_list = df['year'].unique()
 
-    df = df[col]
-    year_list = df['year'].unique()
+        for year in year_list:
+            final = df[df['year'] == year].copy()
+            current_year = str(year)[0:4]
+            final['year'] = current_year
 
-    for year in year_list:
-        final = df[df['year'] == year].copy()
-        current_year = str(year)[0:4]
-        final['year'] = current_year
+            final.to_csv('{}/GCI_40_{}_{}.csv'.format(
+                output_path,
+                current_year,
+                ingest_date.strftime("%Y%m%d%H%M%S")),
+                index=False)
 
-        final.to_csv('/opt/airflow/dags/output/gci40/GCI_40_{}_{}.csv'.format(
-            current_year, ingest_date.strftime("%Y%m%d%H%M%S")), index=False)
+    def ingestion_init():
+        # Get config
+        json_file = open('{}/config.json'.format(datasource_path))
+        conf_main = json.load(json_file)
+        json_file.close()
+
+        for config in conf_main:
+            ingestion_n_transform(
+                source_file_name=config['source_file_name'],
+                series_dict=config['series_dict'],
+            )
+
+    ingestion_init()
 
 
 default_args = {
@@ -575,6 +110,20 @@ default_args = {
 }
 
 dag = DAG('gci_40', default_args=default_args, catchup=False)
+
+
+def ingest_data():
+    hdfs = PyWebHdfsClient(host='10.121.101.130',
+                           port='50070', user_name='hdfs')
+    source_file_byte = '/raw/index_dashboard/File_Upload/GCR_2017-19_20Dataset.xlsx'
+
+    data_source = hdfs.read_file(source_file_byte)
+
+    with open('/opt/airflow/dags/data_source/gci40/GCR_2017-19_20Dataset.xlsx', 'wb') as file_out:
+        file_out.write(data_source)
+        file_out.close()
+
+    pprint("Ingested!")
 
 
 def store_to_hdfs():
@@ -602,9 +151,9 @@ def store_to_hdfs():
 
 
 with dag:
-    ingestion = BashOperator(
+    ingestion = PythonOperator(
         task_id='ingestion',
-        bash_command='cd /opt/airflow/dags/data_source/gci40 &&  curl -LfO "https://www.teknologisk.dk/_/media/76459_GCR%2017-19%20Dataset.xlsx"',
+        python_callable=ingest_data,
     )
 
     transform = PythonOperator(
