@@ -115,6 +115,20 @@ default_args = {
 dag = DAG('GSI', default_args=default_args, catchup=False)
 
 
+def ingest_data():
+    hdfs = PyWebHdfsClient(host='10.121.101.130',
+                           port='50070', user_name='hdfs')
+    source_file_byte = '/raw/index_dashboard/File_Upload/Global Cybersecurity Index 2020.pdf'
+
+    data_source = hdfs.read_file(source_file_byte)
+
+    with open('/opt/airflow/dags/data_source/gsi/Global Cybersecurity Index 2020.pdf', 'wb') as file_out:
+        file_out.write(data_source)
+        file_out.close()
+
+    pprint("Ingested!")
+
+
 def store_to_hdfs():
     hdfs = PyWebHdfsClient(host='10.121.101.130',
                            port='50070', user_name='hdfs')
@@ -140,9 +154,9 @@ def store_to_hdfs():
 
 
 with dag:
-    ingestion = BashOperator(
+    ingestion = PythonOperator(
         task_id='ingestion',
-        bash_command='cd /opt/airflow/dags/data_source/gsi && ./sources.sh ',
+        python_callable=ingest_data,
     )
 
     transform = PythonOperator(
