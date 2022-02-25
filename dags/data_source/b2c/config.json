@@ -25,16 +25,32 @@
         "unit_2": "value",
         "pillar": "Share of individuals with an account (15+)"
       },
+      "Share of individuals with an account (15+) Rank": {
+        "unit_2": "rank",
+        "pillar": "Share of individuals with an account (15+)"
+      },
       "Secure Internet servers (normalized)": {
         "unit_2": "value",
+        "pillar": "Secure Internet servers (normalized)"
+      },
+      "Secure Internet servers (normalized) Rank": {
+        "unit_2": "rank",
         "pillar": "Secure Internet servers (normalized)"
       },
       "Share of individuals using the Internet": {
         "unit_2": "value",
         "pillar": "Share of individuals using the Internet"
       },
+      "Share of individuals using the Internet Rank": {
+        "unit_2": "rank",
+        "pillar": "Share of individuals using the Internet"
+      },
       "UPU postal reliability score": {
         "unit_2": "value",
+        "pillar": "UPU postal reliability score "
+      },
+      "UPU postal reliability Rank": {
+        "unit_2": "rank",
         "pillar": "UPU postal reliability score "
       }
     }
@@ -65,16 +81,32 @@
         "unit_2": "value",
         "pillar": "Share of individuals with an account (15+)"
       },
+      "Share of individuals with an account (15+) Rank": {
+        "unit_2": "rank",
+        "pillar": "Share of individuals with an account (15+)"
+      },
       "Secure Internet servers (normalized)": {
         "unit_2": "value",
+        "pillar": "Secure Internet servers (normalized)"
+      },
+      "Secure Internet servers (normalized) Rank": {
+        "unit_2": "rank",
         "pillar": "Secure Internet servers (normalized)"
       },
       "Share of individuals using the Internet": {
         "unit_2": "value",
         "pillar": "Share of individuals using the Internet"
       },
+      "Share of individuals using the Internet Rank": {
+        "unit_2": "rank",
+        "pillar": "Share of individuals using the Internet"
+      },
       "UPU postal reliability score": {
         "unit_2": "value",
+        "pillar": "UPU postal reliability score "
+      },
+      "UPU postal reliability Rank": {
+        "unit_2": "rank",
         "pillar": "UPU postal reliability score "
       }
     }

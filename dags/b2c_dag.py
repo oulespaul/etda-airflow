@@ -4,10 +4,14 @@ from airflow.operators.python_operator import PythonOperator
 from datetime import datetime, timedelta
 from pywebhdfs.webhdfs import PyWebHdfsClient
 from pprint import pprint
+from airflow.models import Variable
 import pandas as pd
 import os
 import tabula
 import json
+import smtplib
+import ssl
+import pytz
 
 
 def transform():
@@ -25,6 +29,16 @@ def transform():
         df.drop(col_drop, axis=1, inplace=True)
         df.rename(columns=col_rename, inplace=True)
         df['country'] = df['country'].str.replace('\r', ' ')
+
+        # Create rank in piiar level
+        df['Share of individuals with an account (15+) Rank'] = df['Share of individuals with an account (15+)'].rank(
+            ascending=False, method='dense')
+        df['Secure Internet servers (normalized) Rank'] = df['Secure Internet servers (normalized)'].rank(
+            ascending=False, method='dense')
+        df['Share of individuals using the Internet Rank'] = df['Share of individuals using the Internet'].rank(
+            ascending=False, method='dense')
+        df['UPU postal reliability Rank'] = df['UPU postal reliability score'].rank(
+            ascending=False, method='dense')
 
         # Add col standard format
         i = 3
@@ -66,7 +80,7 @@ def transform():
                "indicator", "sub_indicator", "others", "unit_2", "value", "ingest_date"]
 
         df = df[col]
-        df = df.sort_values(by=['country', 'year', 'indicator'])
+        df = df.sort_values(by=['country', 'year', 'pillar'])
 
         df.to_csv('{}/B2C_{}_{}.csv'.format(output_path, year,
                                             ingest_date.strftime("%Y%m%d%H%M%S")), index=False)
@@ -104,10 +118,30 @@ default_args = {
 dag = DAG('b2c', default_args=default_args, catchup=False)
 
 
-def store_to_hdfs():
+def send_mail():
+    index_name = "Business to Consumer E-Commerce Index (B2C)"
+    email_to = Variable.get("email_to")
+    email_from = Variable.get("email_from")
+    password = Variable.get("email_from_password")
+    tzInfo = pytz.timezone('Asia/Bangkok')
+
+    email_string = f"""
+    Pipeline Success
+    ------------------------------------------
+    Index: {index_name}
+    Ingestion Date: {datetime.now(tz=tzInfo).strftime("%Y/%m/%d %H:%M")}
+    """
+
+    context = ssl.create_default_context()
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+        server.login(email_from, password)
+        server.sendmail(email_from, email_to, email_string)
+
+
+def store_to_hdfs(**kwargs):
     hdfs = PyWebHdfsClient(host='10.121.101.130',
                            port='50070', user_name='hdfs')
-    my_dir = '/raw/index_dashboard/Global/B2C'
+    my_dir = kwargs['directory']
     hdfs.make_dir(my_dir)
     hdfs.make_dir(my_dir, permission=755)
 
@@ -139,9 +173,16 @@ with dag:
         python_callable=transform,
     )
 
-    load_to_hdfs = PythonOperator(
-        task_id='load_to_hdfs',
+    load_to_hdfs_raw_zone = PythonOperator(
+        task_id='load_to_hdfs_raw_zone',
         python_callable=store_to_hdfs,
+        op_kwargs={'directory': '/raw/index_dashboard/Global/B2C'},
+    )
+
+    load_to_hdfs_processed_zone = PythonOperator(
+        task_id='load_to_hdfs_processed_zone',
+        python_callable=store_to_hdfs,
+        op_kwargs={'directory': '/processed/index_dashboard/Global/B2C'},
     )
 
     clean_up_output = BashOperator(
@@ -149,4 +190,9 @@ with dag:
         bash_command='rm -f /opt/airflow/dags/output/b2c/*',
     )
 
-ingestion >> transform >> load_to_hdfs >> clean_up_output
+    send_email = PythonOperator(
+        task_id='send_email',
+        python_callable=send_mail,
+    )
+
+ingestion >> transform >> load_to_hdfs_raw_zone >> load_to_hdfs_processed_zone >> clean_up_output >> send_email
