@@ -5,9 +5,13 @@ from datetime import datetime, timedelta
 from pywebhdfs.webhdfs import PyWebHdfsClient
 from pprint import pprint
 from decimal import Decimal
+from airflow.models import Variable
 import pandas as pd
 import os
 import json
+import smtplib
+import ssl
+import pytz
 
 
 def transform():
@@ -128,10 +132,30 @@ default_args = {
 dag = DAG('gci', default_args=default_args, catchup=False)
 
 
-def store_to_hdfs():
+def send_mail():
+    index_name = "Global Competitiveness Index (GCI)"
+    email_to = Variable.get("email_to")
+    email_from = Variable.get("email_from")
+    password = Variable.get("email_from_password")
+    tzInfo = pytz.timezone('Asia/Bangkok')
+
+    email_string = f"""
+    Pipeline Success
+    ------------------------------------------
+    Index: {index_name}
+    Ingestion Date: {datetime.now(tz=tzInfo).strftime("%Y/%m/%d %H:%M")}
+    """
+
+    context = ssl.create_default_context()
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+        server.login(email_from, password)
+        server.sendmail(email_from, email_to, email_string)
+
+
+def store_to_hdfs(**kwargs):
     hdfs = PyWebHdfsClient(host='10.121.101.130',
                            port='50070', user_name='hdfs')
-    my_dir = '/raw/index_dashboard/Global/GCI'
+    my_dir = kwargs['directory']
     hdfs.make_dir(my_dir)
     hdfs.make_dir(my_dir, permission=755)
 
@@ -163,9 +187,16 @@ with dag:
         python_callable=transform,
     )
 
-    load_to_hdfs = PythonOperator(
-        task_id='load_to_hdfs',
+    load_to_hdfs_raw_zone = PythonOperator(
+        task_id='load_to_hdfs_raw_zone',
         python_callable=store_to_hdfs,
+        op_kwargs={'directory': '/raw/index_dashboard/Global/GCI'},
+    )
+
+    load_to_hdfs_processed_zone = PythonOperator(
+        task_id='load_to_hdfs_processed_zone',
+        python_callable=store_to_hdfs,
+        op_kwargs={'directory': '/processed/index_dashboard/Global/GCI'},
     )
 
     clean_up_output = BashOperator(
@@ -173,4 +204,9 @@ with dag:
         bash_command='rm -f /opt/airflow/dags/output/gci/*',
     )
 
-ingestion >> transform >> load_to_hdfs >> clean_up_output
+    send_email = PythonOperator(
+        task_id='send_email',
+        python_callable=send_mail,
+    )
+
+ingestion >> transform >> load_to_hdfs_raw_zone >> load_to_hdfs_processed_zone >> clean_up_output >> send_email
