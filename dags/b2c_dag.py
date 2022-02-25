@@ -120,6 +120,8 @@ dag = DAG('b2c', default_args=default_args, catchup=False)
 
 def send_mail():
     index_name = "Business to Consumer E-Commerce Index (B2C)"
+    smtp_server = "smtp.gmail.com"
+    port = 587
     email_to = Variable.get("email_to")
     email_from = Variable.get("email_from")
     password = Variable.get("email_from_password")
@@ -133,9 +135,17 @@ def send_mail():
     """
 
     context = ssl.create_default_context()
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+    try:
+        server = smtplib.SMTP(smtp_server, port)
+        server.ehlo()
+        server.starttls(context=context)
+        server.ehlo()
         server.login(email_from, password)
         server.sendmail(email_from, email_to, email_string)
+    except Exception as e:
+        print(e)
+    finally:
+        server.quit()
 
 
 def store_to_hdfs(**kwargs):
