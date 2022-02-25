@@ -324,7 +324,7 @@ with dag:
 
     clean_up_output = BashOperator(
         task_id='clean_up_output',
-        bash_command='rm -f /opt/airflow/dags/data_source/dai/tmp/data/*',
+        bash_command='rm -f /opt/airflow/dags/data_source/dai/tmp/data/* && rm -f /opt/airflow/dags/data_source/dai/tmp/raw/*',
     )
 
     send_email = PythonOperator(
