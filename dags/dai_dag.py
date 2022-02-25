@@ -10,12 +10,17 @@ from datetime import timedelta, datetime
 import filecmp
 import pandas as pd
 import math
+import smtplib
+import ssl
+import pytz
 
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
+from airflow.operators.bash import BashOperator
 from datetime import datetime, timedelta
 from pywebhdfs.webhdfs import PyWebHdfsClient
 from pprint import pprint
+from airflow.models import Variable
 
 
 class DAI():
@@ -245,21 +250,48 @@ def extract_transform():
     pprint("Scrap_data_source and Extract_transform!")
 
 
-def store_to_hdfs():
-    my_dir = '/raw/index_dashboard/Global/DAI'
+def send_mail():
+    index_name = "Digital Adoption Index (DAI)"
+    email_to = Variable.get("email_to")
+    email_from = Variable.get("email_from")
+    password = Variable.get("email_from_password")
+    tzInfo = pytz.timezone('Asia/Bangkok')
+
+    email_string = f"""
+    Pipeline Success
+    ------------------------------------------
+    Index: {index_name}
+    Ingestion Date: {datetime.now(tz=tzInfo).strftime("%Y/%m/%d %H:%M")}
+    """
+
+    context = ssl.create_default_context()
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+        server.login(email_from, password)
+        server.sendmail(email_from, email_to, email_string)
+
+
+def store_to_hdfs(**kwargs):
     hdfs = PyWebHdfsClient(host='10.121.101.130',
                            port='50070', user_name='hdfs')
+    my_dir = kwargs['directory']
     hdfs.make_dir(my_dir)
     hdfs.make_dir(my_dir, permission=755)
 
-    for file in glob.glob('/opt/airflow/dags/data_source/dai/tmp/data/*.csv'):
-        with open(file, 'r', encoding="utf8") as file_data:
-            my_data = file_data.read()
-            hdfs.create_file(
-                f"{my_dir}/" + file.split('/')[-1], my_data.encode('utf-8'), overwrite=True)
-        os.remove(file)
+    path = "/opt/airflow/dags/data_source/dai/tmp/data"
 
-    pprint("Stored!")
+    os.chdir(path)
+
+    for file in os.listdir():
+        if file.endswith(".csv"):
+            file_path = f"{path}/{file}"
+
+            with open(file_path, 'r', encoding="utf8") as file_data:
+                my_data = file_data.read()
+                hdfs.create_file(
+                    my_dir+f"/{file}", my_data.encode('utf-8'), overwrite=True)
+
+                pprint("Stored! file: {}".format(file))
+                pprint(hdfs.list_dir(my_dir))
 
 
 with dag:
@@ -273,4 +305,26 @@ with dag:
         python_callable=store_to_hdfs,
     )
 
-scrap_and_extract_transform >> load_to_hdfs
+    load_to_hdfs_raw_zone = PythonOperator(
+        task_id='load_to_hdfs_raw_zone',
+        python_callable=store_to_hdfs,
+        op_kwargs={'directory': '/raw/index_dashboard/Global/DAI'},
+    )
+
+    load_to_hdfs_processed_zone = PythonOperator(
+        task_id='load_to_hdfs_processed_zone',
+        python_callable=store_to_hdfs,
+        op_kwargs={'directory': '/processed/index_dashboard/Global/DAI'},
+    )
+
+    clean_up_output = BashOperator(
+        task_id='clean_up_output',
+        bash_command='rm -f /opt/airflow/dags/data_source/dai/tmp/data/*',
+    )
+
+    send_email = PythonOperator(
+        task_id='send_email',
+        python_callable=send_mail,
+    )
+
+scrap_and_extract_transform >> load_to_hdfs_raw_zone >> load_to_hdfs_processed_zone >> send_email
