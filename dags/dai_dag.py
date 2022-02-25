@@ -310,11 +310,6 @@ with dag:
         python_callable=extract_transform,
     )
 
-    load_to_hdfs = PythonOperator(
-        task_id='load_to_hdfs',
-        python_callable=store_to_hdfs,
-    )
-
     load_to_hdfs_raw_zone = PythonOperator(
         task_id='load_to_hdfs_raw_zone',
         python_callable=store_to_hdfs,
@@ -337,4 +332,4 @@ with dag:
         python_callable=send_mail,
     )
 
-scrap_and_extract_transform >> load_to_hdfs_raw_zone >> load_to_hdfs_processed_zone >> send_email
+scrap_and_extract_transform >> load_to_hdfs_raw_zone >> load_to_hdfs_processed_zone >> clean_up_output >>  send_email
