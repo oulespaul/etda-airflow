@@ -5,10 +5,14 @@ from pywebhdfs.webhdfs import PyWebHdfsClient
 from datetime import datetime, timedelta
 from pprint import pprint
 from PyPDF2 import PdfFileReader
+from airflow.models import Variable
 import os
 import json
 import pandas as pd
 import numpy as np
+import smtplib
+import ssl
+import pytz
 
 
 def transform():
@@ -128,11 +132,40 @@ def ingest_data():
 
     pprint("Ingested!")
 
+def send_mail():
+    index_name = "Global Cybersecurity Index (GCI)"
+    smtp_server = "smtp.gmail.com"
+    port = 587
+    email_to = Variable.get("email_to")
+    email_from = Variable.get("email_from")
+    password = Variable.get("email_from_password")
+    tzInfo = pytz.timezone('Asia/Bangkok')
 
-def store_to_hdfs():
+    email_string = f"""
+    Pipeline Success
+    ------------------------------------------
+    Index: {index_name}
+    Ingestion Date: {datetime.now(tz=tzInfo).strftime("%Y/%m/%d %H:%M")}
+    """
+
+    context = ssl.create_default_context()
+    try:
+        server = smtplib.SMTP(smtp_server, port)
+        server.ehlo()
+        server.starttls(context=context)
+        server.ehlo()
+        server.login(email_from, password)
+        server.sendmail(email_from, email_to, email_string)
+    except Exception as e:
+        print(e)
+    finally:
+        server.quit()
+
+
+def store_to_hdfs(**kwargs):
     hdfs = PyWebHdfsClient(host='10.121.101.130',
                            port='50070', user_name='hdfs')
-    my_dir = '/raw/index_dashboard/Global/GSI'
+    my_dir = kwargs['directory']
     hdfs.make_dir(my_dir)
     hdfs.make_dir(my_dir, permission=755)
 
@@ -164,9 +197,16 @@ with dag:
         python_callable=transform,
     )
 
-    load_to_hdfs = PythonOperator(
-        task_id='load_to_hdfs',
+    load_to_hdfs_raw_zone = PythonOperator(
+        task_id='load_to_hdfs_raw_zone',
         python_callable=store_to_hdfs,
+        op_kwargs={'directory': '/raw/index_dashboard/Global/GSI'},
+    )
+
+    load_to_hdfs_processed_zone = PythonOperator(
+        task_id='load_to_hdfs_processed_zone',
+        python_callable=store_to_hdfs,
+        op_kwargs={'directory': '/processed/index_dashboard/Global/GSI'},
     )
 
     clean_up_output = BashOperator(
@@ -174,4 +214,9 @@ with dag:
         bash_command='rm -f /opt/airflow/dags/output/gsi/*',
     )
 
-ingestion >> transform >> load_to_hdfs >> clean_up_output
+    send_email = PythonOperator(
+        task_id='send_email',
+        python_callable=send_mail,
+    )
+
+ingestion >> transform >> load_to_hdfs_raw_zone >> load_to_hdfs_processed_zone  >> clean_up_output >> send_email
