@@ -1,25 +1,34 @@
-import os
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+import os, sys, getopt
+import requests
 import csv
 import json 
-from pathlib import Path
-import glob
+import re
 from time import sleep
-from datetime import timedelta, datetime
+from datetime import timedelta, date, datetime
 import zipfile
 import filecmp 
 import pandas as pd
+import smtplib
+import ssl
+import pytz
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.select import Select
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.firefox.options import Options
 
 from airflow import DAG
+from airflow.operators.bash import BashOperator
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime, timedelta
 from pywebhdfs.webhdfs import PyWebHdfsClient
 from pprint import pprint
+from airflow.models import Variable
 
 class HCI():
 
@@ -43,6 +52,7 @@ class HCI():
         self._log_tmp = []
 
         self.date_scrap = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
+        self.ingest_date = datetime.today().strftime('%d/%m/%Y %H:%M')
 
         self.__initConfig()
         # self.__initDriver()
@@ -142,8 +152,15 @@ class HCI():
             time.click()
             sleep(5)
 
-            unSelectYear = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="rowTimeDim"]/div/div/div[2]/div[3]/div[1]/div[1]/div/a[2]')))
-            unSelectYear.click()
+            while True:
+                try:
+                    unSelectYear = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="rowTimeDim"]/div/div/div[2]/div[3]/div[1]/div[1]/div/a[2]')))
+                    unSelectYear.click()
+                    sleep(5)
+                    break
+                except TimeoutException:
+                    sleep(5)
+
             try:
                 selectYear = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="chk[HCI_Time].[List].&[YR' + str(year) + ']"]')))
                 selectYear.click()
@@ -210,12 +227,20 @@ class HCI():
                     for row in csv_reader: 
                         if i == 0 or row[0].strip() == '' or row[0].strip()[:19] == 'Data from database:' or row[0].strip()[:13] == 'Last Updated:':
                             if i == 0:
-                                raw_tmp.append(['id', row[0], row[1], row[2], row[3], row[4]])
+                                col = ['id', 'Series Name', 'Series Code', 'Country Name', 'Country Code', 'value', 'unit_2']
                             i += 1
                             continue
 
                         run_number += 1
-                        raw_tmp.append([run_number, row[0], row[1], row[2], row[3], row[4]])
+                        raw_tmp.append([run_number, row[0], row[1], row[2], row[3], float(row[4]) if str(row[4]) != '..' else 0.0, 'Score'])
+                df = pd.DataFrame(raw_tmp, columns=col)
+                
+                df["Rank"] = df.groupby(col[1])['value'].rank("dense", ascending=False)
+
+                for index, row in df.iterrows():
+                    run_number += 1
+                    raw_tmp.append([run_number, row[1], row[2], row[3], row[4], int(row['Rank']), 'Rank'])
+                del df
 
                 saveFile = open("{}/tmp/raw/{}.csv".format(self._airflow_path, year), 'w', newline='') 
                 saveCSV = csv.writer(saveFile, delimiter=',')
@@ -246,12 +271,20 @@ class HCI():
                     for row in csv_reader: 
                         if i == 0 or row[0].strip() == '' or row[0].strip()[:19] == 'Data from database:' or row[0].strip()[:13] == 'Last Updated:':
                             if i == 0:
-                                raw_tmp.append(['id', row[0], row[1], row[2], row[3], row[4]])
+                                col = ['id', 'Series Name', 'Series Code', 'Country Name', 'Country Code', 'value', 'unit_2']
                             i += 1
                             continue
 
                         run_number += 1
-                        raw_tmp.append([run_number, row[0], row[1], row[2], row[3], row[4]])
+                        raw_tmp.append([run_number, row[0], row[1], row[2], row[3], float(row[4]) if str(row[4]) != '..' else 0.0, 'Score'])
+                df = pd.DataFrame(raw_tmp, columns=col)
+                
+                df["Rank"] = df.groupby(col[1])['value'].rank("dense", ascending=False)
+
+                for index, row in df.iterrows():
+                    run_number += 1
+                    raw_tmp.append([run_number, row[1], row[2], row[3], row[4], int(row['Rank']), 'Rank'])
+                del df
 
                 saveFile = open("{}/tmp/raw/{}.csv".format(self._airflow_path, year), 'w', newline='') 
                 saveCSV = csv.writer(saveFile, delimiter=',')
@@ -290,16 +323,13 @@ class HCI():
                     i += 1
                     continue
                 
-                if row[1][-11:] == '(scale 0-1)':
-                    saveCSV.writerow([row[0], row[3], year, self._index, self._source, self._index_name, '', '', '', '', row[1], '', '(scale 0-1)', 'score', row[5] if row[5] != '..' else '', self.date_scrap])
-                else:
-                    saveCSV.writerow([row[0], row[3], year, self._index, self._source, self._index_name, '', '', '', '', row[1], '', '', 'score', row[5] if row[5] != '..' else '', self.date_scrap])
+                saveCSV.writerow([row[0], row[1], year, self._index, self._source, self._index_name, '', '', '', '', row[3], '', '', 'Score', row[5] if row[5] != '..' else '', self.ingest_date])
             
                 line_count += 1
 
         saveFile.close()
 
-        self._file_upload.append("{}/tmp/data/{}_{}.csv".format(self._airflow_path, year, date))
+        self._file_upload.append("{}/tmp/data/{}_{}_{}.csv".format(self._airflow_path, self._index, year, date))
 
         return line_count
 
@@ -336,21 +366,58 @@ def extract_transform():
 
     pprint("Scrap_data_source and Extract_transform!")
 
-def store_to_hdfs():
-    my_dir = '/raw/index_dashboard/Global/HCI'
+def send_mail():
+    index_name = "Human Capital Index (HCI)"
+    smtp_server = "smtp.gmail.com"
+    port = 587
+    email_to = Variable.get("email_to")
+    email_from = Variable.get("email_from")
+    password = Variable.get("email_from_password")
+    tzInfo = pytz.timezone('Asia/Bangkok')
+
+    email_string = f"""
+    Pipeline Success
+    ------------------------------------------
+    Index: {index_name}
+    Ingestion Date: {datetime.now(tz=tzInfo).strftime("%Y/%m/%d %H:%M")}
+    """
+
+    context = ssl.create_default_context()
+    try:
+        server = smtplib.SMTP(smtp_server, port)
+        server.ehlo()
+        server.starttls(context=context)
+        server.ehlo()
+        server.login(email_from, password)
+        server.sendmail(email_from, email_to, email_string)
+    except Exception as e:
+        print(e)
+    finally:
+        server.quit()
+
+
+def store_to_hdfs(**kwargs):
     hdfs = PyWebHdfsClient(host='10.121.101.130',
                            port='50070', user_name='hdfs')
+    my_dir = kwargs['directory']
     hdfs.make_dir(my_dir)
     hdfs.make_dir(my_dir, permission=755)
 
-    for file in glob.glob('/opt/airflow/dags/data_source/hci/tmp/data/*.csv'):
-        with open(file, 'r', encoding="utf8") as file_data:
-            my_data = file_data.read()
-            hdfs.create_file(
-                my_dir + file.split('/')[-1], my_data.encode('utf-8'), overwrite=True)
-        os.remove(file)
+    path = "/opt/airflow/dags/data_source/hci/tmp/data"
 
-    pprint("Stored!")
+    os.chdir(path)
+
+    for file in os.listdir():
+        if file.endswith(".csv"):
+            file_path = f"{path}/{file}"
+
+            with open(file_path, 'r', encoding="utf8") as file_data:
+                my_data = file_data.read()
+                hdfs.create_file(
+                    my_dir+f"/{file}", my_data.encode('utf-8'), overwrite=True)
+
+                pprint("Stored! file: {}".format(file))
+                pprint(hdfs.list_dir(my_dir))
 
 with dag:
     scrap_and_extract_transform = PythonOperator(
@@ -358,9 +425,26 @@ with dag:
         python_callable=extract_transform,
     )
 
-    load_to_hdfs = PythonOperator(
-        task_id='load_to_hdfs',
+    load_to_hdfs_raw_zone = PythonOperator(
+        task_id='load_to_hdfs_raw_zone',
         python_callable=store_to_hdfs,
+        op_kwargs={'directory': '/raw/index_dashboard/Global/HCI'},
     )
 
-scrap_and_extract_transform >> load_to_hdfs
+    load_to_hdfs_processed_zone = PythonOperator(
+        task_id='load_to_hdfs_processed_zone',
+        python_callable=store_to_hdfs,
+        op_kwargs={'directory': '/processed/index_dashboard/Global/HCI'},
+    )
+
+    clean_up_output = BashOperator(
+        task_id='clean_up_output',
+        bash_command='rm -f /opt/airflow/dags/data_source/hci/tmp/data/* && rm -f /opt/airflow/dags/data_source/hci/tmp/raw/*',
+    )
+
+    send_email = PythonOperator(
+        task_id='send_email',
+        python_callable=send_mail,
+    )
+
+scrap_and_extract_transform >> load_to_hdfs_raw_zone >> load_to_hdfs_processed_zone >> clean_up_output >>  send_email
