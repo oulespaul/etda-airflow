@@ -1,0 +1,63 @@
+﻿OVERALLSCORE                                                    69   42.2  57.9   68.6
+                                                                                       
+CITIZEN-TO-GOVERNMENT (C2G)                                     =68  45.8  66.7  79.2 
+PAYMENTS PLATFORM FUNCTIONALITY FOR TRANSACTION SERVICES        = 46 25.0  50.0  50.0 
+INCOME TAX PAYMENTS                                             =1   100.0 100.0 100.0
+PENSION CONTRIBUTIONS                                           = 56 75.0  75.0  100.0
+OBTAINING / PAYING FOR AN ID CARD                               =46  25.0  75.0   75.0
+PRIVATE TRANSIT COSTS                                           =61  50.0  75.0  75.0 
+PUBLIC TRANSIT PAYMENTS                                         =59  0.0   0.0   75.0 
+                                                                                       
+GOVERNMENT-TO-CITIZEN (G2C)                                     =62  43.8  43.8  75.0 
+INCOME TAX REFUNDS                                              =56  25.0  0.0   100.0
+PENSION BENEFITS                                                =63  25.0  75.0  100.0
+UNEMPLOYMENT BENEFITS                                           =20  75.0  25.0  50.0 
+GOVERNMENT SOCIAL SAFETY NET                                    =63  50.0  75.0  100.0
+                                                                                       
+BUSINESS-TO-GOVERNMENT (B2G)                                    =61  68.8  68.8  93.8 
+BUSINESS INCOME TAX PAYMENTS                                    =55  75.0  100.0 100.0
+VAT / SALES TAX PAYMENTS                                        =1   100.0 100.0 100.0
+BUSINESS PENSION CONTRIBUTIONS                                  =44  75.0  50.0  100.0
+COMPANY REGISTRATION AND PAYMENT OF FEES                        =66  25.0  50.0  100.0
+                                                                                       
+                                                                                       
+GOVERNMENT-TO-BUSINESS (G2B)                                    60   43.8  43.8  75.0 
+BUSINESS INCOME TAX REFUNDS                                     =57  25.0  25.0  75.0 
+VAT/SALES TAX REFUNDS                                           =61  25.0  25.0  75.0 
+PAYMENTS FOR GOODS AND SERVICES                                 =1   100.0 100.0 75.0 
+DISBURSEMENT OF LOANS                                           =41  25.0  25.0  50.0 
+                                                                                       
+INFRASTRUCTURE                                                  63   23.4  38.9  44.2 
+FIXED-LINE BROADBAND SUBSCRIBERS*                               57   13.1  13.5  36.9 
+ACTIVE MOBILE BROADBAND SUBSCRIBERS*                            46   32.1  35.0   36.5
+MOBILE SUBSCRIBERS*                                             33   39.5  51.1  38.6 
+NETWORK COVERAGE (MINIMUM 4G)*                                  48   73.0  88.0  88.0 
+GOVERNMENT INITIATIVES TO MAKE WI-FI AVAILABLE                  =60  50.0  100.0 100.0
+EXISTENCE OF NATIONAL DIGITAL IDENTIFICATION SYSTEM             =57  0.0   66.7  66.7 
+AUTOMATIC TELLER MACHINES (ATMS) PER 10,000 PEOPLE*             =57  9.0   9.7    19.1
+POINT-OF-SALE (POS) TERMINALS PER 10,000 PEOPLE*                62   2.6   6.4   22.2 
+DEVELOPMENT OF CONTACTLESS PAYMENTS                             =31  25.0  25.0  25.0 
+                                                                                       
+                                                                                       
+SOCIAL AND ECONOMIC CONTEXT                                     61   31.1  48.0   53.4
+EDUCATIONAL ATTAINMENT*                                         =61  27.3  34.8  47.7 
+INTERNET ACCESS*                                                60   26.7  76.2  73.0 
+POPULATION USING BANKS / OTHER FINANCIAL INSTITUTIONS*          =41  50.0  50.0  75.0 
+PERCENTAGE OF FIRMS WITH A BANK LOAN / LINE OF CREDIT*          =7   50.0  50.0  50.0 
+PROPORTION OF BUSINESSES PLACING ORDERS VIA THE INTERNET*       =33  50.0  50.0  50.0 
+INTERNET SHOPPERS AS A PERCENTAGE OF INTERNET USERS*            58   8.8   20.0  29.4 
+PERCENTAGE OF POPULATION WITH DEBIT CARD(S)*                    =64  0.0   25.0  50.0 
+USED A MOBILE PHONE OR THE INTERNET TO ACCESS AN ACCOUNT*       67   7.0   29.8  36.8 
+                                                                                       
+                                                                                       
+POLICY CONTEXT                                                  72   38.6  70.6  76.4 
+FAIR COMPETITION IN THE PAYMENTS INDUSTRY                       =24  50.0  100.0 50.0 
+POLICY ON ACCEPTANCE AND USAGE OF E-PAYMENTS                    =48  0.0   0.0   50.0 
+PROTECTION OF INTELLECTUAL PROPERTY RIGHTS                      =29  50.0  50.0  50.0 
+ACCESS TO JURISDICTIONS                                         =62  0.0   33.3  33.3 
+GOVERNMENT SUPPORT FOR FINTECH INNOVATION                       =52  0.0   100.0 100.0
+GOVERNMENT COMMITMENT TO E-PAYMENTS SECURITY                    =52  75.0  100.0 100.0
+GOVERNMENT COMMITMENT TO THE FINANCIAL ACTION TASK FORCE (FATF) =1   100.0 100.0 100.0
+GOVERNMENT COMMITMENT TO INTEGRATING THE INFORMAL ECONOMY       =59  25.0  75.0  75.0 
+EXISTENCE OF GOVERNMENT E-INCLUSION STRATEGY                    =65  0.0   100.0 100.0
+GOVERNMENT COMMITMENT TO FINANCIAL INCLUSION                    =67  0.0   50.0  100.0
