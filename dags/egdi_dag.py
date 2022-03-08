@@ -365,7 +365,7 @@ def store_to_hdfs(**kwargs):
     hdfs.make_dir(my_dir)
     hdfs.make_dir(my_dir, permission=755)
 
-    path = "/opt/airflow/dags/data_source/gear/tmp/data"
+    path = "/opt/airflow/dags/data_source/egdi/tmp/data"
 
     os.chdir(path)
 
