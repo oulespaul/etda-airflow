@@ -1,0 +1,1 @@
+curl -LfO 'https://www.doingbusiness.org/content/dam/doingBusiness/excel/db2020/Historical-data---COMPLETE-dataset-with-scores.xlsx'
