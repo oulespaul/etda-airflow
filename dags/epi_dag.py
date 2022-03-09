@@ -251,7 +251,7 @@ class EPI():
                 tmp_data.append([run_number, row[1].strip(), int(row[0]), self._index, self._source,
                                 self._index_name, '', '', '', '', '', '', '', 'Score', float(row[4]) if row[4] else 0.0, ''])
 
-        df = pd.DataFrame(tmp_data, columns=self._schema)
+        df = pd.DataFrame(tmp_data, columns=self._schema, dtype=float)
         df["rank"] = df.groupby('pillar')['value'].rank(
             "dense", ascending=False)
 
