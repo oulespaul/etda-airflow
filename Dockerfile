@@ -1,7 +1,9 @@
-FROM apache/airflow:2.1.0
+FROM apache/airflow:2.1.0-python3.7
 USER airflow
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir --user -r /tmp/requirements.txt
+RUN python -m playwright install
+RUN apt-get update && apt-get -y install libnss3 libatk-bridge2.0-0 libdrm-dev libxkbcommon-dev libgbm-dev libasound-dev libatspi2.0-0 libxshmfence-dev
 
 USER root
 
