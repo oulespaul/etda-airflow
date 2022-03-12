@@ -774,4 +774,4 @@ with dag:
         python_callable=send_mail,
     )
 
-scrap_and_extract_transform
+scrap_and_extract_transform >> load_to_hdfs_raw_zone >> load_to_hdfs_processed_zone >> clean_up_output >> send_email
