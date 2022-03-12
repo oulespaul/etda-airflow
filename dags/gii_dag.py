@@ -1,5 +1,8 @@
 import os
 import pandas as pd
+import smtplib
+import ssl
+import pytz
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from airflow.operators.python_operator import PythonOperator
@@ -7,6 +10,7 @@ from datetime import datetime, timedelta
 from pywebhdfs.webhdfs import PyWebHdfsClient
 from pprint import pprint
 from playwright.sync_api import sync_playwright
+from airflow.models import Variable
 
 downloadLink = "https://www.globalinnovationindex.org/analysis-indicator"
 outputRawDir = "/opt/airflow/dags/output/gii/raw"
@@ -883,15 +887,88 @@ default_args = {
 
 dag = DAG("GII", default_args=default_args, catchup=False)
 
+def store_to_hdfs(**kwargs):
+    hdfs = PyWebHdfsClient(host='10.121.101.130',
+                           port='50070', user_name='hdfs')
+    my_dir = kwargs['directory']
+    hdfs.make_dir(my_dir)
+    hdfs.make_dir(my_dir, permission=755)
+
+    path = "/opt/airflow/dags/output/gii/data"
+
+    os.chdir(path)
+
+    for file in os.listdir():
+        if file.endswith(".csv"):
+            file_path = f"{path}/{file}"
+
+            with open(file_path, 'r', encoding="utf8") as file_data:
+                my_data = file_data.read()
+                hdfs.create_file(
+                    my_dir+f"/{file}", my_data.encode('utf-8'), overwrite=True)
+
+                pprint("Stored! file: {}".format(file))
+                pprint(hdfs.list_dir(my_dir))
+
+def send_mail():
+    index_name = "Global Innovation Index (GII)"
+    smtp_server = "smtp.gmail.com"
+    port = 587
+    email_to = Variable.get("email_to")
+    email_from = Variable.get("email_from")
+    password = Variable.get("email_from_password")
+    tzInfo = pytz.timezone('Asia/Bangkok')
+
+    email_string = f"""
+    Pipeline Success
+    ------------------------------------------
+    Index: {index_name}
+    Ingestion Date: {datetime.now(tz=tzInfo).strftime("%Y/%m/%d %H:%M")}
+    """
+
+    context = ssl.create_default_context()
+    try:
+        server = smtplib.SMTP(smtp_server, port)
+        server.ehlo()
+        server.starttls(context=context)
+        server.ehlo()
+        server.login(email_from, password)
+        server.sendmail(email_from, email_to, email_string)
+    except Exception as e:
+        print(e)
+    finally:
+        server.quit()
+
 with dag:
-    # load_data_source = PythonOperator(
-    #     task_id="load_data_source", python_callable=ingress_data
-    # )
+    load_data_source = PythonOperator(
+        task_id="load_data_source", python_callable=ingress_data
+    )
 
     extract_transform = PythonOperator(
         task_id="extract_transform",
         python_callable=extract_transform,
     )
 
-# load_data_source >> extract_transform
-extract_transform
+    load_to_hdfs_raw_zone = PythonOperator(
+        task_id='load_to_hdfs_raw_zone',
+        python_callable=store_to_hdfs,
+        op_kwargs={'directory': '/raw/index_dashboard/Global/GII'},
+    )
+
+    load_to_hdfs_processed_zone = PythonOperator(
+        task_id='load_to_hdfs_processed_zone',
+        python_callable=store_to_hdfs,
+        op_kwargs={'directory': '/processed/index_dashboard/Global/GII'},
+    )
+
+    clean_up_output = BashOperator(
+        task_id='clean_up_output',
+        bash_command='rm -f /opt/airflow/dags/output/gii/data/*.csv && rm -f /opt/airflow/dags/output/gii/raw/*.csv',
+    )
+
+    send_email = PythonOperator(
+        task_id='send_email',
+        python_callable=send_mail,
+    )
+
+load_data_source >> extract_transform >> load_to_hdfs_raw_zone >> load_to_hdfs_processed_zone  >> clean_up_output >> send_email
