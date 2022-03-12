@@ -6,3 +6,4 @@ dags/__pycache__
 !dags/data_source/gsi/Meta Global Ranking Dashboard.xlsx
 !dags/data_source/fintech/Meta Global Ranking Dashboard.xlsx
 !dags/data_source/eodb/meta_eodb.csv
+!dags/data_source/wcr/tmp/raw_check/*.xlsx

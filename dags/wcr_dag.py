@@ -6,10 +6,13 @@ from datetime import timedelta, date, datetime
 import filecmp 
 import numpy as np
 import pandas as pd
-
+import smtplib
+import ssl
+import pytz
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from airflow.operators.python_operator import PythonOperator
+from airflow.models import Variable
 from datetime import datetime, timedelta
 from pywebhdfs.webhdfs import PyWebHdfsClient
 from pprint import pprint
@@ -578,13 +581,8 @@ class WCR():
 
             
             self._log_tmp.append([str(self.date_scrap)[:10], self._index, year, line_count, self._log_status])
-       
-        # File Delete, Rename
-        # for filename in os.listdir('{}/tmp/raw_check/'.format(self._airflow_path)):
-        #     if filename.endswith('{}.xlsx'.format(file)):
-        #         os.remove('{}/tmp/raw_check/{}'.format(self._airflow_path, filename))
 
-        os.rename('{}/tmp/raw_check/{}.xlsx'.format(self._airflow_path, file), '{}/tmp/raw_save/{}.xlsx'.format(self._airflow_path, file))
+        # os.rename('{}/tmp/raw_check/{}.xlsx'.format(self._airflow_path, file), '{}/tmp/raw_save/{}.xlsx'.format(self._airflow_path, file))
          
         return None  
 
@@ -695,11 +693,85 @@ def extract_transform():
 
     pprint("Scrap_data_source and Extract_transform!")
 
+def store_to_hdfs(**kwargs):
+    hdfs = PyWebHdfsClient(host='10.121.101.130',
+                           port='50070', user_name='hdfs')
+    my_dir = kwargs['directory']
+    hdfs.make_dir(my_dir)
+    hdfs.make_dir(my_dir, permission=755)
+
+    path = "/opt/airflow/dags/data_source/wcr/tmp/data"
+
+    os.chdir(path)
+
+    for file in os.listdir():
+        if file.endswith(".csv"):
+            file_path = f"{path}/{file}"
+
+            with open(file_path, 'r', encoding="utf8") as file_data:
+                my_data = file_data.read()
+                hdfs.create_file(
+                    my_dir+f"/{file}", my_data.encode('utf-8'), overwrite=True)
+
+                pprint("Stored! file: {}".format(file))
+                pprint(hdfs.list_dir(my_dir))
+
+def send_mail():
+    index_name = "World Competitiveness Ranking (WCR)"
+    smtp_server = "smtp.gmail.com"
+    port = 587
+    email_to = Variable.get("email_to")
+    email_from = Variable.get("email_from")
+    password = Variable.get("email_from_password")
+    tzInfo = pytz.timezone('Asia/Bangkok')
+
+    email_string = f"""
+    Pipeline Success
+    ------------------------------------------
+    Index: {index_name}
+    Ingestion Date: {datetime.now(tz=tzInfo).strftime("%Y/%m/%d %H:%M")}
+    """
+
+    context = ssl.create_default_context()
+    try:
+        server = smtplib.SMTP(smtp_server, port)
+        server.ehlo()
+        server.starttls(context=context)
+        server.ehlo()
+        server.login(email_from, password)
+        server.sendmail(email_from, email_to, email_string)
+    except Exception as e:
+        print(e)
+    finally:
+        server.quit()
+
 
 with dag:
     scrap_and_extract_transform = PythonOperator(
         task_id='scrap_and_extract_transform',
         python_callable=extract_transform,
+    )
+
+    load_to_hdfs_raw_zone = PythonOperator(
+        task_id='load_to_hdfs_raw_zone',
+        python_callable=store_to_hdfs,
+        op_kwargs={'directory': '/raw/index_dashboard/Global/WCR'},
+    )
+
+    load_to_hdfs_processed_zone = PythonOperator(
+        task_id='load_to_hdfs_processed_zone',
+        python_callable=store_to_hdfs,
+        op_kwargs={'directory': '/processed/index_dashboard/Global/WCR'},
+    )
+
+    clean_up_output = BashOperator(
+        task_id='clean_up_output',
+        bash_command='rm -f /opt/airflow/dags/data_source/wcr/tmp/data/* && rm -f /opt/airflow/dags/data_source/wcr/tmp/raw/*',
+    )
+
+    send_email = PythonOperator(
+        task_id='send_email',
+        python_callable=send_mail,
     )
 
 scrap_and_extract_transform
