@@ -424,7 +424,7 @@ def ingress_data():
 
         data_source = hdfs.read_file(source_file_byte)
 
-        with open('/opt/airflow/dags/data_source/nri/{}'.format(filename), 'wb') as file_out:
+        with open('/opt/airflow/dags/output/nri/raw/{}'.format(filename), 'wb') as file_out:
             file_out.write(data_source)
             file_out.close()
 
