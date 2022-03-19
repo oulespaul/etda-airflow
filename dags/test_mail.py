@@ -10,11 +10,10 @@ index_name = "ICT Development Index (IDI)"
 
 
 def send_mail():
-    smtp_server = "smtp.gmail.com"
-    port = 587
-    email_to = Variable.get("email_to")
-    email_from = Variable.get("email_from")
-    password = Variable.get("email_from_password")
+    smtp_server = "203.154.120.150"
+    port = 25
+    email_to = "dac-visualization@etda.or.th"
+    email_from = "noreply-data@etda.or.th"
     tzInfo = pytz.timezone('Asia/Bangkok')
 
     email_string = f"""
@@ -27,11 +26,8 @@ def send_mail():
     context = ssl.create_default_context()
     try:
         server = smtplib.SMTP(smtp_server, port)
-        server.ehlo()
-        server.starttls(context=context)
-        server.ehlo()
-        server.login(email_from, password)
         server.sendmail(email_from, email_to, email_string)
+        print("sent!")
     except Exception as e:
         print(e)
     finally:

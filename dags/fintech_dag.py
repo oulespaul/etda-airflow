@@ -41,7 +41,7 @@ def transform():
         ingest_date = datetime.now()
         fin_df['ingest_date'] = ingest_date.strftime("%Y-%m-%d %H:%M:%S")
         fin_df.columns = fin_df.columns.str.lower()
-        df.to_csv('{}/FINTECH_{}_{}.csv'.format(output_path, year,
+        fin_df.to_csv('{}/FINTECH_{}_{}.csv'.format(output_path, year,
                                             ingest_date.strftime("%Y%m%d%H%M%S")), index=False)
 
     def ingestion_init():
