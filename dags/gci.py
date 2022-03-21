@@ -134,11 +134,10 @@ dag = DAG('gci', default_args=default_args, catchup=False)
 
 def send_mail():
     index_name = "Global Competitiveness Index (GCI)"
-    smtp_server = "smtp.gmail.com"
-    port = 587
+    smtp_server = "203.154.120.150"
+    port = 25
     email_to = Variable.get("email_to")
     email_from = Variable.get("email_from")
-    password = Variable.get("email_from_password")
     tzInfo = pytz.timezone('Asia/Bangkok')
 
     email_string = f"""
@@ -148,13 +147,8 @@ def send_mail():
     Ingestion Date: {datetime.now(tz=tzInfo).strftime("%Y/%m/%d %H:%M")}
     """
 
-    context = ssl.create_default_context()
     try:
         server = smtplib.SMTP(smtp_server, port)
-        server.ehlo()
-        server.starttls(context=context)
-        server.ehlo()
-        server.login(email_from, password)
         server.sendmail(email_from, email_to, email_string)
     except Exception as e:
         print(e)
