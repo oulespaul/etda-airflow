@@ -6,3 +6,8 @@ selenium
 tabula-py
 PyPDF2
 playwright
+python-dotenv==0.19.2
+PILasOPENCV==2.7
+matplotlib==3.5.1
+azure-cognitiveservices-vision-computervision==0.9.0
+pdf2image==1.16.0
