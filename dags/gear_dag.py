@@ -1217,10 +1217,10 @@ def send_mail():
         server.quit()
 
 with dag:
-    ingestion = PythonOperator(
-        task_id='ingestion',
-        python_callable=ingest_data,
-    )
+    # ingestion = PythonOperator(
+    #     task_id='ingestion',
+    #     python_callable=ingest_data,
+    # )
 
     scrap_and_extract_transform = PythonOperator(
         task_id='scrap_and_extract_transform',
@@ -1249,4 +1249,5 @@ with dag:
         python_callable=send_mail,
     )
 
-ingestion >> scrap_and_extract_transform >> load_to_hdfs_raw_zone >> load_to_hdfs_processed_zone >> clean_up_output >> send_email
+# ingestion >> scrap_and_extract_transform >> load_to_hdfs_raw_zone >> load_to_hdfs_processed_zone >> clean_up_output >> send_email
+scrap_and_extract_transform >> load_to_hdfs_raw_zone >> load_to_hdfs_processed_zone >> clean_up_output >> send_email
