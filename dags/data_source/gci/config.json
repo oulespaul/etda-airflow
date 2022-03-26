@@ -1257,6 +1257,22 @@
         "sub_pillar": "",
         "indicator": "",
         "sub_indicator": "PCT patents, applications/million pop.*"
+      },
+      "EOSQ331": {
+        "index": "Global Competitiveness Index",
+        "sub_index": "Efficiency Enhancers",
+        "pillar": "Financial market development",
+        "sub_pillar": "",
+        "indicator": "Affordability of financial services",
+        "sub_indicator": ""
+      },
+      "EOSQ332": {
+        "index": "Global Competitiveness Index",
+        "sub_index": "Efficiency Enhancers",
+        "pillar": "Financial market development",
+        "sub_pillar": "",
+        "indicator": "Availability of financial services",
+        "sub_indicator": ""
       }
     }
   }
