@@ -35,6 +35,7 @@ def transform():
         df.drop('Placement', axis=1, inplace=True)
         df.drop('GLOBAL ID', axis=1, inplace=True)
         df.drop('Series', axis=1, inplace=True)
+        df = df[df['Code GCR'] != "DISCONTINUED"]
 
         def get_value_from_key(key, sub_key):
             return series_dict.get(str(key), {}).get(sub_key, "")
