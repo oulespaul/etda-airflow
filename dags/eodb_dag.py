@@ -183,10 +183,23 @@ def store_to_hdfs(**kwargs):
                 pprint("Stored! file: {}".format(file))
                 pprint(hdfs.list_dir(my_dir))
 
+def ingest_data():
+    hdfs = PyWebHdfsClient(host='10.121.101.130',
+                           port='50070', user_name='hdfs')
+    source_file_byte = '/raw/index_dashboard/File_Upload/clean2_Historical-data---COMPLETE-dataset-with-scores.xlsx'
+
+    data_source = hdfs.read_file(source_file_byte)
+
+    with open('/opt/airflow/dags/data_source/gci40/clean2_Historical-data---COMPLETE-dataset-with-scores.xlsx', 'wb') as file_out:
+        file_out.write(data_source)
+        file_out.close()
+
+    pprint("Ingested!")
+
 with dag:
-    ingestion = BashOperator(
+    ingestion = PythonOperator(
         task_id='ingestion',
-        bash_command='cd /opt/airflow/dags/data_source/eodb  && ./sources.sh ',
+        python_callable=ingest_data,
     )
 
     scrap_and_extract_transform = PythonOperator(
