@@ -190,7 +190,7 @@ def ingest_data():
 
     data_source = hdfs.read_file(source_file_byte)
 
-    with open('/opt/airflow/dags/data_source/gci40/clean2_Historical-data---COMPLETE-dataset-with-scores.xlsx', 'wb') as file_out:
+    with open('/opt/airflow/dags/data_source/eodb/clean2_Historical-data---COMPLETE-dataset-with-scores.xlsx', 'wb') as file_out:
         file_out.write(data_source)
         file_out.close()
 
