@@ -671,9 +671,9 @@ dag = DAG('WCR', default_args=default_args, catchup=False)
 
 def extract_transform():
     cls = WCR()
-    cls.getDataFromExcel("WCR 2017-2021", "", "")
-    cls.getDataFromExcel("WCR pillar 2017-2021 rank", "pillar", "Rank")
-    cls.getDataFromExcel("WCR pillar 2017-2021 score", "pillar", "Score")
+    cls.getDataFromExcel("WCR 1995-2021", "", "")
+    cls.getDataFromExcel("WCR pillar 1995-2021 rank", "pillar", "Rank")
+    cls.getDataFromExcel("WCR pillar 1995-2021 score", "pillar", "Score")
 
     cls.writeYear()
 
