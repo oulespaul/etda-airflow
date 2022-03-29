@@ -75,7 +75,7 @@ dag = DAG('fintech', default_args=default_args, catchup=False)
 def ingest_data():
     hdfs = PyWebHdfsClient(host='10.121.101.130',
                            port='50070', user_name='hdfs')
-    source_file_byte = '/raw/index_dashboard/File_Upload/APEC_Fintech_E-payment_Readiness_Index_2016.pdf'
+    source_file_byte = '/raw/index_dashboard/File_Upload/FINTECH/APEC_Fintech_E-payment_Readiness_Index_2016.pdf'
 
     data_source = hdfs.read_file(source_file_byte)
 

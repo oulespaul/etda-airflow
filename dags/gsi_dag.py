@@ -122,7 +122,7 @@ dag = DAG('GSI', default_args=default_args, catchup=False)
 def ingest_data():
     hdfs = PyWebHdfsClient(host='10.121.101.130',
                            port='50070', user_name='hdfs')
-    source_file_byte = '/raw/index_dashboard/File_Upload/Global Cybersecurity Index 2020.pdf'
+    source_file_byte = '/raw/index_dashboard/File_Upload/GSI/Global Cybersecurity Index 2020.pdf'
 
     data_source = hdfs.read_file(source_file_byte)
 
