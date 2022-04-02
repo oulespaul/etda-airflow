@@ -2,6 +2,9 @@
 *.csv
 logs/*
 dags/__pycache__
+dags/data_source/gear/files-crop/*.pdf
+dags/data_source/gear/files-extract/*.pdf
+dags/data_source/gear/files-text-azure/*.txt
 !dags/data_source/gsi/Country_name.csv
 !dags/data_source/gsi/Meta Global Ranking Dashboard.xlsx
 !dags/data_source/fintech/Meta Global Ranking Dashboard.xlsx

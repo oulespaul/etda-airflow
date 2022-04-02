@@ -149,46 +149,45 @@ class HCI():
             while True:
                 try:
                     series = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="panel_HCI_Series"]/div[1]/h4/a')))
+                    series.click()
+                    sleep(5)
                     break
                 except TimeoutException:
                     sleep(5)
-            series.click()
-            sleep(5)
  
             while True:
                 try:
                     seriesAll = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="newSelection_HCI_Series"]/div/div/div/div/div[1]/div[3]/div[1]/div[1]/div/a[1]')))
+                    seriesAll.click()
+                    sleep(5)
                     break
                 except TimeoutException:
                     sleep(5)
-            seriesAll.click()
-            sleep(5)
 
             while True:
                 try:
                     time = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="panel_HCI_Time"]/div[1]/h4/a')))
+                    time.click()
+                    sleep(5)
                     break
                 except TimeoutException:
                     sleep(5)
-            time.click()
-            sleep(5)
 
             while True:
                 try:
                     unSelectYear = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="rowTimeDim"]/div/div/div[2]/div[3]/div[1]/div[1]/div/a[2]')))
+                    unSelectYear.click()
+                    sleep(5)
                     break
                 except TimeoutException:
                     sleep(5)
-            unSelectYear.click()
-            sleep(5)
-
+                
             try:
                 selectYear = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="chk[HCI_Time].[List].&[YR' + str(year) + ']"]')))
                 selectYear.click()
             except TimeoutException:
                 continue
             sleep(5)
-            
             while True:
                 try:
                     apply = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="applyChangesNoPreview"]')))
@@ -213,7 +212,7 @@ class HCI():
             sleep(5)
             download = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="liCSVDownload"]/a')))
             download.click()
-            sleep(120)
+            sleep(30)
 
             # File Check
             while True:
@@ -254,7 +253,7 @@ class HCI():
                             continue
 
                         run_number += 1
-                        raw_tmp.append([run_number, row[0], row[1], row[2], row[3], round(float(row[4]), 2) if str(row[4]) != '..' else 0.0, 'Score'])
+                        raw_tmp.append([run_number, row[0], row[1], row[2], row[3], float(row[4]) if str(row[4]) != '..' else 0.0, 'Score'])
                 df = pd.DataFrame(raw_tmp, columns=col)
                 
                 df["Rank"] = df.groupby(col[1])['value'].rank("dense", ascending=False)
@@ -298,9 +297,9 @@ class HCI():
                             continue
 
                         run_number += 1
-                        raw_tmp.append([run_number, row[0], row[1], row[2], row[3], float(row[4]) if str(row[4]) != '..' else 0.0, 'Score'])
+                        raw_tmp.append([run_number, row[0], row[1], row[2], row[3], round(float(row[4]), 2) if str(row[4]) != '..' else 0.0, 'Score'])
+
                 df = pd.DataFrame(raw_tmp, columns=col)
-                
                 df["Rank"] = df.groupby(col[1])['value'].rank("dense", ascending=False)
 
                 for index, row in df.iterrows():
@@ -337,7 +336,7 @@ class HCI():
         with open("{}/tmp/raw/{}.csv".format(self._airflow_path, year)) as csv_file:
 
             i = 0
-            csv_reader = csv.reader(csv_file, delimiter=',', skipinitialspace=True)
+            csv_reader = csv.reader(csv_file, delimiter=',', skipinitialspace=True, quoting=csv.QUOTE_ALL)
             line_count = 0
 
             for row in csv_reader: 
