@@ -336,16 +336,17 @@ class HCI():
         with open("{}/tmp/raw/{}.csv".format(self._airflow_path, year)) as csv_file:
 
             i = 0
-            csv_reader = csv.reader(csv_file, delimiter=',', skipinitialspace=True, quoting=csv.QUOTE_ALL)
+            csv_reader = csv.reader(csv_file, delimiter=',', skipinitialspace=True)
             line_count = 0
 
             for row in csv_reader: 
-                if i == 0 or row[0].strip() == '' or row[0].strip()[:19] == 'Data from database:' or row[0].strip()[:13] == 'Last Updated:':
+                if row[0].strip() == '' or row[0].strip()[:19] == 'Data from database:' or row[0].strip()[:13] == 'Last Updated:':
                     i += 1
                     continue
-                
-                saveCSV.writerow([row[0], row[1], year, self._index, self._source, self._index_name, '', '', '', '', row[3], '', '', 'Score', row[5] if row[5] != '..' else '', self.ingest_date])
-            
+                if row[1] == 'Human Capital Index (HCI) (scale 0-1)':
+                    saveCSV.writerow([row[0], row[3], year, self._index, self._source, self._index_name, '', '', '', '', '', '', '', row[6], row[5] if row[5] != '..' else '', self.ingest_date])
+                else:
+                    saveCSV.writerow([row[0], row[3], year, self._index, self._source, self._index_name, '', '', '', '', row[1], '', '', row[6], row[5] if row[5] != '..' else '', self.ingest_date])
                 line_count += 1
 
         saveFile.close()
@@ -353,6 +354,7 @@ class HCI():
         self._file_upload.append("{}/tmp/data/{}_{}_{}.csv".format(self._airflow_path, self._index, year, date))
 
         return line_count
+
 
 
 default_args = {
