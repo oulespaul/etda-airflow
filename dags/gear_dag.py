@@ -1158,7 +1158,7 @@ default_args = {
 dag = DAG('GEAR', default_args=default_args, catchup=False)
 
 def ingest_data():
-    hdfs = PyWebHdfsClient(host='10.121.101.130',
+    hdfs = PyWebHdfsClient(host='10.121.101.101',
                            port='50070', user_name='hdfs')
     source_file_byte = '/raw/index_dashboard/File_Upload/GEAR/government-e-payment-adoption-ranking-study-2018.pdf'
 
@@ -1171,7 +1171,7 @@ def ingest_data():
     pprint("Ingested!")
 
 def store_to_hdfs(**kwargs):
-    hdfs = PyWebHdfsClient(host='10.121.101.130',
+    hdfs = PyWebHdfsClient(host='10.121.101.101',
                            port='50070', user_name='hdfs')
     my_dir = kwargs['directory']
     hdfs.make_dir(my_dir)

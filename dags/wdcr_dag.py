@@ -772,7 +772,7 @@ dag = DAG("wdcr", default_args=default_args, catchup=False)
 
 
 def store_to_hdfs(**kwargs):
-    hdfs = PyWebHdfsClient(host='10.121.101.130',
+    hdfs = PyWebHdfsClient(host='10.121.101.101',
                            port='50070', user_name='hdfs')
     my_dir = kwargs['directory']
     hdfs.make_dir(my_dir)
