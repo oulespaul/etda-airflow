@@ -120,7 +120,7 @@ dag = DAG('GSI', default_args=default_args, catchup=False)
 
 
 def ingest_data():
-    hdfs = PyWebHdfsClient(host='10.121.101.101',
+    hdfs = PyWebHdfsClient(host='vm002namenode.aml.etda.local',
                            port='50070', user_name='hdfs')
     source_file_byte = '/raw/index_dashboard/File_Upload/GSI/Global Cybersecurity Index 2020.pdf'
 
@@ -157,7 +157,7 @@ def send_mail():
 
 
 def store_to_hdfs(**kwargs):
-    hdfs = PyWebHdfsClient(host='10.121.101.101',
+    hdfs = PyWebHdfsClient(host='vm002namenode.aml.etda.local',
                            port='50070', user_name='hdfs')
     my_dir = kwargs['directory']
     hdfs.make_dir(my_dir)

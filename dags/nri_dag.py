@@ -417,7 +417,7 @@ meta = {
 
 def ingress_data():
     def load_from_hdfs(filename):
-        hdfs = PyWebHdfsClient(host='10.121.101.101',
+        hdfs = PyWebHdfsClient(host='vm002namenode.aml.etda.local',
                                port='50070', user_name='hdfs')
         source_file_byte = '/raw/index_dashboard/File_Upload/NRI/{}'.format(
             filename)
@@ -647,7 +647,7 @@ default_args = {
 dag = DAG("NRI", default_args=default_args, catchup=False)
 
 def store_to_hdfs(**kwargs):
-    hdfs = PyWebHdfsClient(host='10.121.101.101',
+    hdfs = PyWebHdfsClient(host='vm002namenode.aml.etda.local',
                            port='50070', user_name='hdfs')
     my_dir = kwargs['directory']
     hdfs.make_dir(my_dir)

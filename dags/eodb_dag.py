@@ -161,7 +161,7 @@ def send_mail():
         server.quit()
 
 def store_to_hdfs(**kwargs):
-    hdfs = PyWebHdfsClient(host='10.121.101.101',
+    hdfs = PyWebHdfsClient(host='vm002namenode.aml.etda.local',
                            port='50070', user_name='hdfs')
     my_dir = kwargs['directory']
     hdfs.make_dir(my_dir)
@@ -184,7 +184,7 @@ def store_to_hdfs(**kwargs):
                 pprint(hdfs.list_dir(my_dir))
 
 def ingest_data():
-    hdfs = PyWebHdfsClient(host='10.121.101.101',
+    hdfs = PyWebHdfsClient(host='vm002namenode.aml.etda.local',
                            port='50070', user_name='hdfs')
     source_file_byte = '/raw/index_dashboard/File_Upload/EODB/clean2_Historical-data---COMPLETE-dataset-with-scores.xlsx'
 

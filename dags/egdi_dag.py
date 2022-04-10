@@ -359,7 +359,7 @@ def extract_transform():
 
 
 def store_to_hdfs(**kwargs):
-    hdfs = PyWebHdfsClient(host='10.121.101.101',
+    hdfs = PyWebHdfsClient(host='vm002namenode.aml.etda.local',
                            port='50070', user_name='hdfs')
     my_dir = kwargs['directory']
     hdfs.make_dir(my_dir)
