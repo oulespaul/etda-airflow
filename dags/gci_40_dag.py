@@ -119,7 +119,7 @@ dag = DAG('gci_40', default_args=default_args, catchup=False)
 
 
 def ingest_data():
-    hdfs = PyWebHdfsClient(host='vm002namenode.aml.etda.local',
+    hdfs = PyWebHdfsClient(host='10.121.101.130',
                            port='50070', user_name='hdfs')
     source_file_byte = '/raw/index_dashboard/File_Upload/GCI_40/GCR_2017-19_20Dataset.xlsx'
 

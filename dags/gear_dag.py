@@ -1157,19 +1157,6 @@ default_args = {
 
 dag = DAG('GEAR', default_args=default_args, catchup=False)
 
-def ingest_data():
-    hdfs = PyWebHdfsClient(host='vm002namenode.aml.etda.local',
-                           port='50070', user_name='hdfs')
-    source_file_byte = '/raw/index_dashboard/File_Upload/GEAR/government-e-payment-adoption-ranking-study-2018.pdf'
-
-    data_source = hdfs.read_file(source_file_byte)
-
-    with open('/opt/airflow/dags/data_source/gear/government-e-payment-adoption-ranking-study-2018.pdf', 'wb') as file_out:
-        file_out.write(data_source)
-        file_out.close()
-
-    pprint("Ingested!")
-
 def store_to_hdfs(**kwargs):
     hdfs = PyWebHdfsClient(host='vm002namenode.aml.etda.local',
                            port='50070', user_name='hdfs')
@@ -1217,11 +1204,6 @@ def send_mail():
         server.quit()
 
 with dag:
-    # ingestion = PythonOperator(
-    #     task_id='ingestion',
-    #     python_callable=ingest_data,
-    # )
-
     scrap_and_extract_transform = PythonOperator(
         task_id='scrap_and_extract_transform',
         python_callable=extract_transform,
