@@ -120,8 +120,8 @@ def RunGetText(file_name, count_newline):
     try:
 
         # รับค่าการกำหนดค่าในไฟล์ .env
-        cog_endpoint = "https://visionocr2.cognitiveservices.azure.com/"
-        cog_key = "ffb8361fb083418d907d684f970a680f"
+        cog_endpoint = "https://visionocretda.cognitiveservices.azure.com/"
+        cog_key = "88ff19f1035545f8b7803587103d031e"
 
         # Authenticate Computer Vision client
         credential = CognitiveServicesCredentials(cog_key)
