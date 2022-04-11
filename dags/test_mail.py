@@ -10,7 +10,7 @@ index_name = "ICT Development Index (IDI)"
 
 
 def send_mail():
-    smtp_server = "203.154.120.150"
+    smtp_server = "10.101.111.12"
     port = 25
     email_to = "dac-visualization@etda.or.th"
     email_from = "noreply-data@etda.or.th"

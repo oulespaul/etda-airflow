@@ -119,7 +119,7 @@ dag = DAG('gci_40', default_args=default_args, catchup=False)
 
 
 def ingest_data():
-    hdfs = PyWebHdfsClient(host='10.121.101.130',
+    hdfs = PyWebHdfsClient(host='vm002namenode.aml.etda.local',
                            port='50070', user_name='hdfs')
     source_file_byte = '/raw/index_dashboard/File_Upload/GCI_40/GCR_2017-19_20Dataset.xlsx'
 
@@ -134,7 +134,7 @@ def ingest_data():
 
 def send_mail():
     index_name = "Global Competitiveness Index 4.0 (GCI 4.0)"
-    smtp_server = "203.154.120.150"
+    smtp_server = "10.101.111.12"
     port = 25
     email_to = Variable.get("email_to")
     email_from = Variable.get("email_from")

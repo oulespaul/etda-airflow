@@ -120,7 +120,7 @@ dag = DAG('b2c', default_args=default_args, catchup=False)
 
 def send_mail():
     index_name = "Business to Consumer E-Commerce Index (B2C)"
-    smtp_server = "203.154.120.150"
+    smtp_server = "10.101.111.12"
     port = 25
     email_to = Variable.get("email_to")
     email_from = Variable.get("email_from")

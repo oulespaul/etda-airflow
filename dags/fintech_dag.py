@@ -73,7 +73,7 @@ default_args = {
 dag = DAG('fintech', default_args=default_args, catchup=False)
 
 def ingest_data():
-    hdfs = PyWebHdfsClient(host='10.121.101.130',
+    hdfs = PyWebHdfsClient(host='vm002namenode.aml.etda.local',
                            port='50070', user_name='hdfs')
     source_file_byte = '/raw/index_dashboard/File_Upload/FINTECH/APEC_Fintech_E-payment_Readiness_Index_2016.pdf'
 
@@ -87,7 +87,7 @@ def ingest_data():
 
 def send_mail():
     index_name = "Fintech e-Payment Readiness Index (FINTECH)"
-    smtp_server = "203.154.120.150"
+    smtp_server = "10.101.111.12"
     port = 25
     email_to = Variable.get("email_to")
     email_from = Variable.get("email_from")

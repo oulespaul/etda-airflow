@@ -139,7 +139,7 @@ dag = DAG('EoDB', default_args=default_args, catchup=False)
 
 def send_mail():
     index_name = "Ease of Doing Business Ranking (EoDB)"
-    smtp_server = "203.154.120.150"
+    smtp_server = "10.101.111.12"
     port = 25
     email_to = Variable.get("email_to")
     email_from = Variable.get("email_from")
@@ -184,7 +184,7 @@ def store_to_hdfs(**kwargs):
                 pprint(hdfs.list_dir(my_dir))
 
 def ingest_data():
-    hdfs = PyWebHdfsClient(host='10.121.101.130',
+    hdfs = PyWebHdfsClient(host='vm002namenode.aml.etda.local',
                            port='50070', user_name='hdfs')
     source_file_byte = '/raw/index_dashboard/File_Upload/EODB/clean2_Historical-data---COMPLETE-dataset-with-scores.xlsx'
 
