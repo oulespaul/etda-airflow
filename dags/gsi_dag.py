@@ -13,7 +13,7 @@ import numpy as np
 import smtplib
 import ssl
 import pytz
-
+tzInfo = pytz.timezone('Asia/Bangkok')
 
 def transform():
     datasource_path = "/opt/airflow/dags/data_source/gsi"
@@ -68,7 +68,7 @@ def transform():
         gsi_df = early_gsi_df.merge(
             gsi_index_meta_data, how='left', left_on='index_group', right_on='Name')
         # add column of year is 2020
-        ingest_date = datetime.now()
+        ingest_date = datetime.now(tz=tzInfo)
         gsi_df['year'] = year
         gsi_df['value'] = gsi_df['value'].astype(float)
         gsi_df["value"] = np.where(gsi_df["pillar"].isna(

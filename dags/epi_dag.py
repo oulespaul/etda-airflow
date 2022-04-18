@@ -1,13 +1,10 @@
 import os
 import csv
 import json
-import glob
 from time import sleep
-from datetime import timedelta, date, datetime
 import filecmp
 import pandas as pd
 import smtplib
-import ssl
 import pytz
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -26,6 +23,7 @@ from datetime import datetime, timedelta
 from pywebhdfs.webhdfs import PyWebHdfsClient
 from pprint import pprint
 
+tzInfo = pytz.timezone('Asia/Bangkok')
 
 class EPI():
 
@@ -50,8 +48,8 @@ class EPI():
         self._file_upload = []
         self._log_tmp = []
 
-        self.date_scrap = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
-        self.ingest_date = datetime.today().strftime('%d/%m/%Y %H:%M')
+        self.date_scrap = datetime.now(tz=tzInfo).strftime('%Y-%m-%d %H:%M:%S')
+        self.ingest_date = datetime.now(tz=tzInfo).strftime('%d/%m/%Y %H:%M')
 
         self.__initConfig()
         # self.__initDriver()
@@ -325,14 +323,14 @@ def extract_transform():
 
     try:
         f = open("{}/tmp/log/{}_log_{}.tsv".format(cls._airflow_path,
-                 cls._index, datetime.today().strftime('%Y')))
+                 cls._index, datetime.now(tz=tzInfo).strftime('%Y')))
         log_file = open("{}/tmp/log/{}_log_{}.tsv".format(cls._airflow_path,
-                        cls._index, datetime.today().strftime('%Y')), 'a', newline='')
+                        cls._index, datetime.now(tz=tzInfo).strftime('%Y')), 'a', newline='')
         log_writer = csv.writer(log_file, delimiter='\t',
                                 lineterminator='\n', quotechar="'")
     except IOError:
         log_file = open("{}/tmp/log/{}_log_{}.tsv".format(cls._airflow_path,
-                        cls._index, datetime.today().strftime('%Y')), 'a')
+                        cls._index, datetime.now(tz=tzInfo).strftime('%Y')), 'a')
         log_writer = csv.writer(log_file, delimiter='\t',
                                 lineterminator='\n', quotechar="'")
         log_writer.writerow(cls._header_log)

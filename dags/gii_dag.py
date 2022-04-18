@@ -15,6 +15,7 @@ from airflow.models import Variable
 downloadLink = "https://www.globalinnovationindex.org/analysis-indicator"
 outputRawDir = "/opt/airflow/dags/output/gii/raw"
 outputDir = "/opt/airflow/dags/output/gii/data"
+tzInfo = pytz.timezone('Asia/Bangkok')
 
 
 class nestDict(dict):
@@ -731,7 +732,7 @@ def ingress_data():
 mi = "GII"
 index = "Global Innovation Index"
 org = "World Intellectual Property Organization"
-now = datetime.now()
+now = datetime.now(tz=tzInfo)
 etl = now.strftime("%d/%m/%Y %H:%M")
 
 

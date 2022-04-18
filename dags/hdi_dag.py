@@ -17,6 +17,7 @@ import os
 downloadLink = "http://hdr.undp.org/sites/all/themes/hdr_theme/js/bars.json"
 outputRawDir = "/opt/airflow/dags/output/hdi/raw"
 outputDir = "/opt/airflow/dags/output/hdi/data"
+tzInfo = pytz.timezone('Asia/Bangkok')
 
 if not os.path.exists(outputDir):
     os.makedirs(outputDir, exist_ok=True)
@@ -137,7 +138,7 @@ def extract_transform():
     mi = "HDI"
     org = "UNITED NATIONS DEVELOPMENT PROGRAMME"
     index = "Human Development Index"
-    now = datetime.now()
+    now = datetime.now(tz=tzInfo)
     etl = now.strftime("%d/%m/%Y %H:%M")
     prelist = []
     for tmp in temp.values.tolist():

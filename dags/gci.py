@@ -13,6 +13,7 @@ import smtplib
 import ssl
 import pytz
 
+tzInfo = pytz.timezone('Asia/Bangkok')
 
 def transform():
     datasource_path = "/opt/airflow/dags/data_source/gci"
@@ -71,7 +72,7 @@ def transform():
             except Exception:
                 return False
 
-        ingest_date = datetime.now()
+        ingest_date = datetime.now(tz=tzInfo)
 
         df['organizer'] = 'WEF'
         df['master_index'] = 'GCI'
@@ -139,7 +140,6 @@ def send_mail():
     port = 25
     email_to = Variable.get("email_to")
     email_from = Variable.get("email_from")
-    tzInfo = pytz.timezone('Asia/Bangkok')
 
     email_string = f"""
     Pipeline Success

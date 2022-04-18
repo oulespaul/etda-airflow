@@ -12,6 +12,7 @@ import json
 import smtplib
 import ssl
 import pytz
+tzInfo = pytz.timezone('Asia/Bangkok')
 
 def transform():
     datasource_path = "/opt/airflow/dags/data_source/idi"
@@ -59,7 +60,7 @@ def transform():
             except Exception:
                 return False
 
-        ingest_date = datetime.now()
+        ingest_date = datetime.now(tz=tzInfo)
 
         df['index'] = "ICT Development Index"
         df['ingest_date'] = ingest_date.strftime("%Y/%m/%d %H:%M")

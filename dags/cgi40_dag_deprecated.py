@@ -889,7 +889,7 @@ def etl():
         )
         print("country: {}".format(country))
         tmp['Country'] = country
-        tmp['Ingest Date'] = datetime.now().date()
+        tmp['Ingest Date'] = datetime.now(tz=tzInfo).date()
         return tmp
 
     dfs = [pivot(country) for country in countries]
@@ -922,7 +922,7 @@ def store_to_hdfs():
     hdfs.make_dir(my_dir)
     hdfs.make_dir(my_dir, permission=755)
 
-    ingest_date = datetime.now().strftime("%Y%m%d%H%M%S")
+    ingest_date = datetime.now(tz=tzInfo).strftime("%Y%m%d%H%M%S")
 
     with open('/opt/airflow/dags/output/CGI_4.0_2017_2019.csv', 'r', encoding="utf8") as file_data:
         my_data = file_data.read()

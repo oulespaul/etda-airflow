@@ -14,6 +14,7 @@ from airflow.models import Variable
 
 outputRawDir = "/opt/airflow/dags/output/wdcr/raw"
 outputDir = "/opt/airflow/dags/output/wdcr/data"
+tzInfo = pytz.timezone('Asia/Bangkok')
 
 if not os.path.exists(outputDir):
     os.makedirs(outputDir, exist_ok=True)
@@ -610,7 +611,7 @@ def extract_transform():
     mi = "WDCR"
     index = "World Digital Competitiveness Ranking"
     org = "International Institute for Management Development"
-    now = datetime.now()
+    now = datetime.now(tz=tzInfo)
     etl = now.strftime("%d/%m/%Y %H:%M")
 
     df1: pd.DataFrame = pd.read_excel(

@@ -14,6 +14,7 @@ from PyPDF2 import PdfFileReader
 from airflow.models import Variable
 from datetime import datetime, timedelta
 
+tzInfo = pytz.timezone('Asia/Bangkok')
 
 def transform():
     datasource_path = "/opt/airflow/dags/data_source/eodb"
@@ -95,7 +96,7 @@ def transform():
         eodb_full_df['others'] = np.nan
         eodb_full_df['organizer'] = 'World Bank'
         eodb_full_df['master_index'] = 'EoDB'
-        ingest_date = datetime.now()
+        ingest_date = datetime.now(tz=tzInfo)
         eodb_full_df['ingest_date'] = ingest_date.strftime("%Y-%m-%d %H:%M")
 
         list_col = ['country', 'region', 'level_income', 'year', 'value',

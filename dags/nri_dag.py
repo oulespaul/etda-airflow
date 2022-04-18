@@ -13,6 +13,7 @@ from airflow.models import Variable
 
 outputRawDir = "/opt/airflow/dags/output/nri/raw"
 outputDir = "/opt/airflow/dags/output/nri/data"
+tzInfo = pytz.timezone('Asia/Bangkok')
 
 if not os.path.exists(outputDir):
     os.makedirs(outputDir, exist_ok=True)
@@ -441,7 +442,7 @@ def extract_transform():
     mi = "NRI"
     index = "Network Readiness Index"
     org = "World Economic Forum"
-    now = datetime.now()
+    now = datetime.now(tz=tzInfo)
     etl = now.strftime("%d/%m/%Y %H:%M")
 
     files_list = os.listdir(outputRawDir)

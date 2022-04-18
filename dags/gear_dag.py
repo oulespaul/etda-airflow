@@ -24,6 +24,7 @@ from msrest.authentication import CognitiveServicesCredentials
 from pdf2image import convert_from_path
 from PyPDF2 import PdfFileWriter, PdfFileReader
 
+tzInfo = pytz.timezone('Asia/Bangkok')
 
 start_page = 55
 end_page = 127
@@ -334,7 +335,7 @@ def transformToFormat(nation, page, list_title, results5):
 
         if (count == 0):
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[1])
             i.insert(0, 'Rank')
             i.insert(0, '')
@@ -352,7 +353,7 @@ def transformToFormat(nation, page, list_title, results5):
             result7List.append(i)
 
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[2])
             i.insert(0, 'Score')
             i.insert(0, '')
@@ -372,7 +373,7 @@ def transformToFormat(nation, page, list_title, results5):
         #     ---------------CITIZEN-TO-GOVERNMENT (C2G)
         if (count == 1):
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[1])
             i.insert(0, 'Rank')
             i.insert(0, '')
@@ -390,7 +391,7 @@ def transformToFormat(nation, page, list_title, results5):
             result7List.append(i)
 
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[2])
             i.insert(0, 'Score')
             i.insert(0, '')
@@ -409,7 +410,7 @@ def transformToFormat(nation, page, list_title, results5):
 
         if (count >= 2 and count <= 7):
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[1])
             i.insert(0, 'Rank')
             i.insert(0, '')
@@ -427,7 +428,7 @@ def transformToFormat(nation, page, list_title, results5):
             result7List.append(i)
 
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[2])
             i.insert(0, 'Score')
             i.insert(0, '')
@@ -447,7 +448,7 @@ def transformToFormat(nation, page, list_title, results5):
         #         ---------------GOVERNMENT-TO-CITIZEN (G2C)
         if (count == 8):
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[1])
             i.insert(0, 'Rank')
             i.insert(0, '')
@@ -465,7 +466,7 @@ def transformToFormat(nation, page, list_title, results5):
             result7List.append(i)
 
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[2])
             i.insert(0, 'Score')
             i.insert(0, '')
@@ -484,7 +485,7 @@ def transformToFormat(nation, page, list_title, results5):
 
         if (count >= 9 and count <= 12):
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[1])
             i.insert(0, 'Rank')
             i.insert(0, '')
@@ -502,7 +503,7 @@ def transformToFormat(nation, page, list_title, results5):
             result7List.append(i)
 
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[2])
             i.insert(0, 'Score')
             i.insert(0, '')
@@ -522,7 +523,7 @@ def transformToFormat(nation, page, list_title, results5):
         #         ---------------BUSINESS-TO-GOVERNMENT (B2G)
         if (count == 13):
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[1])
             i.insert(0, 'Rank')
             i.insert(0, '')
@@ -540,7 +541,7 @@ def transformToFormat(nation, page, list_title, results5):
             result7List.append(i)
 
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[2])
             i.insert(0, 'Score')
             i.insert(0, '')
@@ -559,7 +560,7 @@ def transformToFormat(nation, page, list_title, results5):
 
         if (count >= 14 and count <= 17):
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[1])
             i.insert(0, 'Rank')
             i.insert(0, '')
@@ -577,7 +578,7 @@ def transformToFormat(nation, page, list_title, results5):
             result7List.append(i)
 
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[2])
             i.insert(0, 'Score')
             i.insert(0, '')
@@ -597,7 +598,7 @@ def transformToFormat(nation, page, list_title, results5):
         #     ---------------GOVERNMENT-TO-BUSINESS (G2B)
         if (count == 18):
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[1])
             i.insert(0, 'Rank')
             i.insert(0, '')
@@ -615,7 +616,7 @@ def transformToFormat(nation, page, list_title, results5):
             result7List.append(i)
 
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[2])
             i.insert(0, 'Score')
             i.insert(0, '')
@@ -634,7 +635,7 @@ def transformToFormat(nation, page, list_title, results5):
 
         if (count >= 19 and count <= 22):
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[1])
             i.insert(0, 'Rank')
             i.insert(0, '')
@@ -652,7 +653,7 @@ def transformToFormat(nation, page, list_title, results5):
             result7List.append(i)
 
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[2])
             i.insert(0, 'Score')
             i.insert(0, '')
@@ -672,7 +673,7 @@ def transformToFormat(nation, page, list_title, results5):
         #     ---------------INFRASTRUCTURE
         if (count == 23):
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[1])
             i.insert(0, 'Rank')
             i.insert(0, '')
@@ -690,7 +691,7 @@ def transformToFormat(nation, page, list_title, results5):
             result7List.append(i)
 
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[2])
             i.insert(0, 'Score')
             i.insert(0, '')
@@ -709,7 +710,7 @@ def transformToFormat(nation, page, list_title, results5):
 
         if (count >= 24 and count <= 29):
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[1])
             i.insert(0, 'Rank')
             i.insert(0, '')
@@ -727,7 +728,7 @@ def transformToFormat(nation, page, list_title, results5):
             result7List.append(i)
 
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[2])
             i.insert(0, 'Score')
             i.insert(0, '')
@@ -746,7 +747,7 @@ def transformToFormat(nation, page, list_title, results5):
 
         if (count >= 30 and count <= 32):
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[1])
             i.insert(0, 'Rank')
             i.insert(0, '')
@@ -764,7 +765,7 @@ def transformToFormat(nation, page, list_title, results5):
             result7List.append(i)
 
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[2])
             i.insert(0, 'Score')
             i.insert(0, '')
@@ -784,7 +785,7 @@ def transformToFormat(nation, page, list_title, results5):
         #     ---------------SOCIAL AND ECONOMIC CONTEXT
         if (count == 33):
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[1])
             i.insert(0, 'Rank')
             i.insert(0, '')
@@ -802,7 +803,7 @@ def transformToFormat(nation, page, list_title, results5):
             result7List.append(i)
 
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[2])
             i.insert(0, 'Score')
             i.insert(0, '')
@@ -821,7 +822,7 @@ def transformToFormat(nation, page, list_title, results5):
 
         if (count >= 34 and count <= 35):
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[1])
             i.insert(0, 'Rank')
             i.insert(0, '')
@@ -839,7 +840,7 @@ def transformToFormat(nation, page, list_title, results5):
             result7List.append(i)
 
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[2])
             i.insert(0, 'Score')
             i.insert(0, '')
@@ -858,7 +859,7 @@ def transformToFormat(nation, page, list_title, results5):
 
         if (count >= 36 and count <= 37):
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[1])
             i.insert(0, 'Rank')
             i.insert(0, '')
@@ -876,7 +877,7 @@ def transformToFormat(nation, page, list_title, results5):
             result7List.append(i)
 
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[2])
             i.insert(0, 'Score')
             i.insert(0, '')
@@ -895,7 +896,7 @@ def transformToFormat(nation, page, list_title, results5):
 
         if (count >= 38 and count <= 41):
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[1])
             i.insert(0, 'Rank')
             i.insert(0, '')
@@ -913,7 +914,7 @@ def transformToFormat(nation, page, list_title, results5):
             result7List.append(i)
 
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[2])
             i.insert(0, 'Score')
             i.insert(0, '')
@@ -933,7 +934,7 @@ def transformToFormat(nation, page, list_title, results5):
         #     ---------------POLICY CONTEXT
         if (count == 42):
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[1])
             i.insert(0, 'Rank')
             i.insert(0, '')
@@ -951,7 +952,7 @@ def transformToFormat(nation, page, list_title, results5):
             result7List.append(i)
 
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[2])
             i.insert(0, 'Score')
             i.insert(0, '')
@@ -970,7 +971,7 @@ def transformToFormat(nation, page, list_title, results5):
 
         if (count >= 43 and count <= 47):
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[1])
             i.insert(0, 'Rank')
             i.insert(0, '')
@@ -988,7 +989,7 @@ def transformToFormat(nation, page, list_title, results5):
             result7List.append(i)
 
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[2])
             i.insert(0, 'Score')
             i.insert(0, '')
@@ -1007,7 +1008,7 @@ def transformToFormat(nation, page, list_title, results5):
 
         if (count >= 48 and count <= 49):
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[1])
             i.insert(0, 'Rank')
             i.insert(0, '')
@@ -1025,7 +1026,7 @@ def transformToFormat(nation, page, list_title, results5):
             result7List.append(i)
 
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[2])
             i.insert(0, 'Score')
             i.insert(0, '')
@@ -1044,7 +1045,7 @@ def transformToFormat(nation, page, list_title, results5):
 
         if (count >= 50 and count <= 52):
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[1])
             i.insert(0, 'Rank')
             i.insert(0, '')
@@ -1062,7 +1063,7 @@ def transformToFormat(nation, page, list_title, results5):
             result7List.append(i)
 
             i = []
-            i.insert(0, datetime.now().strftime("%d/%m/%Y %H:%M"))
+            i.insert(0, datetime.now(tz=tzInfo).strftime("%d/%m/%Y %H:%M"))
             i.insert(0, line[2])
             i.insert(0, 'Score')
             i.insert(0, '')
@@ -1110,7 +1111,7 @@ def genCSV():
     a = np.asarray(final_result)
     np.savetxt('/opt/airflow/dags/output/gear/GEAR_{}_{}.csv'.format(
         2018,
-        datetime.now().strftime("%Y%m%d%H%M%S")), a, delimiter=",", fmt=' % s')
+        datetime.now(tz=tzInfo).strftime("%Y%m%d%H%M%S")), a, delimiter=",", fmt=' % s')
 # --------------------------------------------Generate CSV
 
 

@@ -13,6 +13,8 @@ import ssl
 import pytz
 import os
 
+tzInfo = pytz.timezone('Asia/Bangkok')
+
 def transform():
     datasource_path = "/opt/airflow/dags/data_source/fintech"
     output_path = "/opt/airflow/dags/output/fintech"
@@ -38,7 +40,7 @@ def transform():
         fin_df = fin_df.drop(drop_col,axis=1)
         fin_df['master_index'] = 'Fintech'
         fin_df['organizer'] = 'WFE'
-        ingest_date = datetime.now()
+        ingest_date = datetime.now(tz=tzInfo)
         fin_df['ingest_date'] = ingest_date.strftime("%Y-%m-%d %H:%M:%S")
         fin_df.columns = fin_df.columns.str.lower()
         fin_df.to_csv('{}/FINTECH_{}_{}.csv'.format(output_path, year,

@@ -12,6 +12,7 @@ import smtplib
 import ssl
 import pytz
 
+tzInfo = pytz.timezone('Asia/Bangkok')
 
 def transform():
     datasource_path = "/opt/airflow/dags/data_source/gci40"
@@ -62,7 +63,7 @@ def transform():
             value_name="value"
         )
 
-        ingest_date = datetime.now()
+        ingest_date = datetime.now(tz=tzInfo)
 
         df['organizer'] = 'WEF'
         df['master_index'] = 'GCI 4.0'

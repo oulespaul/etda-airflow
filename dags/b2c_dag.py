@@ -13,6 +13,7 @@ import smtplib
 import ssl
 import pytz
 
+tzInfo = pytz.timezone('Asia/Bangkok')
 
 def transform():
     pd.set_option('display.max_columns', None)
@@ -66,7 +67,7 @@ def transform():
         df["unit_2"] = df["Indicator"].apply(
             get_value_from_key, args=("unit_2",))
 
-        ingest_date = datetime.now()
+        ingest_date = datetime.now(tz=tzInfo)
         df['master_index'] = 'B2C'
         df['index'] = "UNCTAD B2C E-commerce Index "
         df['organizer'] = 'UNCTAD'
@@ -124,7 +125,6 @@ def send_mail():
     port = 25
     email_to = Variable.get("email_to")
     email_from = Variable.get("email_from")
-    tzInfo = pytz.timezone('Asia/Bangkok')
 
     email_string = f"""
     Pipeline Success
