@@ -317,20 +317,16 @@ class EGDI():
 
         return line_count
 
-
 default_args = {
     'owner': 'ETDA',
-    'depends_on_past': False,
-    'start_date': '2021-01-25',
-    'email': ['brian2devops@gmail.com'],
-    'email_on_failure': False,
-    'email_on_retry': False,
-    'retry_delay': timedelta(minutes=5),
-    'schedule_interval': '@yearly',
+    'start_date': datetime(2022, 3, 31),
+    'schedule_interval': None,
 }
 
-dag = DAG('EGDI', default_args=default_args, catchup=False)
-
+dag = DAG('EGDI',
+          schedule_interval='@yearly',
+          default_args=default_args,
+          catchup=False)
 
 def extract_transform():
     cls = EGDI()

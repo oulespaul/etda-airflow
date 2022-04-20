@@ -15,6 +15,7 @@ import pytz
 
 tzInfo = pytz.timezone('Asia/Bangkok')
 
+
 def transform():
     pd.set_option('display.max_columns', None)
     datasource_path = "/opt/airflow/dags/data_source/b2c"
@@ -104,20 +105,16 @@ def transform():
 
     ingestion_init()
 
-
 default_args = {
     'owner': 'ETDA',
-    'depends_on_past': False,
-    'start_date': '2021-01-25',
-    'email': ['oulespaul@gmail.com'],
-    'email_on_failure': False,
-    'email_on_retry': False,
-    'retry_delay': timedelta(minutes=5),
-    'schedule_interval': '@yearly',
+    'start_date': datetime(2022, 3, 31),
+    'schedule_interval': None,
 }
 
-dag = DAG('b2c', default_args=default_args, catchup=False)
-
+dag = DAG('B2C',
+          schedule_interval='@yearly',
+          default_args=default_args,
+          catchup=False)
 
 def send_mail():
     index_name = "Business to Consumer E-Commerce Index (B2C)"

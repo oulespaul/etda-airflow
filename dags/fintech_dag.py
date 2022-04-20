@@ -63,16 +63,14 @@ def transform():
 
 default_args = {
     'owner': 'ETDA',
-    'depends_on_past': False,
-    'start_date': '2021-01-25',
-    'email': ['oulespaul@gmail.com'],
-    'email_on_failure': False,
-    'email_on_retry': False,
-    'retry_delay': timedelta(minutes=5),
-    'schedule_interval': '@yearly',
+    'start_date': datetime(2022, 3, 31),
+    'schedule_interval': None,
 }
 
-dag = DAG('fintech', default_args=default_args, catchup=False)
+dag = DAG('FINTECH',
+          schedule_interval='@yearly',
+          default_args=default_args,
+          catchup=False)
 
 def ingest_data():
     hdfs = PyWebHdfsClient(host='vm002namenode.aml.etda.local',

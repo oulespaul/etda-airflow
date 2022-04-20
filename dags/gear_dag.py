@@ -1147,16 +1147,14 @@ def extract_transform():
 
 default_args = {
     'owner': 'ETDA',
-    'depends_on_past': False,
-    'start_date': '2021-01-25',
-    'email': ["udom.ranok@gmail.co"],
-    'email_on_failure': False,
-    'email_on_retry': False,
-    'retry_delay': timedelta(minutes=5),
-    'schedule_interval': '@yearly',
+    'start_date': datetime(2022, 3, 31),
+    'schedule_interval': None,
 }
 
-dag = DAG('GEAR', default_args=default_args, catchup=False)
+dag = DAG('GEAR',
+          schedule_interval='@yearly',
+          default_args=default_args,
+          catchup=False)
 
 def store_to_hdfs(**kwargs):
     hdfs = PyWebHdfsClient(host='vm002namenode.aml.etda.local',
