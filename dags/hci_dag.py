@@ -39,6 +39,7 @@ class HCI():
     def __init__(self):        
         self._firefox_driver_path = "/usr/local/bin"
         self._airflow_path = "/opt/airflow/dags/data_source/hci"
+        self._airflow_path_output = "/opt/airflow/dags/output/hci"
 
         self._index = "HCI"
         self._index_name = "Human Capital Index"
@@ -328,9 +329,7 @@ class HCI():
         return None
 
     def writeFile(self, year, date):    
-
-        saveFile = open("{}/tmp/data/{}_{}_{}.csv".format(self._airflow_path, self._index, year, date), 'w', newline='') 
-        saveCSV = csv.writer(saveFile, delimiter=',')
+        saveFile = open("{}/{}_{}_{}.csv".format(self._airflow_path_output, self._index, year, date), 'w', newline='')        saveCSV = csv.writer(saveFile, delimiter=',')
 
         saveCSV.writerow(self._schema)
 
@@ -352,7 +351,7 @@ class HCI():
 
         saveFile.close()
 
-        self._file_upload.append("{}/tmp/data/{}_{}_{}.csv".format(self._airflow_path, self._index, year, date))
+        self._file_upload.append("{}/{}_{}_{}.csv".format(self._airflow_path_output, self._index, year, date))
 
         return line_count
 
@@ -427,7 +426,7 @@ def store_to_hdfs(**kwargs):
     hdfs.make_dir(my_dir)
     hdfs.make_dir(my_dir, permission=755)
 
-    path = "/opt/airflow/dags/data_source/hci/tmp/data"
+    path = "/opt/airflow/dags/output/hci"
 
     os.chdir(path)
 
@@ -464,7 +463,7 @@ with dag:
 
     clean_up_output = BashOperator(
         task_id='clean_up_output',
-        bash_command='rm -f /opt/airflow/dags/data_source/hci/tmp/data/* && rm -f /opt/airflow/dags/data_source/hci/tmp/raw/*',
+        bash_command='rm -f /opt/airflow/dags/output/hci/*.csv && rm -f /opt/airflow/dags/data_source/hci/tmp/raw/*',
     )
 
     send_email = PythonOperator(

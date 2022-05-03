@@ -23,6 +23,7 @@ class WCR():
     def __init__(self):
         self._firefox_driver_path = "/usr/local/bin"
         self._airflow_path = "/opt/airflow/dags/data_source/wcr"
+        self._airflow_path_output = "/opt/airflow/dags/output/wcr"
 
         self._index = "WCR"
         self._index_name = "World Competitiveness Ranking"
@@ -611,9 +612,9 @@ class WCR():
 
     def writeFile(self, year, date, pillar, unit_2):
         if pillar == 'pillar':
-            saveFile = open("{}/tmp/data/{}_{}_{}_{}_{}.csv".format(self._airflow_path, self._index, pillar, unit_2, year, date), 'w', newline='') 
+            saveFile = open("{}/{}_{}_{}_{}_{}.csv".format(self._airflow_path_output, self._index, pillar, unit_2, year, date), 'w', newline='') 
         else:
-            saveFile = open("{}/tmp/data/{}_{}_{}.csv".format(self._airflow_path, self._index, year, date), 'w', newline='') 
+            saveFile = open("{}/{}_{}_{}.csv".format(self._airflow_path_output, self._index, year, date), 'w', newline='') 
         saveCSV = csv.writer(saveFile, delimiter=',')
 
         saveCSV.writerow(self._schema)
@@ -651,9 +652,9 @@ class WCR():
 
         saveFile.close()
         if pillar == 'pillar':
-            self._file_upload.append("{}/tmp/data/{}_{}_{}_{}_{}.csv".format(self._airflow_path, self._index, year, pillar, unit_2, date))
+            self._file_upload.append("{}/{}_{}_{}_{}_{}.csv".format(self._airflow_path_output, self._index, year, pillar, unit_2, date))
         else:
-            self._file_upload.append("{}/tmp/data/{}_{}_{}.csv".format(self._airflow_path, self._index, year, date))
+            self._file_upload.append("{}/{}_{}_{}.csv".format(self._airflow_path_output, self._index, year, date))
 
         return line_count
 
@@ -699,7 +700,7 @@ def store_to_hdfs(**kwargs):
     hdfs.make_dir(my_dir)
     hdfs.make_dir(my_dir, permission=755)
 
-    path = "/opt/airflow/dags/data_source/wcr/tmp/data"
+    path = "/opt/airflow/dags/output/wcr"
 
     os.chdir(path)
 
@@ -759,7 +760,7 @@ with dag:
 
     clean_up_output = BashOperator(
         task_id='clean_up_output',
-        bash_command='rm -f /opt/airflow/dags/data_source/wcr/tmp/data/* && rm -f /opt/airflow/dags/data_source/wcr/tmp/raw/*',
+        bash_command='rm -f /opt/airflow/dags/output/wcr/*.csv && rm -f /opt/airflow/dags/data_source/wcr/tmp/raw/*',
     )
 
     send_email = PythonOperator(
