@@ -3,7 +3,7 @@
     "smtp_port": 25,
     "email_to": "dac-visualization@etda.or.th",
     "email_from": "noreply-data@etda.or.th",
-    "hdfs_host": "vm002namenode.aml.etda.local",
+    "hdfs_host": "10.121.101.130",
     "hdfs_port": "50070",
     "hdfs_username": "hdfs"
 }
