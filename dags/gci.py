@@ -134,8 +134,8 @@ dag = DAG('GCI',
 
 def send_mail():
     index_name = "Global Competitiveness Index (GCI)"
-    smtp_server = "10.101.111.12"
-    port = 25
+    smtp_server = Variable.get("smtp_host")
+    port = Variable.get("smtp_port")
     email_to = Variable.get("email_to")
     email_from = Variable.get("email_from")
 
@@ -156,8 +156,8 @@ def send_mail():
 
 
 def store_to_hdfs(**kwargs):
-    hdfs = PyWebHdfsClient(host='vm002namenode.aml.etda.local',
-                           port='50070', user_name='hdfs')
+    hdfs = PyWebHdfsClient(host=Variable.get("hdfs_host"),
+                           port=Variable.get("hdfs_port"), user_name=Variable.get("hdfs_username"))
     my_dir = kwargs['directory']
     hdfs.make_dir(my_dir)
     hdfs.make_dir(my_dir, permission=755)

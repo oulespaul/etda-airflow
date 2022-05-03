@@ -10,8 +10,8 @@ index_name = "ICT Development Index (IDI)"
 
 
 def send_mail():
-    smtp_server = "10.101.111.12"
-    port = 25
+    smtp_server = Variable.get("smtp_host")
+    port = Variable.get("smtp_port")
     email_to = "dac-visualization@etda.or.th"
     email_from = "noreply-data@etda.or.th"
     tzInfo = pytz.timezone('Asia/Bangkok')

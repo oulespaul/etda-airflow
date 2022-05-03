@@ -917,7 +917,7 @@ dag = DAG('cgi_40_deprecated', default_args=default_args, catchup=False)
 
 def store_to_hdfs():
     hdfs = PyWebHdfsClient(host='10.121.101.145',
-                           port='50070', user_name='cloudera')
+                           port=Variable.get("hdfs_port"), user_name='cloudera')
     my_dir = '/user/cloudera/data/raw/index_dashboard/Global/CGI_4.0'
     hdfs.make_dir(my_dir)
     hdfs.make_dir(my_dir, permission=755)

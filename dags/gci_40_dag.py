@@ -117,8 +117,8 @@ dag = DAG('GCI_40',
           catchup=False)
 
 def ingest_data():
-    hdfs = PyWebHdfsClient(host='vm002namenode.aml.etda.local',
-                           port='50070', user_name='hdfs')
+    hdfs = PyWebHdfsClient(host=Variable.get("hdfs_host"),
+                           port=Variable.get("hdfs_port"), user_name=Variable.get("hdfs_username"))
     source_file_byte = '/raw/index_dashboard/File_Upload/GCI_40/GCR_2017-19_20Dataset.xlsx'
 
     data_source = hdfs.read_file(source_file_byte)
@@ -132,8 +132,8 @@ def ingest_data():
 
 def send_mail():
     index_name = "Global Competitiveness Index 4.0 (GCI 4.0)"
-    smtp_server = "10.101.111.12"
-    port = 25
+    smtp_server = Variable.get("smtp_host")
+    port = Variable.get("smtp_port")
     email_to = Variable.get("email_to")
     email_from = Variable.get("email_from")
     tzInfo = pytz.timezone('Asia/Bangkok')
@@ -155,8 +155,8 @@ def send_mail():
 
 
 def store_to_hdfs(**kwargs):
-    hdfs = PyWebHdfsClient(host='vm002namenode.aml.etda.local',
-                           port='50070', user_name='hdfs')
+    hdfs = PyWebHdfsClient(host=Variable.get("hdfs_host"),
+                           port=Variable.get("hdfs_port"), user_name=Variable.get("hdfs_username"))
     my_dir = kwargs['directory']
     hdfs.make_dir(my_dir)
     hdfs.make_dir(my_dir, permission=755)
