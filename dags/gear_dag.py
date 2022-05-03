@@ -254,7 +254,7 @@ def getNationDetailTextAzure():
 
 # Clean Data----------------------------------------------
 
-def cleanDate(nation, value):
+def clean_data(nation, value):
     page = value + 1
     print(nation, "page text: ", page)
     destination = '/opt/airflow/dags/data_source/gear/files-text-azure/file' + \
@@ -1139,7 +1139,7 @@ def extract_transform():
         print('--------------------&&&&&&&&----------------------')
         print(line)
         if (line[1] + 1 >= start_page and line[1] + 1 <= end_page):
-            cleanDate(line[0], line[1])
+            clean_data(line[0], line[1])
     genCSV()
 
     pprint("Scrap_data_source and Extract_transform!")
