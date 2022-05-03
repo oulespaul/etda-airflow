@@ -36,7 +36,7 @@ class EGDI():
     def __init__(self):
         self._firefox_driver_path = "/usr/local/bin"
         self._airflow_path = "/opt/airflow/dags/data_source/egdi"
-        self._airflow_path_output = "/opt/airflow/dags/output/edgi"
+        self._airflow_path_output = "/opt/airflow/dags/output/egdi"
 
         self._index = "EGDI"
         self._index_name = "E-Government Development Index"
