@@ -301,13 +301,13 @@ with dag:
     load_to_hdfs_raw_zone = PythonOperator(
         task_id='load_to_hdfs_raw_zone',
         python_callable=store_to_hdfs,
-        op_kwargs={'directory': '/raw/index_dashboard/Global/DAI'},
+        op_kwargs={'directory': '/data/raw/index_dashboard/Global/DAI'},
     )
 
     load_to_hdfs_processed_zone = PythonOperator(
         task_id='load_to_hdfs_processed_zone',
         python_callable=store_to_hdfs,
-        op_kwargs={'directory': '/processed/index_dashboard/Global/DAI'},
+        op_kwargs={'directory': '/data/processed/index_dashboard/Global/DAI'},
     )
 
     clean_up_output = BashOperator(
