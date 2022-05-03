@@ -329,7 +329,8 @@ class HCI():
         return None
 
     def writeFile(self, year, date):    
-        saveFile = open("{}/{}_{}_{}.csv".format(self._airflow_path_output, self._index, year, date), 'w', newline='')        saveCSV = csv.writer(saveFile, delimiter=',')
+        saveFile = open("{}/{}_{}_{}.csv".format(self._airflow_path_output, self._index, year, date), 'w', newline='')        
+        saveCSV = csv.writer(saveFile, delimiter=',')
 
         saveCSV.writerow(self._schema)
 
