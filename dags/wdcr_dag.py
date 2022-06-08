@@ -433,7 +433,7 @@ def Download(types="index"):
         login_link = "https://worldcompetitiveness.imd.org"
 
         print("- Open browser")
-        browser = pw.chromium.launch()
+        browser = pw.chromium.launch(headless=True)
         page = browser.new_page(accept_downloads=True)
         print(f"- Goto {login_link}")
         page.goto(login_link)
@@ -496,10 +496,15 @@ def Download(types="index"):
         page.wait_for_selector(
             "#collapsedata > div.col-xs-12.col-sm-12.selectall.checkbox > label"
         )
-        page.click(
-            "#collapsedata > div.col-xs-12.col-sm-12.selectall.checkbox > label")
+        page.click("#collapsedata > div.col-xs-12.col-sm-12.selectall.checkbox > label")
         page.wait_for_load_state(state="networkidle")
         if types == "index":
+            page.wait_for_selector(
+                "#collapsedata > div.intro > div.col-xs-12.col-sm-6 > div:nth-child(3) > label"
+            )
+            page.click(
+                "#collapsedata > div.intro > div.col-xs-12.col-sm-6 > div:nth-child(3) > label"
+            )
             page.wait_for_selector(
                 "#selectYourConsolidatedDataNavSection > div.next.active > button"
             )
@@ -510,8 +515,7 @@ def Download(types="index"):
             page.wait_for_selector(
                 "#selectYourCritDataNavSection > div.next.active > button"
             )
-            page.click(
-                "#selectYourCritDataNavSection > div.next.active > button")
+            page.click("#selectYourCritDataNavSection > div.next.active > button")
 
         # Select Country
         print("- Check all")
@@ -528,11 +532,17 @@ def Download(types="index"):
         page.click("#selectYourCountryNavSection > div.next.active > button")
 
         # Select time frame
-        print("- Check last 5 year")
+        # print("- Check last 5 year")
+        # page.wait_for_selector(
+        #     "#collapsetimeframe > div.items > div:nth-child(2) > label"
+        # )
+        # page.click("#collapsetimeframe > div.items > div:nth-child(2) > label")
+        print("- Check All Year")
         page.wait_for_selector(
-            "#collapsetimeframe > div.items > div:nth-child(2) > label"
+            "#collapsetimeframe > div.items > div:nth-child(1) > label"
         )
-        page.click("#collapsetimeframe > div.items > div:nth-child(2) > label")
+        page.click("#collapsetimeframe > div.items > div:nth-child(1) > label")
+
         page.wait_for_load_state(state="networkidle")
         page.wait_for_selector(
             "#selectYourTimeFrameNavSection > div.next.active > button"
@@ -544,12 +554,10 @@ def Download(types="index"):
         # Download page
         print("- Wait for download page")
         if types == "index":
-            page.wait_for_selector(
-                ".button.blueButton.conso-result-download-options")
+            page.wait_for_selector(".button.blueButton.conso-result-download-options")
             page.click(".button.blueButton.conso-result-download-options")
         else:
-            page.wait_for_selector(
-                ".button.blueButton.crit-result-download-options")
+            page.wait_for_selector(".button.blueButton.crit-result-download-options")
             page.click(".button.blueButton.crit-result-download-options")
         page.wait_for_selector(
             "#downloadOptionsContent > div.col-xs-12.col-sm-4.row.download-section > div:nth-child(2) > div:nth-child(1) > label"
@@ -563,14 +571,13 @@ def Download(types="index"):
         )
         page.wait_for_load_state(state="networkidle")
         with page.expect_download(timeout=0) as download_info:
-            filename = index_filename
+            filename = "WDCR_Index.xlsx"
             if types != "index":
-                filename = indicator_filename
+                filename = "WDCR_Indicator.xlsx"
                 page.click("#btnCriteriaExcelDownload")
             else:
                 page.click("#btnConsolidatedExcelDownload")
             download = download_info.value
-            print(download)
             _ = download.path()
             page.wait_for_load_state(state="networkidle")
 
