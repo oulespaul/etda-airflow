@@ -54,7 +54,7 @@ meta = {
     "Technology (DIGITAL)": {"id": "2", "pillar": "Technology", "sub-pillar": ""},
     "Future readiness (DIGITAL)": {
         "id": "3",
-        "pillar": "Future Readness",
+        "pillar": "Future Readiness",
         "sub-pillar": "",
     },
     "Talent (DIGITAL)": {"id": "1.1", "pillar": "Knowledge", "sub-pillar": "Talent"},
@@ -321,106 +321,106 @@ meta = {
     },
     "Adaptive attitudes (DIGITAL)": {
         "id": "3.1",
-        "pillar": "Future Readness",
+        "pillar": "Future Readiness",
         "sub-pillar": "Adaptive attitudes",
     },
     "E-Participation (DIGITAL)": {
         "id": "3.1.1",
-        "pillar": "Future Readness",
+        "pillar": "Future Readiness",
         "sub-pillar": "Adaptive attitudes",
         "indicator": "E-Participation",
     },
     "Internet retailing (DIGITAL)": {
         "id": "3.1.2",
-        "pillar": "Future Readness",
+        "pillar": "Future Readiness",
         "sub-pillar": "Adaptive attitudes",
         "indicator": "Internet retailing",
     },
     "Tablet possession (DIGITAL)": {
         "id": "3.1.3",
-        "pillar": "Future Readness",
+        "pillar": "Future Readiness",
         "sub-pillar": "Adaptive attitudes",
         "indicator": "Tablet possession",
     },
     "Smartphone possession (DIGITAL)": {
         "id": "3.1.4",
-        "pillar": "Future Readness",
+        "pillar": "Future Readiness",
         "sub-pillar": "Adaptive attitudes",
         "indicator": "Smartphone possession",
     },
     "Attitudes toward globalization (DIGITAL)": {
         "id": "3.1.5",
-        "pillar": "Future Readness",
+        "pillar": "Future Readiness",
         "sub-pillar": "Adaptive attitudes",
         "indicator": "Attitudes toward globalization",
     },
     "Business agility (DIGITAL)": {
         "id": "3.2",
-        "pillar": "Future Readness",
+        "pillar": "Future Readiness",
         "sub-pillar": "Business agility",
     },
     "Opportunities and threats (DIGITAL)": {
         "id": "3.2.1",
-        "pillar": "Future Readness",
+        "pillar": "Future Readiness",
         "sub-pillar": "Business agility",
         "indicator": "Opportunities and threats",
     },
     "World robots distribution (DIGITAL)": {
         "id": "3.2.2",
-        "pillar": "Future Readness",
+        "pillar": "Future Readiness",
         "sub-pillar": "Business agility",
         "indicator": "World robots distribution",
     },
     "Agility of companies (DIGITAL)": {
         "id": "3.2.3",
-        "pillar": "Future Readness",
+        "pillar": "Future Readiness",
         "sub-pillar": "Business agility",
         "indicator": "Agility of companies",
     },
     "Use of big data and analytics (DIGITAL)": {
         "id": "3.2.4",
-        "pillar": "Future Readness",
+        "pillar": "Future Readiness",
         "sub-pillar": "Business agility",
         "indicator": "Use of big data and analytics",
     },
     "Knowledge transfer (DIGITAL)": {
         "id": "3.2.5",
-        "pillar": "Future Readness",
+        "pillar": "Future Readiness",
         "sub-pillar": "Business agility",
         "indicator": "Knowledge transfer",
     },
     "Entrepreneurial fear of failure (DIGITAL)": {
         "id": "3.2.6",
-        "pillar": "Future Readness",
+        "pillar": "Future Readiness",
         "sub-pillar": "Business agility",
         "indicator": "Entrepreneurial fear of failure",
     },
     "IT integration (DIGITAL)": {
         "id": "3.3",
-        "pillar": "Future Readness",
+        "pillar": "Future Readiness",
         "sub-pillar": "IT integration",
     },
     "E-Government (DIGITAL)": {
         "id": "3.3.1",
-        "pillar": "Future Readness",
+        "pillar": "Future Readiness",
         "sub-pillar": "IT integration",
         "indicator": "E-Government",
     },
     "Public-private partnerships (DIGITAL)": {
         "id": "3.3.2",
-        "pillar": "Future Readness",
+        "pillar": "Future Readiness",
         "sub-pillar": "IT integration",
         "indicator": "Public-private partnerships",
     },
     "Cyber security (DIGITAL)": {
         "id": "3.3.3",
-        "pillar": "Future Readness",
+        "pillar": "Future Readiness",
         "sub-pillar": "IT integration",
         "indicator": "Cyber security",
     },
     "Software piracy (DIGITAL)": {
         "id": "3.3.4",
-        "pillar": "Future Readness",
+        "pillar": "Future Readiness",
         "sub-pillar": "IT integration",
         "indicator": "Software piracy",
     },
@@ -487,8 +487,7 @@ def Download(types="index"):
                 "#dataTypeList > div:nth-child(2) > div:nth-child(1) > div > label"
             )
         page.wait_for_load_state(state="networkidle")
-        page.wait_for_selector(
-            "#selectDataTypeNavSection > div.next.active > button")
+        page.wait_for_selector("#selectDataTypeNavSection > div.next.active > button")
         page.click("#selectDataTypeNavSection > div.next.active > button")
 
         # Select your data
@@ -606,11 +605,7 @@ def prepare(df: pd.DataFrame):
         id_vars=["Country", "Year"], var_name="Name", value_name="Score"
     )
     df["Year"] = df["Year"].astype(int)
-    df["Rank"] = (
-        df.groupby(by=["Year", "Name"])["Score"]
-        .rank("dense", ascending=False)
-        .astype(int)
-    )
+    df["Rank"] = df.groupby(by=["Year", "Name"])["Score"].rank("dense", ascending=False)
     return df
 
 
@@ -623,10 +618,10 @@ def extract_transform():
 
     df1: pd.DataFrame = pd.read_excel(
         os.path.join(outputRawDir, index_filename), header=0
-    ).replace("-", 0)[:-2]
+    ).replace("-", NaN)[:-2]
     df2: pd.DataFrame = pd.read_excel(
         os.path.join(outputRawDir, indicator_filename), header=0
-    ).replace("-", 0)[:-2]
+    ).replace("-", NaN)[:-2]
 
     df1 = prepare(df1)
 
@@ -756,9 +751,7 @@ def extract_transform():
         tm.reindex()
         tm.index += 1
         print(f"- year {year} save file")
-        tm.to_csv(os.path.join(
-            outputDir, f"{save_filename}.csv"), index_label="id")
-
+        tm.to_csv(os.path.join(outputDir, f"{save_filename}.csv"), index_label="id")
         print(f"- year {year} save file end")
 
 
